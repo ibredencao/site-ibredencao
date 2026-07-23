@@ -68,18 +68,25 @@ if (categoria.layout === "cards-youtube") {
             />
           </div>
         ) : itens.length > 0 ? (
-          <div
-            class="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
-            data-reveal
-          >
-            {itens.map((item) => (
-              <CardRecurso
-                item={item}
-                aspecto={
-                  categoria.layout === "cards-spotify" ? "square" : "video"
-                }
-              />
-            ))}
+          <div class="lg:grid lg:grid-cols-12">
+            <div
+              class:list={[
+                "grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:col-span-10 lg:col-start-2",
+                categoria.layout === "cards"
+                  ? "lg:grid-cols-2"
+                  : "lg:grid-cols-3",
+              ]}
+              data-reveal
+            >
+              {itens.map((item) => (
+                <CardRecurso
+                  item={item}
+                  aspecto={
+                    categoria.layout === "cards-spotify" ? "square" : "video"
+                  }
+                />
+              ))}
+            </div>
           </div>
         ) : (
           <p class="text-center text-lg opacity-70" data-reveal>

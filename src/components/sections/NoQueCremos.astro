@@ -8,8 +8,11 @@ import { noQueCremos } from "../../data/conteudo";
 ---
 
 <Secao fundo="branco">
-  <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-24" data-reveal>
-    <div class="flex flex-col gap-8">
+  <div
+    class="grid items-center gap-y-12 lg:grid-cols-12 lg:gap-x-10"
+    data-reveal
+  >
+    <div class="flex flex-col gap-8 lg:col-span-4 lg:col-start-2">
       <h2 class="titulo-secao">No que cremos</h2>
       <div
         class="flex flex-col gap-4 font-sans text-lg leading-snug opacity-80"
@@ -19,6 +22,6 @@ import { noQueCremos } from "../../data/conteudo";
       <Btn href="/confissao-de-fe" class="w-fit">Ler mais</Btn>
     </div>
 
-    <MoldemImagem proporcao="1/1" class="w-full" />
+    <MoldemImagem proporcao="1/1" class="w-full lg:col-span-5 lg:col-start-7" />
   </div>
 </Secao>

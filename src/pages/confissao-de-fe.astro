@@ -18,10 +18,12 @@ const subtitulo =
 
   <div class="bg-branco py-16 lg:py-24">
     <div
-      class="mx-auto grid max-w-[1585px] gap-12 px-6 lg:grid-cols-[300px_1fr] lg:gap-20 lg:px-10"
+      class="mx-auto grid max-w-[1585px] gap-y-12 px-6 lg:grid-cols-12 lg:gap-x-10 lg:px-10"
     >
       {/* Índice */}
-      <aside class="lg:sticky lg:top-28 lg:self-start">
+      <aside
+        class="lg:sticky lg:top-28 lg:col-span-3 lg:col-start-1 lg:self-start"
+      >
         <details class="group" open>
           <summary
             class="mb-6 cursor-pointer font-display text-2xl font-normal text-preto/50 lg:pointer-events-none lg:list-none"
@@ -56,7 +58,7 @@ const subtitulo =
       </aside>
 
       {/* Artigos */}
-      <div class="flex max-w-3xl flex-col gap-16">
+      <div class="flex flex-col gap-16 lg:col-span-6 lg:col-start-5">
         {
           artigosConfissao.map((artigo) => (
             <article
