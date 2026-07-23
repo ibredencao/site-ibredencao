@@ -2,7 +2,7 @@
 import logo from "../../assets/logo.svg?raw";
 import Icone from "../ui/Icone.astro";
 import setaBaixo from "../../assets/icones/seta-baixo.svg?raw";
-import { recursos } from "../../data/navegacao";
+import { documentosDeFe, recursos } from "../../data/navegacao";
 ---
 
 <div
@@ -31,9 +31,34 @@ import { recursos } from "../../data/navegacao";
 
   <nav class="flex flex-col gap-8 px-[30px] pt-4" aria-label="Menu">
     <a href="/#missao" class="font-ui text-xl font-medium text-preto">Missão</a>
-    <a href="/confissao-de-fe" class="font-ui text-xl font-medium text-preto">
-      Confissão de Fé
-    </a>
+
+    <details class="group">
+      <summary
+        class="flex cursor-pointer list-none items-center gap-1 font-ui text-xl font-medium text-sangue"
+      >
+        Documentos de Fé
+        <Icone
+          svg={setaBaixo}
+          class="size-6 transition-transform duration-300 group-open:rotate-180"
+        />
+      </summary>
+      <ul class="mt-4 flex flex-col">
+        {
+          documentosDeFe.map((sub) => (
+            <li>
+              <a
+                href={sub.href}
+                class="flex items-center gap-3 py-4 font-sans text-base text-preto"
+              >
+                <Icone svg={sub.icone} class="size-6" />
+                {sub.rotulo}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </details>
+
     <a href="/nossa-historia" class="font-ui text-xl font-medium text-preto">
       Nossa História
     </a>
