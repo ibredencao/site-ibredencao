@@ -26,7 +26,11 @@ const toggleClasse =
 ---
 
 {/* Header do topo — rola junto com a página */}
-<header id="header-topo" data-tema={tema} class="absolute inset-x-0 top-0 z-40">
+<header
+  id="header-topo"
+  data-tema={tema}
+  class="absolute inset-x-0 top-0 z-40 mt-10"
+>
   <nav class={navClasse} aria-label="Navegação principal">
     <NavColuna itens={navEsquerda} alinhamento="justify-start" />
 
@@ -130,8 +134,10 @@ const toggleClasse =
     if (!topo || !fixo) return;
 
     const onScroll = () => {
-      // O header fixo aparece só depois que o header do topo saiu de vista.
-      fixo.dataset.visivel = String(window.scrollY > topo.offsetHeight);
+      // O header fixo aparece só depois que o header do topo (incluindo sua
+      // margem superior) saiu totalmente de vista.
+      const limite = topo.offsetTop + topo.offsetHeight;
+      fixo.dataset.visivel = String(window.scrollY > limite);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
