@@ -3,32 +3,42 @@
  * Botão padrão do site (Figma: componentes "Btn", "Btn outline" e "Btn Inline").
  * - solid: fundo sangue, texto branco
  * - outline: borda sangue, texto sangue
- * - inline: só texto + seta, para links discretos ("Ler mais", "Ver rota...")
+ * - inline: só texto + seta, para links discretos ("Ver rota...")
+ * `icone="seta"` acrescenta a seta (›) também nos botões solid/outline
+ * (ex.: "Ler mais", "Ver mais no Youtube").
  */
 interface Props {
   href: string;
   variant?: "solid" | "outline" | "inline";
+  icone?: "seta";
   /** Cor do texto no variant inline (padrão: sangue; no rodapé usa-se areia) */
   class?: string;
 }
 
-const { href, variant = "solid", class: className = "" } = Astro.props;
+const { href, variant = "solid", icone, class: className = "" } = Astro.props;
 
 const base =
   "font-ui inline-flex items-center gap-1 text-[15px] font-semibold transition-colors duration-300";
 const variants = {
-  solid: "bg-sangue text-branco hover:bg-sangue-escuro rounded-lg px-8 py-6",
+  solid: "bg-sangue text-branco hover:bg-sangue-escuro rounded-lg px-8 py-4",
   outline:
-    "border-sangue text-sangue hover:bg-sangue/10 rounded-lg border px-8 py-6",
+    "border-sangue text-sangue hover:bg-sangue/10 rounded-lg border px-8 py-4",
   inline: "text-sangue hover:opacity-75",
 };
+
+const mostrarSeta = variant === "inline" || icone === "seta";
 ---
 
 <a href={href} class:list={[base, variants[variant], className]}>
   <slot />
   {
-    variant === "inline" && (
-      <svg class="size-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    mostrarSeta && (
+      <svg
+        class="size-6 shrink-0"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+      >
         <path
           d="M9 6l6 6-6 6"
           stroke="currentColor"
