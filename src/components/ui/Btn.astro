@@ -34,7 +34,7 @@ const mostrarSeta = variant === "inline" || icone === "seta";
   {
     mostrarSeta && (
       <svg
-        class="size-6 shrink-0"
+        class:list={["size-6 shrink-0", icone === "seta" && "text-areia"]}
         viewBox="0 0 24 24"
         fill="none"
         aria-hidden="true"
