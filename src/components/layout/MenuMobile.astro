@@ -74,24 +74,28 @@ import { recursos } from "../../data/navegacao";
 <script>
   function initMenuMobile() {
     const menu = document.getElementById("menu-mobile");
-    const toggle = document.getElementById("menu-toggle");
+    // Há um botão de menu em cada header (topo e fixo).
+    const toggles = document.querySelectorAll(".js-menu-toggle");
     const close = document.getElementById("menu-close");
-    if (!menu || !toggle) return;
+    if (!menu || !toggles.length) return;
+
+    const setExpanded = (v) =>
+      toggles.forEach((t) => t.setAttribute("aria-expanded", v));
 
     const abrir = () => {
       menu.dataset.open = "true";
       menu.removeAttribute("inert");
-      toggle.setAttribute("aria-expanded", "true");
+      setExpanded("true");
       document.body.style.overflow = "hidden";
     };
     const fechar = () => {
       menu.dataset.open = "false";
       menu.setAttribute("inert", "");
-      toggle.setAttribute("aria-expanded", "false");
+      setExpanded("false");
       document.body.style.overflow = "";
     };
 
-    toggle.addEventListener("click", abrir);
+    toggles.forEach((t) => t.addEventListener("click", abrir));
     close?.addEventListener("click", fechar);
     menu
       .querySelectorAll("a")

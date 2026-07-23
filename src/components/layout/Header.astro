@@ -6,11 +6,12 @@ import NavColuna from "./NavColuna.astro";
 import { navEsquerda, navDireita } from "../../data/navegacao";
 
 /**
- * Header fixo com dois temas iniciais e transição no scroll.
- * - tema "claro"  → sobre fundo claro (Home): texto escuro
- * - tema "escuro" → sobre o hero vinho (páginas internas): texto areia
- * Após rolar, ambos viram sólido (fundo branco + sombra + texto escuro).
- * O estado de scroll é controlado por data-scrolled no script no fim do arquivo.
+ * Dois headers:
+ *  1. #header-topo — sobre o hero (transparente), rola JUNTO com a página e some.
+ *     tema "claro" (texto escuro, Home) ou "escuro" (texto areia, hero vinho).
+ *  2. #header-fixo — compacto (só o símbolo), fixo no topo. Fica escondido e
+ *     desliza para dentro depois que o header do topo desaparece com o scroll.
+ *     Sempre sólido (fundo branco, texto escuro), sem sombra.
  */
 interface Props {
   tema?: "claro" | "escuro";
@@ -18,40 +19,66 @@ interface Props {
 const { tema = "claro" } = Astro.props;
 
 const setaHamburguer = "M3 6h18M3 12h18M3 18h18";
+const navClasse =
+  "mx-auto flex max-w-[1585px] items-center gap-10 px-6 py-5 lg:px-10";
+const toggleClasse =
+  "js-menu-toggle ml-auto flex size-10 items-center justify-center lg:hidden";
 ---
 
-<header
-  id="site-header"
-  data-tema={tema}
-  class="group/header fixed inset-x-0 top-0 z-50 transition-colors duration-300 data-[scrolled=true]:bg-branco data-[scrolled=true]:shadow-[0_9px_20px_rgba(111,110,103,0.08)]"
->
-  <nav
-    class="mx-auto flex max-w-[1585px] items-center gap-10 px-6 py-5 lg:px-10"
-    aria-label="Navegação principal"
-  >
+{/* Header do topo — rola junto com a página */}
+<header id="header-topo" data-tema={tema} class="absolute inset-x-0 top-0 z-40">
+  <nav class={navClasse} aria-label="Navegação principal">
     <NavColuna itens={navEsquerda} alinhamento="justify-start" />
 
-    {/* Logo central: completo no topo, só símbolo após rolar */}
     <a
       href="/"
       class="order-first flex shrink-0 items-center lg:order-none"
       aria-label="Igreja Batista Redenção — página inicial"
     >
-      <span class="group-data-[scrolled=true]/header:hidden">
-        <Icone svg={logo} class="h-9" />
-      </span>
-      <span class="hidden group-data-[scrolled=true]/header:block">
-        <Icone svg={simbolo} class="size-11" />
-      </span>
+      <Icone svg={logo} class="h-9" />
     </a>
 
     <NavColuna itens={navDireita} alinhamento="justify-end" />
 
-    {/* Botão do menu mobile */}
     <button
       type="button"
-      id="menu-toggle"
-      class="ml-auto flex size-10 items-center justify-center lg:hidden"
+      class={toggleClasse}
+      aria-label="Abrir menu"
+      aria-expanded="false"
+      aria-controls="menu-mobile"
+    >
+      <svg class="size-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d={setaHamburguer}
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"></path>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+{/* Header fixo compacto — aparece deslizando após o header do topo sumir */}
+<header
+  id="header-fixo"
+  class="fixed inset-x-0 top-0 z-50 bg-branco text-preto"
+>
+  <nav class={navClasse} aria-label="Navegação principal">
+    <NavColuna itens={navEsquerda} alinhamento="justify-start" />
+
+    <a
+      href="/"
+      class="order-first flex shrink-0 items-center lg:order-none"
+      aria-label="Igreja Batista Redenção — página inicial"
+    >
+      <Icone svg={simbolo} class="size-11" />
+    </a>
+
+    <NavColuna itens={navDireita} alinhamento="justify-end" />
+
+    <button
+      type="button"
+      class={toggleClasse}
       aria-label="Abrir menu"
       aria-expanded="false"
       aria-controls="menu-mobile"
@@ -68,20 +95,43 @@ const setaHamburguer = "M3 6h18M3 12h18M3 18h18";
 </header>
 
 <style>
-  #site-header {
+  #header-topo {
     color: var(--color-preto);
   }
-  #site-header[data-tema="escuro"]:not([data-scrolled="true"]) {
+  #header-topo[data-tema="escuro"] {
     color: var(--color-areia);
+  }
+
+  /* Header fixo: escondido acima da viewport; desliza para dentro quando visível.
+     Ancorado no id (especificidade alta) para vencer as utilities de forma estável. */
+  #header-fixo {
+    transform: translateY(-100%);
+    opacity: 0;
+    transition:
+      transform 0.3s ease-out,
+      opacity 0.3s ease-out;
+  }
+  #header-fixo[data-visivel="true"] {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #header-fixo {
+      transition: none;
+    }
   }
 </style>
 
 <script>
   function initHeader() {
-    const header = document.getElementById("site-header");
-    if (!header) return;
+    const topo = document.getElementById("header-topo");
+    const fixo = document.getElementById("header-fixo");
+    if (!topo || !fixo) return;
+
     const onScroll = () => {
-      header.dataset.scrolled = String(window.scrollY > 24);
+      // O header fixo aparece só depois que o header do topo saiu de vista.
+      fixo.dataset.visivel = String(window.scrollY > topo.offsetHeight);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
