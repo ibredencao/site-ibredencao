@@ -18,6 +18,9 @@ interface Props {
 }
 const { tema = "claro" } = Astro.props;
 
+// Sobre o hero vinho (tema escuro) o hover é bege; nos demais casos, vermelho.
+const hoverTopo = tema === "escuro" ? "bege" : "sangue";
+
 const setaHamburguer = "M3 6h18M3 12h18M3 18h18";
 const navClasse =
   "mx-auto flex max-w-[1585px] items-center gap-10 px-6 py-5 lg:px-10";
@@ -32,7 +35,11 @@ const toggleClasse =
   class="absolute inset-x-0 top-0 z-40 mt-10 hidden lg:block"
 >
   <nav class={navClasse} aria-label="Navegação principal">
-    <NavColuna itens={navEsquerda} alinhamento="justify-start" />
+    <NavColuna
+      itens={navEsquerda}
+      alinhamento="justify-start"
+      hover={hoverTopo}
+    />
 
     <a
       href="/"
@@ -42,7 +49,7 @@ const toggleClasse =
       <Icone svg={logo} class="h-9" />
     </a>
 
-    <NavColuna itens={navDireita} alinhamento="justify-end" />
+    <NavColuna itens={navDireita} alinhamento="justify-end" hover={hoverTopo} />
 
     <button
       type="button"
@@ -68,7 +75,7 @@ const toggleClasse =
   class="fixed inset-x-0 top-0 z-50 bg-branco text-preto"
 >
   <nav class={navClasse} aria-label="Navegação principal">
-    <NavColuna itens={navEsquerda} alinhamento="justify-start" />
+    <NavColuna itens={navEsquerda} alinhamento="justify-start" hover="sangue" />
 
     {/* Logo completo no mobile; só o símbolo no desktop */}
     <a
@@ -84,7 +91,7 @@ const toggleClasse =
       </span>
     </a>
 
-    <NavColuna itens={navDireita} alinhamento="justify-end" />
+    <NavColuna itens={navDireita} alinhamento="justify-end" hover="sangue" />
 
     <button
       type="button"

@@ -7,8 +7,17 @@ import type { ItemNav } from "../../data/navegacao";
 interface Props {
   itens: ItemNav[];
   alinhamento: "justify-start" | "justify-end";
+  /** Cor do texto no hover: "sangue" (padrão) ou "bege" (header sobre o hero vinho) */
+  hover?: "sangue" | "bege";
 }
-const { itens, alinhamento } = Astro.props;
+const { itens, alinhamento, hover = "sangue" } = Astro.props;
+
+// Classes completas (literais) para o JIT do Tailwind gerar as variantes.
+const hoverLink = hover === "bege" ? "hover:text-bege" : "hover:text-sangue";
+const hoverBtn =
+  hover === "bege"
+    ? "hover:text-bege group-hover/drop:text-bege group-focus-within/drop:text-bege"
+    : "hover:text-sangue group-hover/drop:text-sangue group-focus-within/drop:text-sangue";
 ---
 
 <ul
@@ -24,7 +33,10 @@ const { itens, alinhamento } = Astro.props;
           <div class="group/drop">
             <button
               type="button"
-              class="flex items-center gap-1 font-ui text-base font-medium transition-colors group-focus-within/drop:text-sangue group-hover/drop:text-sangue hover:text-sangue"
+              class:list={[
+                "flex items-center gap-1 font-ui text-base font-medium transition-colors",
+                hoverBtn,
+              ]}
               aria-haspopup="true"
               aria-expanded="false"
             >
@@ -53,7 +65,10 @@ const { itens, alinhamento } = Astro.props;
         ) : (
           <a
             href={item.href}
-            class="font-ui text-base font-medium transition-opacity hover:opacity-70"
+            class:list={[
+              "font-ui text-base font-medium transition-colors",
+              hoverLink,
+            ]}
           >
             {item.rotulo}
           </a>
