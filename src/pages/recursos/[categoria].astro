@@ -5,7 +5,11 @@ import CardRecurso from "../../components/ui/CardRecurso.astro";
 import Btn from "../../components/ui/Btn.astro";
 import Agenda from "../../components/sections/Agenda.astro";
 import OndeEstamos from "../../components/sections/OndeEstamos.astro";
-import { categoriasRecursos } from "../../data/recursos";
+import { categoriasRecursos, type ItemRecurso } from "../../data/recursos";
+import { buscarVideosYoutube } from "../../lib/youtube";
+
+// Máximo de sermões exibidos por página (YouTube e Spotify).
+const MAX_ITENS = 9;
 
 export function getStaticPaths() {
   return categoriasRecursos.map((categoria) => ({
@@ -15,6 +19,12 @@ export function getStaticPaths() {
 }
 
 const { categoria } = Astro.props;
+
+// Para o YouTube, busca os vídeos reais do canal no build (limite de 9).
+let itens: ItemRecurso[] = categoria.itens ?? [];
+if (categoria.layout === "cards-youtube") {
+  itens = await buscarVideosYoutube(MAX_ITENS);
+}
 ---
 
 <BaseLayout
@@ -26,16 +36,43 @@ const { categoria } = Astro.props;
 
   <section class="bg-branco py-16 lg:py-24">
     <div class="mx-auto max-w-[1585px] px-6 lg:px-10">
-      <div
-        class="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
-        data-reveal
-      >
-        {categoria.itens.map((item) => <CardRecurso item={item} />)}
-      </div>
+      {
+        categoria.layout === "embed-spotify" ? (
+          <div class="mx-auto max-w-4xl" data-reveal>
+            <iframe
+              src={categoria.embedUrl}
+              title={categoria.titulo}
+              width="100%"
+              height="352"
+              loading="lazy"
+              frameborder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              class="rounded-xl"
+            />
+          </div>
+        ) : itens.length > 0 ? (
+          <div
+            class="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
+            data-reveal
+          >
+            {itens.map((item) => (
+              <CardRecurso item={item} />
+            ))}
+          </div>
+        ) : (
+          <p class="text-center text-lg opacity-70" data-reveal>
+            Nenhum conteúdo disponível no momento.
+          </p>
+        )
+      }
 
-      <div class="mt-16 flex justify-center">
-        <Btn href={categoria.verMaisHref}>{categoria.verMaisRotulo}</Btn>
-      </div>
+      {
+        categoria.verMaisHref && categoria.verMaisRotulo && (
+          <div class="mt-16 flex justify-center">
+            <Btn href={categoria.verMaisHref}>{categoria.verMaisRotulo}</Btn>
+          </div>
+        )
+      }
     </div>
   </section>
 

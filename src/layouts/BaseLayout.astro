@@ -25,6 +25,12 @@ const {
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
+    {
+      /* Marca que há JS antes da pintura — habilita os efeitos de reveal sem risco de sumir conteúdo */
+    }
+    <script is:inline>
+      document.documentElement.classList.add("js");
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
