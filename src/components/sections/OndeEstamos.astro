@@ -8,8 +8,11 @@ import { contato } from "../../data/navegacao";
  * e Recursos. O mapa é um embed do Google Maps (sem necessidade de chave).
  *
  * Grid do site: 12 colunas, gutter 40px (gap-x-10) sobre o container de 1585px.
- * Texto = 4 colunas a partir da col. 1 (largura suficiente p/ o título não quebrar
- * em telas médias); mapa = 5 colunas (col. 6–10) ≈ 637px, como no Figma.
+ * Responsivo:
+ *  - ≥1536px (2xl, padrão): texto col 3–5, mapa col 6–10 (centralizado, como no Figma).
+ *  - 1024–1535px (lg): texto col 2–5 e mapa col 6–11 — ambos maiores e simétricos,
+ *    para o título "Onde estamos" não quebrar nessa faixa.
+ *  - <1024px: empilhado.
  */
 const { endereco } = contato;
 const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
@@ -19,7 +22,9 @@ const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
 
 <Secao id="onde-estamos" fundo="creme">
   <div class="grid items-center gap-x-10 gap-y-12 lg:grid-cols-12" data-reveal>
-    <div class="flex flex-col gap-8 lg:col-span-4 lg:col-start-1">
+    <div
+      class="flex flex-col gap-8 lg:col-span-4 lg:col-start-2 2xl:col-span-3 2xl:col-start-3"
+    >
       <h2 class="titulo-secao">Onde estamos</h2>
       <address class="flex flex-col gap-4 text-lg not-italic">
         <span class="font-sans font-semibold">{endereco.nome}</span>
@@ -35,7 +40,7 @@ const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
     </div>
 
     <div
-      class="overflow-hidden rounded-xl border border-areia/60 lg:col-span-5 lg:col-start-6"
+      class="overflow-hidden rounded-xl border border-areia/60 lg:col-span-6 lg:col-start-6 2xl:col-span-5"
     >
       <iframe
         src={mapaEmbed}

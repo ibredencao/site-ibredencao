@@ -15,7 +15,7 @@ Site institucional estático. Idioma do projeto, do conteúdo e da comunicação
 - Design de referência no Figma: `vGkMjdnXsXScuu0hxlHsmY` (Igreja Batista Redenção — Website)
 - Implementar com o Figma MCP (`get_design_context` + `get_screenshot`), buscando fidelidade 1:1
 - **Cores**: usar somente os tokens (nomes idênticos ao Figma): `bege #A48055`, `preto #1D1B1A`, `branco #EFECE1`, `sangue #8C3238`, `areia #DACBB4`. Nunca hardcodar hex em componentes.
-- **Grid do site (todo o layout segue isso)**: 12 colunas, gutter de 40px (`gap-x-10`), sobre o container de conteúdo de 1585px (`max-w-[1585px] px-6 lg:px-10`, dentro do `Secao`). Colunas ≈95px (fluidas). Alinhar as seções a esse grid com `lg:grid-cols-12` + `lg:col-span-*`/`lg:col-start-*`. Ex.: em "Onde estamos" o texto é `col-span-4 col-start-1` (ajuste para o título não quebrar em telas médias) e o mapa `col-span-5 col-start-6`.
+- **Grid do site (todo o layout segue isso)**: 12 colunas, gutter de 40px (`gap-x-10`), sobre o container de conteúdo de 1585px (`max-w-[1585px] px-6 lg:px-10`, dentro do `Secao`). Colunas ≈95px (fluidas). Alinhar as seções a esse grid com `lg:grid-cols-12` + `lg:col-span-*`/`lg:col-start-*`. Ex.: em "Onde estamos" o padrão (≥1536px/2xl) é texto `col-start-3 col-span-3` e mapa `col-start-6 col-span-5`; na faixa `lg` (1024–1535px) o texto vira `col-start-2 col-span-4` e o mapa `col-start-6 col-span-6` (ambos maiores e simétricos) para o título não quebrar.
 - **Fontes**: `font-display` (Collier — títulos), `font-sans` (Work Sans — corpo), `font-ui` (Bitter — botões/rótulos). Work Sans e Bitter via Fontsource; Collier é comercial, arquivos .woff2 em `public/fonts/`.
 
 ## Organização (para o código não virar bagunça)
