@@ -59,9 +59,13 @@ export async function buscarEpisodiosPodcast(
       );
       if (!titulo) continue;
       const pubDate = primeiro(/<pubDate>([\s\S]*?)<\/pubDate>/i, item);
-      const link =
-        primeiro(/<link>([\s\S]*?)<\/link>/i, item) ??
-        primeiro(/<enclosure[^>]*url="([^"]+)"/i, item);
+      let link = primeiro(/<link>([\s\S]*?)<\/link>/i, item);
+      link = link ? limpar(link) : null;
+      // Links do painel de criadores (podcasters/creators.spotify.com) não são
+      // para ouvintes; nesse caso aponta para a página do show (fallbackLink).
+      if (!link || /(podcasters|creators)\.spotify\.com/.test(link)) {
+        link = fallbackLink;
+      }
       const thumb =
         primeiro(/<itunes:image[^>]*href="([^"]+)"/i, item) ??
         capaCanal ??
@@ -69,7 +73,7 @@ export async function buscarEpisodiosPodcast(
       episodios.push({
         titulo: limpar(titulo),
         data: pubDate ? formatarData(limpar(pubDate)) : undefined,
-        href: link ? limpar(link) : fallbackLink,
+        href: link,
         thumb: thumb ?? undefined,
       });
     }
