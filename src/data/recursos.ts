@@ -32,10 +32,9 @@ export interface CategoriaRecurso {
 // https://open.spotify.com/show/0NVwK9Sigk6gRwhRQld3AN
 export const SPOTIFY_SHOW_ID = "0NVwK9Sigk6gRwhRQld3AN";
 
-// TODO(spotify): colar aqui a URL do feed RSS do podcast (Spotify for Podcasters
-// → Configurações → Distribuição, ou o host original). Enquanto vazio, a página
-// do Spotify mostra o embed do show como fallback.
-export const SPOTIFY_PODCAST_RSS = "";
+// Feed RSS do podcast (Anchor/Spotify for Podcasters). Os episódios são puxados
+// no build (até 9 cards). Se ficar vazio ou o feed falhar, mostra o embed do show.
+export const SPOTIFY_PODCAST_RSS = "https://anchor.fm/s/f4a394f0/podcast/rss";
 
 const exemploCards = (): ItemRecurso[] =>
   Array.from({ length: 3 }, () => ({
