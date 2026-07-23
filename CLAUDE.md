@@ -25,7 +25,8 @@ Site institucional estático. Idioma do projeto, do conteúdo e da comunicação
 - `src/layouts/` — BaseLayout (SEO, fontes, Lenis, ClientRouter)
 - `src/content/` — conteúdo editável em Markdown (sermões, documentos longos como a Confissão de Fé)
 - `src/pages/` — apenas composição de seções; sem lógica ou markup extenso
-- Assets da marca ficam em `assets/` na raiz (logos e ícones SVG/PNG); importar direto de lá
+- `src/assets/` — logos e ícones usados pelo código (importados com `?raw` para SVG inline com `currentColor`). Os originais do designer ficam em `assets/` na raiz.
+- Ícones SVG usam `currentColor` (recoloridos a partir do Figma) e são renderizados inline via `src/components/ui/Icone.astro`
 
 ## Convenções
 

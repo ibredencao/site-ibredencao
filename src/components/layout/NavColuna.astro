@@ -1,0 +1,64 @@
+---
+import Icone from "../ui/Icone.astro";
+import setaBaixo from "../../assets/icones/seta-baixo.svg?raw";
+import type { ItemNav } from "../../data/navegacao";
+
+/** Uma das duas colunas de navegação do header desktop. */
+interface Props {
+  itens: ItemNav[];
+  alinhamento: "justify-start" | "justify-end";
+}
+const { itens, alinhamento } = Astro.props;
+---
+
+<ul
+  class:list={[
+    "hidden flex-1 items-center gap-8 lg:flex xl:gap-14",
+    alinhamento,
+  ]}
+>
+  {
+    itens.map((item) => (
+      <li class="relative">
+        {item.dropdown ? (
+          <div class="group/drop">
+            <button
+              type="button"
+              class="flex items-center gap-1 font-ui text-base font-medium transition-colors group-focus-within/drop:text-sangue group-hover/drop:text-sangue hover:text-sangue"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {item.rotulo}
+              <Icone
+                svg={setaBaixo}
+                class="size-6 transition-transform duration-300 group-hover/drop:rotate-180"
+              />
+            </button>
+            <div class="invisible absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-focus-within/drop:visible group-focus-within/drop:opacity-100 group-hover/drop:visible group-hover/drop:opacity-100">
+              <ul class="flex min-w-[240px] flex-col gap-1.5 rounded-lg border border-preto/10 bg-branco p-2 shadow-[0_37px_18px_rgba(111,110,103,0.09),0_9px_10px_rgba(111,110,103,0.1)]">
+                {item.dropdown.map((sub) => (
+                  <li>
+                    <a
+                      href={sub.href}
+                      class="flex items-center gap-3 rounded-md py-4 pr-6 pl-4 font-sans text-base whitespace-nowrap text-preto transition-colors hover:bg-sangue/10 hover:text-sangue"
+                    >
+                      <Icone svg={sub.icone} class="size-6" />
+                      {sub.rotulo}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ) : (
+          <a
+            href={item.href}
+            class="font-ui text-base font-medium transition-opacity hover:opacity-70"
+          >
+            {item.rotulo}
+          </a>
+        )}
+      </li>
+    ))
+  }
+</ul>

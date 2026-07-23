@@ -1,0 +1,132 @@
+---
+import logo from "../../assets/logo.svg?raw";
+import Icone from "../ui/Icone.astro";
+import instagram from "../../assets/icones/instagram.svg?raw";
+import youtube from "../../assets/icones/youtube.svg?raw";
+import spotify from "../../assets/icones/spotify.svg?raw";
+import email from "../../assets/icones/email.svg?raw";
+import setaDireita from "../../assets/icones/seta-direita.svg?raw";
+import { contato } from "../../data/navegacao";
+
+const links = [
+  { rotulo: "Missão", href: "/#missao" },
+  { rotulo: "Documentos de Fé", href: "/confissao-de-fe" },
+  { rotulo: "Nossa História", href: "/nossa-historia" },
+  { rotulo: "Agenda", href: "/#agenda" },
+  { rotulo: "Onde Estamos", href: "/#onde-estamos" },
+  { rotulo: "Recursos", href: "/recursos/youtube" },
+];
+
+const redes = [
+  { rotulo: "Instagram", href: contato.instagram, icone: instagram },
+  { rotulo: "Youtube", href: contato.youtube, icone: youtube },
+  { rotulo: "Spotify", href: contato.spotify, icone: spotify },
+];
+
+const { endereco } = contato;
+---
+
+<footer class="relative overflow-hidden bg-sangue text-branco">
+  <div class="mx-auto max-w-[1585px] px-6 pt-16 pb-10 lg:px-10 lg:pt-20">
+    <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+      {/* Marca + redes sociais */}
+      <div class="flex flex-col gap-8">
+        <Icone svg={logo} class="h-[52px] w-auto text-branco [&>svg]:w-auto" />
+        <ul class="flex flex-col gap-6">
+          {
+            redes.map((rede) => (
+              <li>
+                <a
+                  href={rede.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-3 font-ui text-lg transition-opacity hover:opacity-75"
+                >
+                  <Icone svg={rede.icone} class="size-6 text-areia" />
+                  {rede.rotulo}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      {/* Links */}
+      <nav aria-label="Rodapé" class="flex flex-col gap-8">
+        <p class="font-sans text-lg font-semibold text-areia uppercase">
+          Links
+        </p>
+        <ul class="flex flex-col gap-4">
+          {
+            links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="font-ui text-lg transition-opacity hover:opacity-75"
+                >
+                  {link.rotulo}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      {/* Fale conosco */}
+      <div class="flex flex-col gap-8">
+        <p class="font-sans text-lg font-semibold text-areia uppercase">
+          Fale conosco
+        </p>
+        <a
+          href={`mailto:${contato.email}`}
+          class="flex items-center gap-2 font-ui text-lg break-all transition-opacity hover:opacity-75"
+        >
+          <Icone svg={email} class="size-6 shrink-0 text-areia" />
+          {contato.email}
+        </a>
+      </div>
+
+      {/* Endereço */}
+      <div class="flex flex-col gap-8">
+        <p class="font-sans text-lg font-semibold text-areia uppercase">
+          Endereço
+        </p>
+        <div class="flex flex-col gap-4">
+          <address class="flex flex-col gap-3 text-lg not-italic">
+            <span class="font-sans font-semibold">{endereco.nome}</span>
+            <span class="font-sans">{endereco.rua}</span>
+            <span class="font-sans">{endereco.bairro}</span>
+            <span class="font-sans">{endereco.cidade}</span>
+          </address>
+          <a
+            href={contato.rotaGoogleMaps}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-1 font-ui text-[15px] font-semibold text-areia transition-opacity hover:opacity-75"
+          >
+            Ver rota no Google Maps
+            <Icone svg={setaDireita} class="size-6" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="mt-14 mb-10 border-branco/15" />
+
+    {/* Frase de destaque */}
+    <div
+      class="flex flex-col items-center gap-8 text-center text-sangue-escuro"
+    >
+      <p class="font-accent text-[clamp(2.5rem,9vw,6.7rem)] leading-none">
+        AO SENHOR PERTENCE A SALVAÇÃO
+      </p>
+      <p class="font-accent text-xl font-medium tracking-wide uppercase">
+        Jonas 2.9
+      </p>
+    </div>
+
+    <p class="mt-10 text-center text-sm text-sangue-escuro">
+      Igreja Batista Redenção © 2026. Todos os direitos reservados.
+    </p>
+  </div>
+</footer>

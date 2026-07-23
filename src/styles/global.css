@@ -21,6 +21,23 @@
   font-display: swap;
 }
 
+/* Forevs (frase do rodapé) também é comercial — .woff2 em /public/fonts/ */
+@font-face {
+  font-family: "Forevs";
+  src: url("/fonts/forevs-light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Forevs";
+  src: url("/fonts/forevs-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   /* Cores — nomes idênticos às variáveis do Figma */
   --color-bege: #a48055;
@@ -28,15 +45,47 @@
   --color-branco: #efece1;
   --color-sangue: #8c3238;
   --color-areia: #dacbb4;
+  /* Tom escuro do vinho usado em textos sobre fundo sangue (frase do rodapé, copyright) */
+  --color-sangue-escuro: #6a2429;
 
-  /* Tipografia — Collier: títulos | Work Sans: corpo | Bitter: botões e rótulos */
+  /* Tipografia — Collier: títulos | Work Sans: corpo | Bitter: botões e rótulos | Forevs: frase do rodapé */
   --font-display: "Collier", "Georgia", serif;
   --font-sans: "Work Sans Variable", "Work Sans", system-ui, sans-serif;
   --font-ui: "Bitter Variable", "Bitter", serif;
+  --font-accent: "Forevs", "Collier", "Georgia", serif;
 }
 
 @layer base {
+  html {
+    /* Compensa o header fixo ao navegar por âncoras (#missao, #agenda...) */
+    scroll-padding-top: 6rem;
+  }
+
   body {
     @apply bg-branco font-sans text-preto antialiased;
+  }
+}
+
+@layer components {
+  /* Reveal-on-scroll — estado inicial e final (ativado por src/scripts/reveal.ts) */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s ease;
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 }

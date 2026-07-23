@@ -1,0 +1,101 @@
+---
+import logo from "../../assets/logo.svg?raw";
+import Icone from "../ui/Icone.astro";
+import setaBaixo from "../../assets/icones/seta-baixo.svg?raw";
+import { recursos } from "../../data/navegacao";
+---
+
+<div
+  id="menu-mobile"
+  class="invisible fixed inset-0 z-[60] translate-y-2 bg-branco opacity-0 transition-all duration-300 data-[open=true]:visible data-[open=true]:translate-y-0 data-[open=true]:opacity-100 lg:hidden"
+  data-open="false"
+>
+  <div class="flex items-center justify-between px-[30px] py-6">
+    <Icone svg={logo} class="h-9 w-auto text-preto [&>svg]:w-auto" />
+    <button
+      type="button"
+      id="menu-close"
+      class="flex size-10 items-center justify-center text-preto"
+      aria-label="Fechar menu"
+    >
+      <svg class="size-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M6 6l12 12M18 6L6 18"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="flex flex-col gap-8 px-[30px] pt-4" aria-label="Menu">
+    <a href="/#missao" class="font-ui text-xl font-medium text-preto">Missão</a>
+    <a href="/confissao-de-fe" class="font-ui text-xl font-medium text-preto">
+      Confissão de Fé
+    </a>
+    <a href="/nossa-historia" class="font-ui text-xl font-medium text-preto">
+      Nossa História
+    </a>
+    <a href="/#agenda" class="font-ui text-xl font-medium text-preto">Agenda</a>
+    <a href="/#onde-estamos" class="font-ui text-xl font-medium text-preto">
+      Onde Estamos
+    </a>
+
+    <details class="group">
+      <summary
+        class="flex cursor-pointer list-none items-center gap-1 font-ui text-xl font-medium text-sangue"
+      >
+        Recursos
+        <Icone
+          svg={setaBaixo}
+          class="size-6 transition-transform duration-300 group-open:rotate-180"
+        />
+      </summary>
+      <ul class="mt-4 flex flex-col">
+        {
+          recursos.map((sub) => (
+            <li>
+              <a
+                href={sub.href}
+                class="flex items-center gap-3 py-4 font-sans text-base text-preto"
+              >
+                <Icone svg={sub.icone} class="size-6" />
+                {sub.rotulo}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </details>
+  </nav>
+</div>
+
+<script>
+  function initMenuMobile() {
+    const menu = document.getElementById("menu-mobile");
+    const toggle = document.getElementById("menu-toggle");
+    const close = document.getElementById("menu-close");
+    if (!menu || !toggle) return;
+
+    const abrir = () => {
+      menu.dataset.open = "true";
+      toggle.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+    };
+    const fechar = () => {
+      menu.dataset.open = "false";
+      toggle.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    };
+
+    toggle.addEventListener("click", abrir);
+    close?.addEventListener("click", fechar);
+    menu
+      .querySelectorAll("a")
+      .forEach((a) => a.addEventListener("click", fechar));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") fechar();
+    });
+  }
+  document.addEventListener("astro:page-load", initMenuMobile);
+</script>

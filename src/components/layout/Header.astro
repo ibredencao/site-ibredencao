@@ -1,0 +1,95 @@
+---
+import logo from "../../assets/logo.svg?raw";
+import simbolo from "../../assets/simbolo.svg?raw";
+import Icone from "../ui/Icone.astro";
+import NavColuna from "./NavColuna.astro";
+import { navEsquerda, navDireita } from "../../data/navegacao";
+
+/**
+ * Header fixo com dois temas iniciais e transição no scroll.
+ * - tema "claro"  → sobre fundo claro (Home): texto escuro
+ * - tema "escuro" → sobre o hero vinho (páginas internas): texto areia
+ * Após rolar, ambos viram sólido (fundo branco + sombra + texto escuro).
+ * O estado de scroll é controlado por data-scrolled no script no fim do arquivo.
+ */
+interface Props {
+  tema?: "claro" | "escuro";
+}
+const { tema = "claro" } = Astro.props;
+
+const setaHamburguer = "M3 6h18M3 12h18M3 18h18";
+---
+
+<header
+  id="site-header"
+  data-tema={tema}
+  class="group/header fixed inset-x-0 top-0 z-50 transition-colors duration-300 data-[scrolled=true]:bg-branco data-[scrolled=true]:shadow-[0_9px_20px_rgba(111,110,103,0.08)]"
+>
+  <nav
+    class="mx-auto flex max-w-[1585px] items-center gap-10 px-6 py-5 lg:px-10"
+    aria-label="Navegação principal"
+  >
+    <NavColuna itens={navEsquerda} alinhamento="justify-start" />
+
+    {/* Logo central: completo no topo, só símbolo após rolar */}
+    <a
+      href="/"
+      class="order-first flex shrink-0 items-center lg:order-none"
+      aria-label="Igreja Batista Redenção — página inicial"
+    >
+      <span class="group-data-[scrolled=true]/header:hidden">
+        <Icone svg={logo} class="h-9" />
+      </span>
+      <span class="hidden group-data-[scrolled=true]/header:block">
+        <Icone svg={simbolo} class="size-11" />
+      </span>
+    </a>
+
+    <NavColuna itens={navDireita} alinhamento="justify-end" />
+
+    {/* Botão do menu mobile */}
+    <button
+      type="button"
+      id="menu-toggle"
+      class="ml-auto flex size-10 items-center justify-center lg:hidden"
+      aria-label="Abrir menu"
+      aria-expanded="false"
+      aria-controls="menu-mobile"
+    >
+      <svg class="size-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d={setaHamburguer}
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"></path>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<style>
+  #site-header {
+    color: var(--color-preto);
+  }
+  #site-header[data-tema="escuro"]:not([data-scrolled="true"]) {
+    color: var(--color-areia);
+  }
+</style>
+
+<script>
+  function initHeader() {
+    const header = document.getElementById("site-header");
+    if (!header) return;
+    const onScroll = () => {
+      header.dataset.scrolled = String(window.scrollY > 24);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener(
+      "astro:before-swap",
+      () => window.removeEventListener("scroll", onScroll),
+      { once: true },
+    );
+  }
+  document.addEventListener("astro:page-load", initHeader);
+</script>

@@ -1,0 +1,21 @@
+---
+/**
+ * Renderiza um SVG importado com ?raw, inline, herdando a cor do texto.
+ * O tamanho é controlado pela classe (padrão: 24px, igual ao Figma).
+ */
+interface Props {
+  svg: string;
+  class?: string;
+}
+
+const { svg, class: className = "size-6" } = Astro.props;
+---
+
+<span
+  class:list={[
+    "inline-flex shrink-0 items-center [&>svg]:h-full [&>svg]:w-auto",
+    className,
+  ]}
+  aria-hidden="true"
+  set:html={svg}
+/>

@@ -3,15 +3,21 @@ import { ClientRouter } from "astro:transitions";
 import "@fontsource-variable/work-sans";
 import "@fontsource-variable/bitter";
 import "../styles/global.css";
+import Header from "../components/layout/Header.astro";
+import MenuMobile from "../components/layout/MenuMobile.astro";
+import Footer from "../components/layout/Footer.astro";
 
 interface Props {
   title: string;
   description?: string;
+  /** Tema inicial do header: "claro" sobre fundo claro (Home), "escuro" sobre hero vinho */
+  temaHeader?: "claro" | "escuro";
 }
 
 const {
   title,
   description = "Igreja Batista Redenção — Firmada no evangelho, dedicada ao discipulado e à glória de Deus.",
+  temaHeader = "claro",
 } = Astro.props;
 ---
 
@@ -27,7 +33,13 @@ const {
     <ClientRouter />
   </head>
   <body>
-    <slot />
+    <Header tema={temaHeader} />
+    <MenuMobile />
+    <main>
+      <slot />
+    </main>
+    <Footer />
     <script src="../scripts/smooth-scroll.ts"></script>
+    <script src="../scripts/reveal.ts"></script>
   </body>
 </html>
