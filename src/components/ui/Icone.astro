@@ -2,6 +2,10 @@
 /**
  * Renderiza um SVG importado com ?raw, inline, herdando a cor do texto.
  * O tamanho é controlado pela classe (padrão: 24px, igual ao Figma).
+ *
+ * IDs internos (clipPath, mask, gradients) são escopados por instância para
+ * evitar colisão quando o mesmo SVG aparece mais de uma vez na página
+ * (ex.: o logo no Header, no Footer e no menu mobile).
  */
 interface Props {
   svg: string;
@@ -9,6 +13,15 @@ interface Props {
 }
 
 const { svg, class: className = "size-6" } = Astro.props;
+
+const g = globalThis as { __iconeSeq?: number };
+g.__iconeSeq = (g.__iconeSeq ?? 0) + 1;
+const sufixo = `i${g.__iconeSeq}`;
+
+const svgEscopado = svg
+  .replace(/id="([^"]+)"/g, `id="$1-${sufixo}"`)
+  .replace(/url\(#([^)]+)\)/g, `url(#$1-${sufixo})`)
+  .replace(/((?:xlink:)?href)="#([^"]+)"/g, `$1="#$2-${sufixo}"`);
 ---
 
 <span
@@ -17,5 +30,5 @@ const { svg, class: className = "size-6" } = Astro.props;
     className,
   ]}
   aria-hidden="true"
-  set:html={svg}
+  set:html={svgEscopado}
 />

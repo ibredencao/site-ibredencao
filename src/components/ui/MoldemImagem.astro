@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import Icone from "./Icone.astro";
+import simbolo from "../../assets/simbolo.svg?raw";
+
+/**
+ * Moldura de imagem arredondada. Se `src` for fornecido, renderiza a foto
+ * otimizada (astro:assets). Caso contrário, mostra um placeholder da marca
+ * (símbolo esmaecido sobre areia) — para as fotos que a igreja fornecerá.
+ */
+interface Props {
+  src?: ImageMetadata;
+  alt?: string;
+  /** Proporção da moldura (ex.: "1/1", "16/10", "637/412") */
+  proporcao?: string;
+  class?: string;
+}
+
+const { src, alt = "", proporcao = "1/1", class: className = "" } = Astro.props;
+---
+
+<div
+  class:list={[
+    "relative overflow-hidden rounded-xl bg-areia/60",
+    className,
+  ]}
+  style={`aspect-ratio: ${proporcao}`}
+>
+  {
+    src ? (
+      <Image
+        src={src}
+        alt={alt}
+        class="h-full w-full object-cover"
+        widths={[480, 768, 1024, 1280]}
+        sizes="(max-width: 1024px) 100vw, 640px"
+      />
+    ) : (
+      <div class="text-bege/40 flex h-full w-full items-center justify-center">
+        <Icone svg={simbolo} class="size-24" />
+      </div>
+    )
+  }
+</div>

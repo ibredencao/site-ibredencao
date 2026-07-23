@@ -1,0 +1,76 @@
+---
+import Secao from "../ui/Secao.astro";
+import MoldemImagem from "../ui/MoldemImagem.astro";
+import Icone from "../ui/Icone.astro";
+import iconeIgreja from "../../assets/icones/igreja.svg?raw";
+import iconeCasa from "../../assets/icones/casa.svg?raw";
+import { contato } from "../../data/navegacao";
+
+/**
+ * Seção Agenda + Fale Conosco. Reutilizada na Home, Nossa História e Recursos.
+ * Layout: imagem à esquerda, agenda à direita (empilha no mobile).
+ */
+const itens = [
+  { icone: iconeIgreja, titulo: "Culto Público", horario: "Domingo, às 10h" },
+  {
+    icone: iconeCasa,
+    titulo: "Pequenos Grupos",
+    horario: "Terças e quintas, às 19h30",
+  },
+];
+---
+
+<Secao id="agenda" fundo="branco">
+  <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-24" data-reveal>
+    <MoldemImagem proporcao="1/1" class="w-full" />
+
+    <div class="flex flex-col gap-12 lg:gap-16">
+      <h2 class="titulo-secao">Agenda</h2>
+
+      <ul class="flex flex-col gap-6">
+        {
+          itens.map((item, i) => (
+            <li>
+              {i > 0 && <hr class="border-preto/10 mb-6" />}
+              <div class="flex items-center gap-4">
+                <Icone svg={item.icone} class="text-bege size-12" />
+                <div class="flex flex-col gap-2">
+                  <p class="font-sans text-2xl font-medium">{item.titulo}</p>
+                  <p class="font-sans text-bege text-lg tracking-tight">
+                    {item.horario}
+                  </p>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-6">
+          <p class="font-sans text-2xl font-medium">Fale Conosco</p>
+          <p class="font-sans max-w-md text-lg opacity-80">
+            Entre em contato conosco via instagram ou e-mail para tirar dúvidas e
+            receber mais informações.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-6">
+          <a
+            href={contato.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border-sangue text-sangue hover:bg-sangue/10 font-ui rounded-lg border px-8 py-6 text-[15px] font-semibold transition-colors"
+          >
+            Instagram
+          </a>
+          <a
+            href={`mailto:${contato.email}`}
+            class="border-sangue text-sangue hover:bg-sangue/10 font-ui rounded-lg border px-8 py-6 text-[15px] font-semibold transition-colors"
+          >
+            E-mail
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Secao>

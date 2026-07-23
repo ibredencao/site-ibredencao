@@ -47,6 +47,8 @@
   --color-areia: #dacbb4;
   /* Tom escuro do vinho usado em textos sobre fundo sangue (frase do rodapé, copyright) */
   --color-sangue-escuro: #6a2429;
+  /* Creme levemente mais claro que o branco, usado em seções alternadas (ex.: Onde Estamos) */
+  --color-creme: #f7f5ee;
 
   /* Tipografia — Collier: títulos | Work Sans: corpo | Bitter: botões e rótulos | Forevs: frase do rodapé */
   --font-display: "Collier", "Georgia", serif;
@@ -67,6 +69,19 @@
 }
 
 @layer components {
+  /* Títulos — Collier. Hero mais leve (Light), seções em Book. Escala fluida. */
+  .titulo-hero {
+    @apply font-display font-light;
+    font-size: clamp(2.25rem, 5vw, 3.7rem);
+    line-height: 1.12;
+  }
+
+  .titulo-secao {
+    @apply font-display font-normal;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.2;
+  }
+
   /* Reveal-on-scroll — estado inicial e final (ativado por src/scripts/reveal.ts) */
   [data-reveal] {
     opacity: 0;

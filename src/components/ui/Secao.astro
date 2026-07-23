@@ -1,0 +1,39 @@
+---
+/**
+ * Wrapper padrão de seção: largura máxima do conteúdo (1585px como no Figma),
+ * respiro lateral responsivo e espaçamento vertical. A cor de fundo é aplicada
+ * na faixa externa (full-bleed) e o conteúdo fica centralizado.
+ */
+interface Props {
+  id?: string;
+  fundo?: "branco" | "creme" | "marrom" | "sangue";
+  /** Espaçamento vertical (padrão: generoso, como no design) */
+  espaco?: "normal" | "compacto";
+  class?: string;
+}
+
+const {
+  id,
+  fundo = "branco",
+  espaco = "normal",
+  class: className = "",
+} = Astro.props;
+
+const fundos = {
+  branco: "bg-branco text-preto",
+  creme: "bg-creme text-preto",
+  marrom: "bg-bege text-branco",
+  sangue: "bg-sangue text-branco",
+};
+
+const espacos = {
+  normal: "py-20 lg:py-28",
+  compacto: "py-14 lg:py-20",
+};
+---
+
+<section id={id} class:list={[fundos[fundo], espacos[espaco]]}>
+  <div class:list={["mx-auto max-w-[1585px] px-6 lg:px-10", className]}>
+    <slot />
+  </div>
+</section>
