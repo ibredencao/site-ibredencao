@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HeroInterno from "../../components/sections/HeroInterno.astro";
+import CardRecurso from "../../components/ui/CardRecurso.astro";
+import Btn from "../../components/ui/Btn.astro";
+import Agenda from "../../components/sections/Agenda.astro";
+import OndeEstamos from "../../components/sections/OndeEstamos.astro";
+import { categoriasRecursos } from "../../data/recursos";
+
+export function getStaticPaths() {
+  return categoriasRecursos.map((categoria) => ({
+    params: { categoria: categoria.slug },
+    props: { categoria },
+  }));
+}
+
+const { categoria } = Astro.props;
+---
+
+<BaseLayout
+  title={`${categoria.titulo} — Igreja Batista Redenção`}
+  description={`${categoria.titulo} da Igreja Batista Redenção.`}
+  temaHeader="escuro"
+>
+  <HeroInterno titulo={categoria.titulo} />
+
+  <section class="bg-branco py-16 lg:py-24">
+    <div class="mx-auto max-w-[1585px] px-6 lg:px-10">
+      <div
+        class="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
+        data-reveal
+      >
+        {categoria.itens.map((item) => <CardRecurso item={item} />)}
+      </div>
+
+      <div class="mt-16 flex justify-center">
+        <Btn href={categoria.verMaisHref}>{categoria.verMaisRotulo}</Btn>
+      </div>
+    </div>
+  </section>
+
+  <Agenda />
+  <OndeEstamos />
+</BaseLayout>

@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroInterno from "../components/sections/HeroInterno.astro";
+import Agenda from "../components/sections/Agenda.astro";
+import OndeEstamos from "../components/sections/OndeEstamos.astro";
+
+// TODO(conteúdo): o Pacto de Membresia não tem frame no Figma nem texto definido.
+// Quando a igreja fornecer o texto, estruturá-lo como em src/data/confissao.ts
+// (ou Markdown) e renderizar aqui no mesmo padrão da Confissão de Fé.
+---
+
+<BaseLayout
+  title="Pacto de Membresia — Igreja Batista Redenção"
+  description="O Pacto de Membresia da Igreja Batista Redenção."
+  temaHeader="escuro"
+>
+  <HeroInterno titulo="Pacto de Membresia" />
+
+  <section class="bg-branco py-20 lg:py-28">
+    <div class="mx-auto max-w-3xl px-6 text-center lg:px-10" data-reveal>
+      <p class="font-sans text-lg leading-relaxed opacity-70">
+        O conteúdo do Pacto de Membresia será publicado em breve.
+      </p>
+    </div>
+  </section>
+
+  <Agenda />
+  <OndeEstamos />
+</BaseLayout>

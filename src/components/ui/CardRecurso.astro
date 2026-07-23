@@ -1,0 +1,43 @@
+---
+import Icone from "./Icone.astro";
+import iconeCalendario from "../../assets/icones/calendario.svg?raw";
+import simbolo from "../../assets/simbolo.svg?raw";
+import type { ItemRecurso } from "../../data/recursos";
+
+/** Card de sermão/recurso: miniatura + título + data. */
+interface Props {
+  item: ItemRecurso;
+}
+const { item } = Astro.props;
+---
+
+<a
+  href={item.href}
+  target={item.href.startsWith("http") ? "_blank" : undefined}
+  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+  class="group flex flex-col gap-5"
+>
+  <div class="relative aspect-video overflow-hidden rounded-xl bg-areia/60">
+    {/* Miniatura placeholder com a marca — trocar por thumbnail real */}
+    <div
+      class="flex h-full w-full items-center justify-center text-bege/40 transition-transform duration-500 group-hover:scale-105"
+    >
+      <Icone svg={simbolo} class="size-16" />
+    </div>
+  </div>
+  <div class="flex flex-col gap-3">
+    <p
+      class="font-sans text-base font-semibold transition-colors group-hover:text-sangue"
+    >
+      {item.titulo}
+    </p>
+    {
+      item.data && (
+        <div class="flex items-center gap-1.5 opacity-50">
+          <Icone svg={iconeCalendario} class="size-[18px] text-bege" />
+          <span class="font-sans text-sm font-medium">{item.data}</span>
+        </div>
+      )
+    }
+  </div>
+</a>

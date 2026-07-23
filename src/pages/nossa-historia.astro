@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroInterno from "../components/sections/HeroInterno.astro";
+import MoldemImagem from "../components/ui/MoldemImagem.astro";
+import Agenda from "../components/sections/Agenda.astro";
+import OndeEstamos from "../components/sections/OndeEstamos.astro";
+
+const subtitulo =
+  "“Seja sobre nós a graça do Senhor, nosso Deus; confirma sobre nós as obras das nossas mãos, sim, confirma a obra das nossas mãos.” (Salmos 90.17)";
+
+// TODO(conteúdo): o texto abaixo é um placeholder — no Figma esta seção está em
+// lorem ipsum. Substituir pelos parágrafos reais da história da igreja quando
+// disponíveis (idealmente movendo o texto para src/data/conteudo.ts).
+const paragrafos: string[] = [
+  "Esta página contará a história da Igreja Batista Redenção — suas origens, os marcos da caminhada e a fidelidade de Deus ao longo dos anos.",
+  "O conteúdo definitivo será adicionado em breve.",
+];
+---
+
+<BaseLayout
+  title="Nossa História — Igreja Batista Redenção"
+  description="A história da Igreja Batista Redenção."
+  temaHeader="escuro"
+>
+  <HeroInterno titulo="Nossa História" subtitulo={subtitulo} />
+
+  <section class="bg-branco py-16 lg:py-24">
+    <div class="mx-auto flex max-w-3xl flex-col gap-12 px-6 lg:px-10">
+      <div
+        class="flex flex-col gap-6 font-sans text-lg leading-relaxed"
+        data-reveal
+      >
+        {paragrafos.map((p) => <p>{p}</p>)}
+      </div>
+      <div data-reveal>
+        <MoldemImagem proporcao="16/10" class="w-full" />
+      </div>
+    </div>
+  </section>
+
+  <Agenda />
+  <OndeEstamos />
+</BaseLayout>
