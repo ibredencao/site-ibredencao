@@ -1,0 +1,119 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroInterno from "../components/sections/HeroInterno.astro";
+import Agenda from "../components/sections/Agenda.astro";
+import OndeEstamos from "../components/sections/OndeEstamos.astro";
+import { artigosConfissao, notaConfissao } from "../data/confissao";
+
+const subtitulo =
+  '"Antes, reverenciai a Cristo como Senhor no coração. Estai sempre preparados para responder a todo o que vos pedir a razão da esperança que há em vós." (1Pe 3.15)';
+---
+
+<BaseLayout
+  title="Confissão de Fé — Igreja Batista Redenção"
+  description="A Confissão de Fé da Igreja Batista Redenção — Confissão de Fé de New Hampshire."
+  temaHeader="escuro"
+>
+  <HeroInterno titulo="Confissão de Fé" subtitulo={subtitulo} />
+
+  <div class="bg-branco py-16 lg:py-24">
+    <div
+      class="mx-auto grid max-w-[1585px] gap-12 px-6 lg:grid-cols-[300px_1fr] lg:gap-20 lg:px-10"
+    >
+      {/* Índice */}
+      <aside class="lg:sticky lg:top-28 lg:self-start">
+        <details class="group" open>
+          <summary
+            class="mb-6 cursor-pointer font-display text-2xl font-normal text-preto/50 lg:pointer-events-none lg:list-none"
+          >
+            Índice
+          </summary>
+          <nav aria-label="Índice da Confissão de Fé">
+            <ol class="flex flex-col gap-3">
+              {
+                artigosConfissao.map((a) => (
+                  <li>
+                    <a
+                      href={`#${a.slug}`}
+                      class="font-sans text-base transition-colors hover:text-sangue"
+                    >
+                      {a.titulo}
+                    </a>
+                  </li>
+                ))
+              }
+              <li>
+                <a
+                  href="#nota"
+                  class="font-sans text-base transition-colors hover:text-sangue"
+                >
+                  Nota
+                </a>
+              </li>
+            </ol>
+          </nav>
+        </details>
+      </aside>
+
+      {/* Artigos */}
+      <div class="flex max-w-3xl flex-col gap-16">
+        {
+          artigosConfissao.map((artigo) => (
+            <article
+              id={artigo.slug}
+              class="flex scroll-mt-28 flex-col gap-8"
+              data-reveal
+            >
+              <h2 class="font-display text-[clamp(1.75rem,3vw,2.7rem)] leading-tight font-light text-bege">
+                {artigo.num}. {artigo.titulo}
+              </h2>
+              <div class="flex flex-col gap-6">
+                {artigo.blocos.map((bloco) =>
+                  bloco.tipo === "p" ? (
+                    <p class="text-justify font-sans text-lg leading-relaxed">
+                      {bloco.texto}
+                    </p>
+                  ) : (
+                    <ol class="flex list-decimal flex-col gap-1 pl-6 text-sm text-preto/50">
+                      {bloco.itens?.map((ref) => (
+                        <li>
+                          <span class="leading-snug">{ref}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  ),
+                )}
+              </div>
+            </article>
+          ))
+        }
+
+        {/* Nota */}
+        <article
+          id="nota"
+          class="flex scroll-mt-28 flex-col gap-6 border-t border-preto/10 pt-12"
+        >
+          <h2 class="font-display text-2xl font-normal text-preto/50">Nota</h2>
+          {
+            notaConfissao.map((bloco) =>
+              bloco.tipo === "p" ? (
+                <p class="text-justify font-sans text-base leading-relaxed text-preto/70">
+                  {bloco.texto}
+                </p>
+              ) : (
+                <ol class="flex list-decimal flex-col gap-1 pl-6 text-sm text-preto/40">
+                  {bloco.itens?.map((ref) => (
+                    <li>{ref}</li>
+                  ))}
+                </ol>
+              ),
+            )
+          }
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <Agenda />
+  <OndeEstamos />
+</BaseLayout>
