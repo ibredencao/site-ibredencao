@@ -8,8 +8,8 @@ import { contato } from "../../data/navegacao";
  * e Recursos. O mapa é um embed do Google Maps (sem necessidade de chave).
  *
  * Grid do site: 12 colunas, gutter 40px (gap-x-10) sobre o container de 1585px.
- * Texto = 3 colunas (a partir da col. 3); mapa = 5 colunas (col. 6–10) ≈ 637px,
- * como no Figma. As 2 colunas vazias de cada lado dão o efeito centralizado.
+ * Texto = 4 colunas a partir da col. 1 (largura suficiente p/ o título não quebrar
+ * em telas médias); mapa = 5 colunas (col. 6–10) ≈ 637px, como no Figma.
  */
 const { endereco } = contato;
 const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
@@ -19,7 +19,7 @@ const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
 
 <Secao id="onde-estamos" fundo="creme">
   <div class="grid items-center gap-x-10 gap-y-12 lg:grid-cols-12" data-reveal>
-    <div class="flex flex-col gap-8 lg:col-span-3 lg:col-start-3">
+    <div class="flex flex-col gap-8 lg:col-span-4 lg:col-start-1">
       <h2 class="titulo-secao">Onde estamos</h2>
       <address class="flex flex-col gap-4 text-lg not-italic">
         <span class="font-sans font-semibold">{endereco.nome}</span>
