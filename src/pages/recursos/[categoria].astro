@@ -2,6 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HeroInterno from "../../components/sections/HeroInterno.astro";
 import CardRecurso from "../../components/ui/CardRecurso.astro";
+import CardMusica from "../../components/ui/CardMusica.astro";
+import CardArquivo from "../../components/ui/CardArquivo.astro";
 import Btn from "../../components/ui/Btn.astro";
 import Agenda from "../../components/sections/Agenda.astro";
 import OndeEstamos from "../../components/sections/OndeEstamos.astro";
@@ -24,24 +26,29 @@ export function getStaticPaths() {
 }
 
 const { categoria } = Astro.props;
+const ehSermoes =
+  categoria.layout === "cards-youtube" || categoria.layout === "cards-spotify";
 
-// Monta os itens conforme a fonte de cada categoria (tudo no build).
-let itens: ItemRecurso[] = categoria.itens ?? [];
+// Sermões (YouTube/Spotify) são buscados no build.
+let sermoes: ItemRecurso[] = [];
 let usarEmbed = false;
-
 if (categoria.layout === "cards-youtube") {
-  itens = await buscarVideosYoutube(MAX_ITENS);
+  sermoes = await buscarVideosYoutube(MAX_ITENS);
 } else if (categoria.layout === "cards-spotify") {
   if (SPOTIFY_PODCAST_RSS) {
-    itens = await buscarEpisodiosPodcast(
+    sermoes = await buscarEpisodiosPodcast(
       SPOTIFY_PODCAST_RSS,
       categoria.verMaisHref ?? "#",
       MAX_ITENS,
     );
   }
-  // Sem RSS configurado (ou feed vazio): cai no embed do show.
-  if (!SPOTIFY_PODCAST_RSS || itens.length === 0) usarEmbed = true;
+  if (!SPOTIFY_PODCAST_RSS || sermoes.length === 0) usarEmbed = true;
 }
+
+// Wrapper de grade alinhado ao grid (colunas 2–11).
+const gridWrapper = "lg:grid lg:grid-cols-12";
+const gridInterno =
+  "grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:col-span-10 lg:col-start-2";
 ---
 
 <BaseLayout
@@ -54,44 +61,75 @@ if (categoria.layout === "cards-youtube") {
   <section class="bg-branco py-16 lg:py-24">
     <div class="mx-auto max-w-[1585px] px-6 lg:px-10">
       {
-        usarEmbed ? (
-          <div class="mx-auto max-w-4xl" data-reveal>
-            <iframe
-              src={categoria.embedUrl}
-              title={categoria.titulo}
-              width="100%"
-              height="352"
-              loading="lazy"
-              frameborder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              class="rounded-xl"
-            />
-          </div>
-        ) : itens.length > 0 ? (
-          <div class="lg:grid lg:grid-cols-12">
-            <div
-              class:list={[
-                "grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:col-span-10 lg:col-start-2",
-                categoria.layout === "cards"
-                  ? "lg:grid-cols-2"
-                  : "lg:grid-cols-3",
-              ]}
-              data-reveal
-            >
-              {itens.map((item) => (
-                <CardRecurso
-                  item={item}
-                  aspecto={
-                    categoria.layout === "cards-spotify" ? "square" : "video"
-                  }
-                />
+        categoria.intro && (
+          <p
+            class="mb-12 max-w-3xl font-sans text-lg leading-relaxed lg:mb-16 lg:ml-[8.5%]"
+            data-reveal
+          >
+            {categoria.intro}
+          </p>
+        )
+      }
+
+      {/* Sermões (YouTube/Spotify) */}
+      {
+        ehSermoes &&
+          (usarEmbed ? (
+            <div class="mx-auto max-w-4xl" data-reveal>
+              <iframe
+                src={categoria.embedUrl}
+                title={categoria.titulo}
+                width="100%"
+                height="352"
+                loading="lazy"
+                frameborder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                class="rounded-xl"
+              />
+            </div>
+          ) : sermoes.length > 0 ? (
+            <div class={gridWrapper}>
+              <div class:list={[gridInterno, "lg:grid-cols-3"]} data-reveal>
+                {sermoes.map((item) => (
+                  <CardRecurso
+                    item={item}
+                    aspecto={
+                      categoria.layout === "cards-spotify" ? "square" : "video"
+                    }
+                  />
+                ))}
+              </div>
+            </div>
+          ) : (
+            <p class="text-center text-lg opacity-70" data-reveal>
+              Nenhum conteúdo disponível no momento.
+            </p>
+          ))
+      }
+
+      {/* Músicas */}
+      {
+        categoria.layout === "musicas" && (
+          <div class={gridWrapper}>
+            <div class:list={[gridInterno, "lg:grid-cols-2"]} data-reveal>
+              {categoria.musicas?.map((m) => (
+                <CardMusica musica={m} />
               ))}
             </div>
           </div>
-        ) : (
-          <p class="text-center text-lg opacity-70" data-reveal>
-            Nenhum conteúdo disponível no momento.
-          </p>
+        )
+      }
+
+      {/* Arquivos */}
+      {
+        categoria.layout === "arquivos" && (
+          <div class={gridWrapper}>
+            <div class:list={[gridInterno, "lg:grid-cols-2"]} data-reveal>
+              {categoria.arquivos?.map((a) => (
+                <CardArquivo arquivo={a} />
+              ))}
+            </div>
+          </div>
         )
       }
 

@@ -1,0 +1,35 @@
+---
+import Icone from "./Icone.astro";
+import iconeDownload from "../../assets/icones/download.svg?raw";
+import type { Arquivo } from "../../data/recursos";
+
+/** Card de arquivo (texto): título + tipo + um ou mais downloads. */
+interface Props {
+  arquivo: Arquivo;
+}
+const { arquivo } = Astro.props;
+---
+
+<article class="flex flex-col gap-6 rounded-3xl border border-preto/10 p-10">
+  <div class="flex flex-col gap-4">
+    <h3 class="font-display text-2xl text-preto">{arquivo.titulo}</h3>
+    <p class="font-sans text-lg opacity-70">{arquivo.tipo}</p>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-3">
+    {
+      arquivo.downloads.map((dl, i) => (
+        <>
+          {i > 0 && <span class="h-6 w-px bg-preto/15" aria-hidden="true" />}
+          <a
+            href={dl.href}
+            class="flex items-center gap-1 font-ui text-[15px] font-semibold text-sangue transition-opacity hover:opacity-70"
+          >
+            <Icone svg={iconeDownload} class="size-6" />
+            {dl.rotulo}
+          </a>
+        </>
+      ))
+    }
+  </div>
+</article>
