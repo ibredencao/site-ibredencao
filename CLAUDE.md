@@ -1,0 +1,37 @@
+# Site — Igreja Batista Redenção
+
+Site institucional estático. Idioma do projeto, do conteúdo e da comunicação: **português (pt-BR)**.
+
+## Stack
+
+- **Astro** (estático, zero JS por padrão) + ilhas de interatividade apenas quando necessário
+- **Tailwind CSS v4** via `@tailwindcss/vite` — tema definido em `src/styles/global.css` (`@theme`)
+- **Lenis** para scroll suave — inicializado em `src/scripts/smooth-scroll.ts`, importado pelo BaseLayout
+- **View Transitions** (`<ClientRouter />`) para navegação suave entre páginas
+- Deploy: **Cloudflare Pages** (build `npm run build`, output `dist/`)
+
+## Design
+
+- Design de referência no Figma: `vGkMjdnXsXScuu0hxlHsmY` (Igreja Batista Redenção — Website)
+- Implementar com o Figma MCP (`get_design_context` + `get_screenshot`), buscando fidelidade 1:1
+- **Cores**: usar somente os tokens (nomes idênticos ao Figma): `bege #A48055`, `preto #1D1B1A`, `branco #EFECE1`, `sangue #8C3238`, `areia #DACBB4`. Nunca hardcodar hex em componentes.
+- **Fontes**: `font-display` (Collier — títulos), `font-sans` (Work Sans — corpo), `font-ui` (Bitter — botões/rótulos). Work Sans e Bitter via Fontsource; Collier é comercial, arquivos .woff2 em `public/fonts/`.
+
+## Organização (para o código não virar bagunça)
+
+- `src/components/ui/` — peças pequenas reutilizáveis (Btn, Card...)
+- `src/components/layout/` — Header, Footer, Nav
+- `src/components/sections/` — seções de página (Hero, Agenda, OndeEstamos...). Seções repetidas entre páginas (Agenda, Onde Estamos, Footer) existem UMA vez aqui.
+- `src/layouts/` — BaseLayout (SEO, fontes, Lenis, ClientRouter)
+- `src/content/` — conteúdo editável em Markdown (sermões, documentos longos como a Confissão de Fé)
+- `src/pages/` — apenas composição de seções; sem lógica ou markup extenso
+- Assets da marca ficam em `assets/` na raiz (logos e ícones SVG/PNG); importar direto de lá
+
+## Convenções
+
+- TypeScript strict; sem `any`
+- Textos longos (Confissão de Fé, História) vivem em Markdown/content collections, nunca hardcoded em componente
+- Animações: minimalistas, reveal sutil; **sempre** respeitar `prefers-reduced-motion`
+- Acessibilidade: HTML semântico, contraste, foco visível — público inclui idosos
+- Antes de finalizar mudança visual: comparar com screenshot do Figma
+- Rodar `npm run format` e `npm run lint` antes de commitar

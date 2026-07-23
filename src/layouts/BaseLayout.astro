@@ -1,0 +1,33 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "@fontsource-variable/work-sans";
+import "@fontsource-variable/bitter";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Igreja Batista Redenção — Firmada no evangelho, dedicada ao discipulado e à glória de Deus.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <slot />
+    <script src="../scripts/smooth-scroll.ts"></script>
+  </body>
+</html>
