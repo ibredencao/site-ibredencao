@@ -5,8 +5,13 @@ import CardRecurso from "../../components/ui/CardRecurso.astro";
 import Btn from "../../components/ui/Btn.astro";
 import Agenda from "../../components/sections/Agenda.astro";
 import OndeEstamos from "../../components/sections/OndeEstamos.astro";
-import { categoriasRecursos, type ItemRecurso } from "../../data/recursos";
+import {
+  categoriasRecursos,
+  SPOTIFY_PODCAST_RSS,
+  type ItemRecurso,
+} from "../../data/recursos";
 import { buscarVideosYoutube } from "../../lib/youtube";
+import { buscarEpisodiosPodcast } from "../../lib/podcastRss";
 
 // Máximo de sermões exibidos por página (YouTube e Spotify).
 const MAX_ITENS = 9;
@@ -20,10 +25,22 @@ export function getStaticPaths() {
 
 const { categoria } = Astro.props;
 
-// Para o YouTube, busca os vídeos reais do canal no build (limite de 9).
+// Monta os itens conforme a fonte de cada categoria (tudo no build).
 let itens: ItemRecurso[] = categoria.itens ?? [];
+let usarEmbed = false;
+
 if (categoria.layout === "cards-youtube") {
   itens = await buscarVideosYoutube(MAX_ITENS);
+} else if (categoria.layout === "cards-spotify") {
+  if (SPOTIFY_PODCAST_RSS) {
+    itens = await buscarEpisodiosPodcast(
+      SPOTIFY_PODCAST_RSS,
+      categoria.verMaisHref ?? "#",
+      MAX_ITENS,
+    );
+  }
+  // Sem RSS configurado (ou feed vazio): cai no embed do show.
+  if (!SPOTIFY_PODCAST_RSS || itens.length === 0) usarEmbed = true;
 }
 ---
 
@@ -37,7 +54,7 @@ if (categoria.layout === "cards-youtube") {
   <section class="bg-branco py-16 lg:py-24">
     <div class="mx-auto max-w-[1585px] px-6 lg:px-10">
       {
-        categoria.layout === "embed-spotify" ? (
+        usarEmbed ? (
           <div class="mx-auto max-w-4xl" data-reveal>
             <iframe
               src={categoria.embedUrl}

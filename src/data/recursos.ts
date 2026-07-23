@@ -2,7 +2,8 @@
  * Recursos (Sermões no Youtube/Spotify, Músicas, Arquivos).
  *
  * - youtube: puxado automaticamente do feed RSS do canal no build (src/lib/youtube.ts).
- * - spotify: embed do show da igreja (iframe), sempre atualizado.
+ * - spotify: se SPOTIFY_PODCAST_RSS estiver preenchido, puxa os episódios do feed
+ *   RSS do podcast no build (até 9 cards); senão, mostra o embed do show.
  * - musicas/arquivos: itens de EXEMPLO (placeholder) — substituir pelo conteúdo real.
  */
 
@@ -13,7 +14,7 @@ export interface ItemRecurso {
   thumb?: string;
 }
 
-export type LayoutRecurso = "cards-youtube" | "embed-spotify" | "cards";
+export type LayoutRecurso = "cards-youtube" | "cards-spotify" | "cards";
 
 export interface CategoriaRecurso {
   slug: string;
@@ -22,7 +23,7 @@ export interface CategoriaRecurso {
   /** Rótulo e destino do botão "Ver mais" (quando aplicável) */
   verMaisRotulo?: string;
   verMaisHref?: string;
-  /** URL de embed (Spotify) */
+  /** URL de embed (Spotify) — usado como fallback quando não há RSS */
   embedUrl?: string;
   /** Itens estáticos (placeholder) para layouts de cards sem fonte automática */
   itens?: ItemRecurso[];
@@ -30,6 +31,11 @@ export interface CategoriaRecurso {
 
 // https://open.spotify.com/show/0NVwK9Sigk6gRwhRQld3AN
 export const SPOTIFY_SHOW_ID = "0NVwK9Sigk6gRwhRQld3AN";
+
+// TODO(spotify): colar aqui a URL do feed RSS do podcast (Spotify for Podcasters
+// → Configurações → Distribuição, ou o host original). Enquanto vazio, a página
+// do Spotify mostra o embed do show como fallback.
+export const SPOTIFY_PODCAST_RSS = "";
 
 const exemploCards = (): ItemRecurso[] =>
   Array.from({ length: 3 }, () => ({
@@ -49,7 +55,7 @@ export const categoriasRecursos: CategoriaRecurso[] = [
   {
     slug: "spotify",
     titulo: "Sermões no Spotify",
-    layout: "embed-spotify",
+    layout: "cards-spotify",
     verMaisRotulo: "Abrir no Spotify",
     verMaisHref: `https://open.spotify.com/show/${SPOTIFY_SHOW_ID}`,
     embedUrl: `https://open.spotify.com/embed/show/${SPOTIFY_SHOW_ID}?utm_source=generator&theme=0`,
