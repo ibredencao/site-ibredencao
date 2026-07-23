@@ -25,11 +25,11 @@ const toggleClasse =
   "js-menu-toggle ml-auto flex size-10 items-center justify-center lg:hidden";
 ---
 
-{/* Header do topo — rola junto com a página */}
+{/* Header do topo — rola junto com a página (apenas no desktop) */}
 <header
   id="header-topo"
   data-tema={tema}
-  class="absolute inset-x-0 top-0 z-40 mt-10"
+  class="absolute inset-x-0 top-0 z-40 mt-10 hidden lg:block"
 >
   <nav class={navClasse} aria-label="Navegação principal">
     <NavColuna itens={navEsquerda} alinhamento="justify-start" />
@@ -70,12 +70,18 @@ const toggleClasse =
   <nav class={navClasse} aria-label="Navegação principal">
     <NavColuna itens={navEsquerda} alinhamento="justify-start" />
 
+    {/* Logo completo no mobile; só o símbolo no desktop */}
     <a
       href="/"
       class="order-first flex shrink-0 items-center lg:order-none"
       aria-label="Igreja Batista Redenção — página inicial"
     >
-      <Icone svg={simbolo} class="size-11" />
+      <span class="lg:hidden">
+        <Icone svg={logo} class="h-9" />
+      </span>
+      <span class="hidden lg:block">
+        <Icone svg={simbolo} class="size-11" />
+      </span>
     </a>
 
     <NavColuna itens={navDireita} alinhamento="justify-end" />
@@ -118,6 +124,14 @@ const toggleClasse =
   #header-fixo[data-visivel="true"] {
     transform: translateY(0);
     opacity: 1;
+  }
+
+  /* No mobile só existe o header fixo — sempre visível, sem esconder/deslizar. */
+  @media (max-width: 1023px) {
+    #header-fixo {
+      transform: none;
+      opacity: 1;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
