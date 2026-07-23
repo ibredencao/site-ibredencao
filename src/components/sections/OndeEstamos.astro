@@ -1,0 +1,42 @@
+---
+import Secao from "../ui/Secao.astro";
+import Btn from "../ui/Btn.astro";
+import { contato } from "../../data/navegacao";
+
+/**
+ * Seção "Onde estamos": endereço + mapa. Reutilizada na Home, Nossa História
+ * e Recursos. O mapa é um embed do Google Maps (sem necessidade de chave).
+ */
+const { endereco } = contato;
+const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
+  `${endereco.nome}, ${endereco.rua}, ${endereco.bairro}, ${endereco.cidade}`,
+)}&output=embed`;
+---
+
+<Secao id="onde-estamos" fundo="creme">
+  <div class="grid items-center gap-10 lg:grid-cols-[364px_1fr]" data-reveal>
+    <div class="flex flex-col gap-8">
+      <h2 class="titulo-secao">Onde estamos</h2>
+      <address class="flex flex-col gap-4 text-lg not-italic">
+        <span class="font-sans font-semibold">{endereco.nome}</span>
+        <div class="flex flex-col gap-3 font-sans">
+          <span>{endereco.rua}</span>
+          <span>{endereco.bairro}</span>
+          <span>{endereco.cidade}</span>
+        </div>
+      </address>
+      <Btn href={contato.rotaGoogleMaps} variant="inline" class="text-sangue">
+        Ver rota no Google Maps
+      </Btn>
+    </div>
+
+    <div class="overflow-hidden rounded-xl border border-areia/60">
+      <iframe
+        src={mapaEmbed}
+        title="Mapa — localização da Igreja Batista Redenção"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="aspect-[637/412] w-full"></iframe>
+    </div>
+  </div>
+</Secao>

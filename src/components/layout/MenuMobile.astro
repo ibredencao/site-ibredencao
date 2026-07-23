@@ -7,8 +7,9 @@ import { recursos } from "../../data/navegacao";
 
 <div
   id="menu-mobile"
-  class="invisible fixed inset-0 z-[60] translate-y-2 bg-branco opacity-0 transition-all duration-300 data-[open=true]:visible data-[open=true]:translate-y-0 data-[open=true]:opacity-100 lg:hidden"
+  class="pointer-events-none fixed inset-0 z-[60] flex translate-y-2 flex-col overflow-y-auto bg-branco opacity-0 transition-all duration-300 data-[open=true]:pointer-events-auto data-[open=true]:translate-y-0 data-[open=true]:opacity-100 lg:hidden"
   data-open="false"
+  inert
 >
   <div class="flex items-center justify-between px-[30px] py-6">
     <Icone svg={logo} class="h-9 w-auto text-preto [&>svg]:w-auto" />
@@ -79,11 +80,13 @@ import { recursos } from "../../data/navegacao";
 
     const abrir = () => {
       menu.dataset.open = "true";
+      menu.removeAttribute("inert");
       toggle.setAttribute("aria-expanded", "true");
       document.body.style.overflow = "hidden";
     };
     const fechar = () => {
       menu.dataset.open = "false";
+      menu.setAttribute("inert", "");
       toggle.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
     };

@@ -31,12 +31,12 @@ const itens = [
         {
           itens.map((item, i) => (
             <li>
-              {i > 0 && <hr class="border-preto/10 mb-6" />}
+              {i > 0 && <hr class="mb-6 border-preto/10" />}
               <div class="flex items-center gap-4">
-                <Icone svg={item.icone} class="text-bege size-12" />
+                <Icone svg={item.icone} class="size-12 text-bege" />
                 <div class="flex flex-col gap-2">
                   <p class="font-sans text-2xl font-medium">{item.titulo}</p>
-                  <p class="font-sans text-bege text-lg tracking-tight">
+                  <p class="font-sans text-lg tracking-tight text-bege">
                     {item.horario}
                   </p>
                 </div>
@@ -49,9 +49,9 @@ const itens = [
       <div class="flex flex-col gap-6">
         <div class="flex flex-col gap-6">
           <p class="font-sans text-2xl font-medium">Fale Conosco</p>
-          <p class="font-sans max-w-md text-lg opacity-80">
-            Entre em contato conosco via instagram ou e-mail para tirar dúvidas e
-            receber mais informações.
+          <p class="max-w-md font-sans text-lg opacity-80">
+            Entre em contato conosco via instagram ou e-mail para tirar dúvidas
+            e receber mais informações.
           </p>
         </div>
         <div class="flex flex-wrap gap-6">
@@ -59,13 +59,13 @@ const itens = [
             href={contato.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            class="border-sangue text-sangue hover:bg-sangue/10 font-ui rounded-lg border px-8 py-6 text-[15px] font-semibold transition-colors"
+            class="rounded-lg border border-sangue px-8 py-6 font-ui text-[15px] font-semibold text-sangue transition-colors hover:bg-sangue/10"
           >
             Instagram
           </a>
           <a
             href={`mailto:${contato.email}`}
-            class="border-sangue text-sangue hover:bg-sangue/10 font-ui rounded-lg border px-8 py-6 text-[15px] font-semibold transition-colors"
+            class="rounded-lg border border-sangue px-8 py-6 font-ui text-[15px] font-semibold text-sangue transition-colors hover:bg-sangue/10"
           >
             E-mail
           </a>

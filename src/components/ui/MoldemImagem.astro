@@ -20,10 +20,7 @@ const { src, alt = "", proporcao = "1/1", class: className = "" } = Astro.props;
 ---
 
 <div
-  class:list={[
-    "relative overflow-hidden rounded-xl bg-areia/60",
-    className,
-  ]}
+  class:list={["relative overflow-hidden rounded-xl bg-areia/60", className]}
   style={`aspect-ratio: ${proporcao}`}
 >
   {
@@ -36,7 +33,7 @@ const { src, alt = "", proporcao = "1/1", class: className = "" } = Astro.props;
         sizes="(max-width: 1024px) 100vw, 640px"
       />
     ) : (
-      <div class="text-bege/40 flex h-full w-full items-center justify-center">
+      <div class="flex h-full w-full items-center justify-center text-bege/40">
         <Icone svg={simbolo} class="size-24" />
       </div>
     )

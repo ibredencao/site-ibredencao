@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import Btn from "../ui/Btn.astro";
+import heroCulto from "../../assets/hero-culto.jpg";
+import { heroTitulo, missao } from "../../data/conteudo";
+
+/**
+ * Hero da Home: título + CTAs sobre fundo claro, foto do culto que avança
+ * sobre a faixa marrom, e a seção Missão (texto branco sobre marrom).
+ * A foto ocupa metade sobre o creme e metade sobre o marrom (como no Figma).
+ */
+---
+
+<section class="relative bg-branco pt-28 lg:pt-36">
+  <div
+    class="mx-auto flex max-w-[1585px] flex-col items-center gap-10 px-6 text-center lg:px-10"
+  >
+    <h1 class="titulo-hero max-w-3xl text-balance">{heroTitulo}</h1>
+    <div class="flex flex-wrap justify-center gap-5">
+      <Btn href="/#onde-estamos">Onde estamos</Btn>
+      <Btn href="/confissao-de-fe" variant="outline">Confissão de fé</Btn>
+    </div>
+  </div>
+
+  {/* Zona de sobreposição: foto sobre a faixa marrom */}
+  <div class="relative mt-14 lg:mt-20">
+    <div class="absolute inset-x-0 top-[55%] bottom-0 bg-bege"></div>
+    <div class="relative mx-auto max-w-[1585px] px-6 lg:px-10">
+      <Image
+        src={heroCulto}
+        alt="Congregação reunida durante um culto na Igreja Batista Redenção"
+        class="aspect-[1584/784] w-full rounded-xl object-cover"
+        widths={[640, 1024, 1440, 1600]}
+        sizes="(max-width: 1600px) 100vw, 1585px"
+        loading="eager"
+      />
+    </div>
+  </div>
+</section>
+
+<section id="missao" class="scroll-mt-0 bg-bege pb-20 text-branco lg:pb-28">
+  <div
+    class="mx-auto flex max-w-2xl flex-col items-center gap-10 px-6 pt-12 text-center lg:pt-16"
+  >
+    <h2 class="titulo-secao">Missão</h2>
+    <p class="font-sans text-lg leading-relaxed" data-reveal>{missao}</p>
+  </div>
+</section>

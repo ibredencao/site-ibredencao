@@ -1,0 +1,24 @@
+---
+import Secao from "../ui/Secao.astro";
+import Btn from "../ui/Btn.astro";
+import MoldemImagem from "../ui/MoldemImagem.astro";
+import { noQueCremos } from "../../data/conteudo";
+
+/** Resumo "No que cremos" na Home: texto à esquerda, imagem à direita. */
+---
+
+<Secao fundo="branco">
+  <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-24" data-reveal>
+    <div class="flex flex-col gap-8">
+      <h2 class="titulo-secao">No que cremos</h2>
+      <div
+        class="flex flex-col gap-4 font-sans text-lg leading-snug opacity-80"
+      >
+        {noQueCremos.map((paragrafo) => <p>{paragrafo}</p>)}
+      </div>
+      <Btn href="/confissao-de-fe" class="w-fit">Ler mais</Btn>
+    </div>
+
+    <MoldemImagem proporcao="1/1" class="w-full" />
+  </div>
+</Secao>
