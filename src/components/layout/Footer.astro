@@ -113,17 +113,24 @@ const { endereco } = contato;
 
     <hr class="mt-14 mb-10 border-branco/15" />
 
-    {/* Frase de destaque */}
-    <div
-      class="flex flex-col items-center gap-8 text-center text-sangue-escuro"
-    >
-      <p class="font-accent text-[clamp(2.5rem,9vw,6.7rem)] leading-none">
-        AO SENHOR PERTENCE A SALVAÇÃO
-      </p>
-      <p class="font-accent text-xl font-medium tracking-wide uppercase">
-        Jonas 2.9
-      </p>
-    </div>
+    {
+      /*
+      Frase de destaque — texto em curvas (Forevs) exportado como SVG, em duas
+      versões (grande/pequena). Arquivos esperados em public/:
+        - frase-salvacao.svg        (telas grandes)
+        - frase-salvacao-mobile.svg (telas pequenas)
+      Cor do traçado/preenchimento: sangue-escuro (#6A2429).
+    */
+    }
+    <picture>
+      <source media="(max-width: 640px)" srcset="/frase-salvacao-mobile.svg" />
+      <img
+        src="/frase-salvacao.svg"
+        alt="Ao Senhor pertence a salvação — Jonas 2.9"
+        loading="lazy"
+        class="block w-full"
+      />
+    </picture>
 
     <p class="mt-10 text-center text-sm text-sangue-escuro">
       Igreja Batista Redenção © 2026. Todos os direitos reservados.

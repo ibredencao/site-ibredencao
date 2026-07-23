@@ -7,9 +7,12 @@ import type { ItemRecurso } from "../../data/recursos";
 /** Card de sermão/recurso: miniatura (thumbnail real ou placeholder) + título + data. */
 interface Props {
   item: ItemRecurso & { thumb?: string };
+  /** Proporção da miniatura: "video" (16:9, YouTube) ou "square" (1:1, Spotify) */
+  aspecto?: "video" | "square";
 }
-const { item } = Astro.props;
+const { item, aspecto = "video" } = Astro.props;
 const externo = item.href.startsWith("http");
+const aspectoClasse = aspecto === "square" ? "aspect-square" : "aspect-video";
 ---
 
 <a
@@ -18,7 +21,12 @@ const externo = item.href.startsWith("http");
   rel={externo ? "noopener noreferrer" : undefined}
   class="group flex flex-col gap-5"
 >
-  <div class="relative aspect-video overflow-hidden rounded-xl bg-areia/60">
+  <div
+    class:list={[
+      "relative overflow-hidden rounded-xl bg-areia/60",
+      aspectoClasse,
+    ]}
+  >
     {
       item.thumb ? (
         <img

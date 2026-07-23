@@ -21,22 +21,10 @@
   font-display: swap;
 }
 
-/* Forevs (frase do rodapé) também é comercial — .woff2 em /public/fonts/ */
-@font-face {
-  font-family: "Forevs";
-  src: url("/fonts/forevs-light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Forevs";
-  src: url("/fonts/forevs-medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
+/*
+ * A frase do rodapé (antes em Forevs) agora é uma imagem SVG (texto em curvas),
+ * porque a versão Demo da Forevs não tinha os acentos (Ç, Ã...). Ver Footer.astro.
+ */
 
 @theme {
   /* Cores — nomes idênticos às variáveis do Figma */

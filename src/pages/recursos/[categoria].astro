@@ -73,7 +73,12 @@ if (categoria.layout === "cards-youtube") {
             data-reveal
           >
             {itens.map((item) => (
-              <CardRecurso item={item} />
+              <CardRecurso
+                item={item}
+                aspecto={
+                  categoria.layout === "cards-spotify" ? "square" : "video"
+                }
+              />
             ))}
           </div>
         ) : (

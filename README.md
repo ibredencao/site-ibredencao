@@ -53,7 +53,8 @@ Fotos: os blocos com o símbolo esmaecido (`MoldemImagem`) são placeholders —
 ## Fontes
 
 - **Work Sans** e **Bitter**: via Fontsource (já instaladas).
-- **Collier** (títulos) e **Forevs** (frase do rodapé): fontes comerciais. Colocar os arquivos `.woff2` em `public/fonts/` com estes nomes: `collier-light.woff2`, `collier-book.woff2`, `forevs-light.woff2`, `forevs-medium.woff2`. Enquanto não existirem, é usado um fallback (Georgia).
+- **Collier** (títulos): fonte comercial em `public/fonts/` (`Collier-Light.woff2`, `Collier-Book.woff2`). Fallback: Georgia.
+- **Frase do rodapé** ("Ao Senhor pertence a salvação — Jonas 2.9"): a fonte Forevs Demo não tinha acentos, então a frase é uma imagem SVG (texto em curvas) em `public/frase-salvacao.svg` (telas grandes) e `public/frase-salvacao-mobile.svg` (telas pequenas), trocadas por `<picture>`.
 
 ## Deploy no Cloudflare Pages
 
