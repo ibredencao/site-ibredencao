@@ -1,10 +1,8 @@
 ---
-import padrao from "../../assets/padrao-simbolo.svg?raw";
-
 /**
- * Hero das páginas internas: faixa vinho com padrão de símbolo esmaecido,
- * título (Collier) e subtítulo/versículo opcional. Texto em areia.
- * O header sobre este hero deve usar temaHeader="escuro".
+ * Hero das páginas internas: faixa vinho com o grafismo (SVG do Figma em
+ * public/grafismo-hero.svg, cor embutida), título (Collier) e subtítulo/versículo.
+ * Texto em areia. O header sobre este hero deve usar temaHeader="escuro".
  */
 interface Props {
   titulo: string;
@@ -14,11 +12,12 @@ const { titulo, subtitulo } = Astro.props;
 ---
 
 <section class="relative overflow-hidden bg-sangue text-areia">
-  {/* Padrão decorativo esmaecido */}
-  <div
-    class="pointer-events-none absolute top-1/2 left-1/2 w-[1200px] max-w-none -translate-x-1/2 -translate-y-1/2 text-sangue-escuro opacity-60 [&>svg]:h-auto [&>svg]:w-full"
+  {/* Grafismo decorativo — SVG do Figma, largura total, no topo */}
+  <img
+    src="/grafismo-hero.svg"
+    alt=""
     aria-hidden="true"
-    set:html={padrao}
+    class="pointer-events-none absolute top-1/2 left-1/2 w-[150%] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-50 lg:w-full"
   />
 
   <div

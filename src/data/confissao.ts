@@ -443,7 +443,7 @@ export const artigosConfissao: ArtigoConfissao[] = [
       {
         tipo: "p",
         texto:
-          '<span className="leading-[1.3]">Cremos que as crianças, desde o momento da concepção, são uma bênção e herança do Senhor. Os pais devem demonstrar aos seus filhos o padrão de Deus para o casamento. Os pais devem ensinar aos seus filhos valores espirituais e morais e guiá-los, por meio de um exemplo de estilo de vida consistente e disciplina amorosa, a fazer escolhas baseadas na verdade bíblica. As crianças devem honrar e obedecer a seus pais.</span> <span className="leading-[1.3] text-[11.61px]">1</span>',
+          "Cremos que as crianças, desde o momento da concepção, são uma bênção e herança do Senhor. Os pais devem demonstrar aos seus filhos o padrão de Deus para o casamento. Os pais devem ensinar aos seus filhos valores espirituais e morais e guiá-los, por meio de um exemplo de estilo de vida consistente e disciplina amorosa, a fazer escolhas baseadas na verdade bíblica. As crianças devem honrar e obedecer a seus pais.¹",
       },
       {
         tipo: "refs",

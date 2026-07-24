@@ -41,8 +41,9 @@
   /* Tipografia — Collier: títulos | Work Sans: corpo | Bitter: botões e rótulos | Forevs: frase do rodapé */
   --font-display: "Collier", "Georgia", serif;
   --font-sans: "Work Sans Variable", "Work Sans", system-ui, sans-serif;
-  --font-ui: "Bitter Variable", "Bitter", serif;
-  --font-accent: "Forevs", "Collier", "Georgia", serif;
+  --font-ui:
+    "Bitter Variable", "Bitter", "Work Sans Variable", "Work Sans", system-ui,
+    sans-serif;
 }
 
 @layer base {

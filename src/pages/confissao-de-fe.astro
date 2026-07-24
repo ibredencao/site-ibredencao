@@ -3,6 +3,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroInterno from "../components/sections/HeroInterno.astro";
 import Agenda from "../components/sections/Agenda.astro";
 import OndeEstamos from "../components/sections/OndeEstamos.astro";
+import Icone from "../components/ui/Icone.astro";
+import setaBaixo from "../assets/icones/seta-baixo.svg?raw";
 import { artigosConfissao, notaConfissao } from "../data/confissao";
 
 const subtitulo =
@@ -20,24 +22,36 @@ const subtitulo =
     <div
       class="mx-auto grid max-w-[1585px] gap-y-12 px-6 lg:grid-cols-12 lg:gap-x-10 lg:px-10"
     >
-      {/* Índice */}
+      {
+        /* Índice — no mobile é um acordeão fechado; no desktop, barra lateral fixa */
+      }
       <aside
         class="lg:sticky lg:top-28 lg:col-span-3 lg:col-start-1 lg:self-start"
       >
-        <details class="group" open>
+        <details
+          id="indice-confissao"
+          class="group rounded-2xl border border-preto/10 lg:rounded-none lg:border-0"
+        >
           <summary
-            class="mb-6 cursor-pointer font-display text-2xl font-normal text-preto/50 lg:pointer-events-none lg:list-none"
+            class="flex cursor-pointer list-none items-center justify-between gap-2 p-5 font-display text-2xl font-normal text-preto lg:pointer-events-none lg:p-0"
           >
             Índice
+            <Icone
+              svg={setaBaixo}
+              class="size-6 shrink-0 transition-transform duration-300 group-open:rotate-180 lg:hidden"
+            />
           </summary>
-          <nav aria-label="Índice da Confissão de Fé">
-            <ol class="flex flex-col gap-3">
+          <nav
+            aria-label="Índice da Confissão de Fé"
+            class="px-5 pb-5 lg:mt-6 lg:p-0"
+          >
+            <ol class="flex flex-col gap-2">
               {
                 artigosConfissao.map((a) => (
                   <li>
                     <a
                       href={`#${a.slug}`}
-                      class="font-sans text-base transition-colors hover:text-sangue"
+                      class="font-ui text-base leading-0! opacity-70 transition-colors hover:text-sangue hover:opacity-100"
                     >
                       {a.titulo}
                     </a>
@@ -119,3 +133,16 @@ const subtitulo =
   <Agenda />
   <OndeEstamos />
 </BaseLayout>
+
+<style>
+  /* No desktop o índice fica sempre visível (barra lateral), ignorando o
+     estado aberto/fechado do <details> que controla o acordeão no mobile. */
+  @media (min-width: 1024px) {
+    #indice-confissao > nav {
+      display: block;
+    }
+    #indice-confissao::details-content {
+      content-visibility: visible;
+    }
+  }
+</style>
