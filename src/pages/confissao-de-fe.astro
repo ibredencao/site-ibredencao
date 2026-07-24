@@ -18,7 +18,7 @@ const subtitulo =
 >
   <HeroInterno titulo="Confissão de Fé" subtitulo={subtitulo} />
 
-  <div class="bg-branco py-16 lg:py-24">
+  <div class="bg-branco pb-16 lg:py-24">
     <div
       class="mx-auto grid max-w-[1585px] gap-y-12 px-6 lg:grid-cols-12 lg:gap-x-10 lg:px-10"
     >
@@ -26,7 +26,7 @@ const subtitulo =
         /* Índice — no mobile é um acordeão fechado; no desktop, barra lateral fixa */
       }
       <aside
-        class="sticky top-[84px] z-30 -mx-6 lg:top-28 lg:z-auto lg:col-span-3 lg:col-start-1 lg:mx-0 lg:self-start"
+        class="sticky top-[76px] z-30 -mx-6 lg:top-28 lg:z-auto lg:col-span-3 lg:col-start-1 lg:mx-0 lg:self-start"
       >
         <details
           id="indice-confissao"
@@ -77,7 +77,7 @@ const subtitulo =
           artigosConfissao.map((artigo) => (
             <article
               id={artigo.slug}
-              class="flex scroll-mt-28 flex-col gap-8"
+              class="flex scroll-mt-40 flex-col gap-8 lg:scroll-mt-28"
               data-reveal
             >
               <h2 class="font-display text-[clamp(1.75rem,3vw,2.7rem)] leading-tight font-light text-bege">
@@ -107,7 +107,7 @@ const subtitulo =
         {/* Nota */}
         <article
           id="nota"
-          class="flex scroll-mt-28 flex-col gap-6 border-t border-preto/10 pt-12"
+          class="flex scroll-mt-40 flex-col gap-6 border-t border-preto/10 pt-12 lg:scroll-mt-28"
         >
           <h2 class="font-display text-2xl font-normal text-preto/50">Nota</h2>
           {
@@ -133,6 +133,21 @@ const subtitulo =
   <Agenda />
   <OndeEstamos />
 </BaseLayout>
+
+<script>
+  // Ao clicar num tópico do índice, fecha o acordeão (mobile) para não tapar
+  // o conteúdo. No desktop o CSS mantém a lista visível de qualquer forma.
+  function initIndice() {
+    const indice = document.getElementById("indice-confissao");
+    if (!indice) return;
+    indice.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => {
+        indice.open = false;
+      }),
+    );
+  }
+  document.addEventListener("astro:page-load", initIndice);
+</script>
 
 <style>
   /* No desktop o índice fica sempre visível (barra lateral), ignorando o
