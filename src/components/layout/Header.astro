@@ -72,7 +72,7 @@ const toggleClasse =
 {/* Header fixo compacto — aparece deslizando após o header do topo sumir */}
 <header
   id="header-fixo"
-  class="fixed inset-x-0 top-0 z-50 bg-branco text-preto"
+  class="fixed inset-x-0 top-0 z-50 border-b border-b-black/10 bg-branco text-preto"
 >
   <nav class={navClasse} aria-label="Navegação principal">
     <NavColuna itens={navEsquerda} alinhamento="justify-start" hover="sangue" />
@@ -87,7 +87,7 @@ const toggleClasse =
         <Icone svg={logo} class="h-9" />
       </span>
       <span class="hidden lg:block">
-        <Icone svg={simbolo} class="size-11" />
+        <Icone svg={simbolo} class="size-9" />
       </span>
     </a>
 

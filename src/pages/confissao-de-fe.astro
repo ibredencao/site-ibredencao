@@ -26,14 +26,14 @@ const subtitulo =
         /* Índice — no mobile é um acordeão fechado; no desktop, barra lateral fixa */
       }
       <aside
-        class="lg:sticky lg:top-28 lg:col-span-3 lg:col-start-1 lg:self-start"
+        class="sticky top-[84px] z-30 -mx-6 lg:top-28 lg:z-auto lg:col-span-3 lg:col-start-1 lg:mx-0 lg:self-start"
       >
         <details
           id="indice-confissao"
-          class="group rounded-2xl border border-preto/10 lg:rounded-none lg:border-0"
+          class="group border-b border-preto/10 bg-creme lg:border-0 lg:bg-transparent"
         >
           <summary
-            class="flex cursor-pointer list-none items-center justify-between gap-2 p-5 font-display text-2xl font-normal text-preto lg:pointer-events-none lg:p-0"
+            class="flex cursor-pointer list-none items-center justify-between gap-2 px-6 py-4 font-display text-xl font-normal text-preto lg:pointer-events-none lg:p-0 lg:text-2xl"
           >
             Índice
             <Icone
@@ -43,7 +43,7 @@ const subtitulo =
           </summary>
           <nav
             aria-label="Índice da Confissão de Fé"
-            class="px-5 pb-5 lg:mt-6 lg:p-0"
+            class="px-6 pb-5 lg:mt-6 lg:p-0"
           >
             <ol class="flex flex-col gap-2">
               {

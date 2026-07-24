@@ -34,7 +34,7 @@ const hoverBtn =
             <button
               type="button"
               class:list={[
-                "flex items-center gap-1 font-ui text-base font-medium transition-colors",
+                "flex items-center gap-1 font-ui text-[15px] font-medium transition-colors",
                 hoverBtn,
               ]}
               aria-haspopup="true"
@@ -52,7 +52,7 @@ const hoverBtn =
                   <li>
                     <a
                       href={sub.href}
-                      class="flex items-center gap-3 rounded-md py-4 pr-6 pl-4 font-sans text-base whitespace-nowrap text-preto transition-colors hover:bg-sangue/10 hover:text-sangue"
+                      class="flex items-center gap-3 rounded-md py-4 pr-6 pl-4 font-sans text-[15px] whitespace-nowrap text-preto transition-colors hover:bg-sangue/10 hover:text-sangue"
                     >
                       <Icone svg={sub.icone} class="size-6" />
                       {sub.rotulo}
@@ -66,7 +66,7 @@ const hoverBtn =
           <a
             href={item.href}
             class:list={[
-              "font-ui text-base font-medium transition-colors",
+              "font-ui text-[15px] font-medium transition-colors",
               hoverLink,
             ]}
           >
