@@ -11,14 +11,14 @@ import { heroTitulo, missao } from "../../data/conteudo";
  */
 ---
 
-<section class="relative bg-branco pt-[136px] lg:pt-[168px]">
+<section class="relative bg-branco pt-30 lg:pt-[136px] lg:pt-[168px]">
   <div
-    class="lg:mx-auto flex lg:max-w-[1585px] flex-col lg:items-center gap-10 px-6 lg:text-center lg:px-10"
+    class="lg:mx-auto flex lg:max-w-[1585px] flex-col lg:items-center gap-10 px-6 text-center lg:px-10"
   >
     <h1 class="titulo-hero lg:max-w-3xl text-balance">{heroTitulo}</h1>
-    <div class="flex flex-wrap lg:justify-center gap-5">
-      <Btn href="/#onde-estamos">Onde estamos</Btn>
-      <Btn href="/confissao-de-fe" variant="outline">Confissão de fé</Btn>
+    <div class="flex justify-center gap-5">
+      <Btn href="/#onde-estamos" class="px-4! lg:px-8! w-full lg:w-auto">Onde estamos</Btn>
+      <Btn href="/confissao-de-fe" variant="outline" class="px-4! lg:px-8! w-full lg:w-auto">Confissão de fé</Btn>
     </div>
   </div>
 
@@ -29,7 +29,7 @@ import { heroTitulo, missao } from "../../data/conteudo";
       <Image
         src={heroCulto}
         alt="Congregação reunida durante um culto na Igreja Batista Redenção"
-        class="aspect-[1584/784] w-full rounded-xl object-cover"
+        class="aspect-square lg:aspect-[1584/784] w-full rounded-xl object-cover"
         widths={[640, 1024, 1440, 1600]}
         sizes="(max-width: 1600px) 100vw, 1585px"
         loading="eager"
