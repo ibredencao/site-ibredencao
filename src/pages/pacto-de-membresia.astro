@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroInterno from "../components/sections/HeroInterno.astro";
 import Agenda from "../components/sections/Agenda.astro";
 import OndeEstamos from "../components/sections/OndeEstamos.astro";
+import { pactoDeMembresia } from "../data/conteudo";
 
 // TODO(conteúdo): o Pacto de Membresia não tem frame no Figma nem texto definido.
 // Quando a igreja fornecer o texto, estruturá-lo como em src/data/confissao.ts
@@ -10,17 +11,17 @@ import OndeEstamos from "../components/sections/OndeEstamos.astro";
 ---
 
 <BaseLayout
-  title="Pacto de Membresia — Igreja Batista Redenção"
+  title="Pacto de Membresia | Igreja Batista Redenção"
   description="O Pacto de Membresia da Igreja Batista Redenção."
   temaHeader="escuro"
 >
   <HeroInterno titulo="Pacto de Membresia" />
 
   <section class="bg-branco py-20 lg:py-28">
-    <div class="mx-auto max-w-3xl px-6 text-center lg:px-10" data-reveal>
-      <p class="font-sans text-lg leading-relaxed opacity-70">
-        O conteúdo do Pacto de Membresia será publicado em breve.
-      </p>
+    <div class="flex flex-col gap-6 mx-auto max-w-3xl px-6 text-center lg:px-10" data-reveal>
+      {
+        pactoDeMembresia.map((p) => <p class="font-sans text-lg text-justify leading-snug">{p}</p>)
+      }
     </div>
   </section>
 

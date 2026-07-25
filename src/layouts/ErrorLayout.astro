@@ -1,0 +1,42 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "@fontsource-variable/work-sans";
+import "@fontsource-variable/bitter";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Igreja Batista Redenção — Firmada no evangelho, dedicada ao discipulado e à glória de Deus.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    {
+      /* Marca que há JS antes da pintura — habilita os efeitos de reveal sem risco de sumir conteúdo */
+    }
+    <script is:inline>
+      document.documentElement.classList.add("js");
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body class="bg-areia selection:bg-branco selection:text-preto;">
+    <main class="relative min-h-screen">
+      <slot />
+    </main>
+    <script src="../scripts/smooth-scroll.ts"></script>
+    <script src="../scripts/reveal.ts"></script>
+  </body>
+</html>

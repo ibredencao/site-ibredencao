@@ -21,11 +21,6 @@
   font-display: swap;
 }
 
-/*
- * A frase do rodapé (antes em Forevs) agora é uma imagem SVG (texto em curvas),
- * porque a versão Demo da Forevs não tinha os acentos (Ç, Ã...). Ver Footer.astro.
- */
-
 @theme {
   /* Cores — nomes idênticos às variáveis do Figma */
   --color-bege: #a48055;
@@ -38,7 +33,7 @@
   /* Creme levemente mais claro que o branco, usado em seções alternadas (ex.: Onde Estamos) */
   --color-creme: #f7f5ee;
 
-  /* Tipografia — Collier: títulos | Work Sans: corpo | Bitter: botões e rótulos | Forevs: frase do rodapé */
+  /* Tipografia — Collier: títulos | Work Sans: corpo | Bitter: botões e rótulos */
   --font-display: "Collier", "Georgia", serif;
   --font-sans: "Work Sans Variable", "Work Sans", system-ui, sans-serif;
   --font-ui:
@@ -54,6 +49,7 @@
 
   body {
     @apply bg-branco font-sans text-preto antialiased;
+    @apply selection:bg-areia selection:text-preto;
   }
 }
 

@@ -23,7 +23,7 @@ const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
 <Secao id="onde-estamos" fundo="creme">
   <div class="grid items-center gap-x-10 gap-y-12 lg:grid-cols-12" data-reveal>
     <div
-      class="flex flex-col gap-8 lg:col-span-4 lg:col-start-2 2xl:col-span-3 2xl:col-start-3"
+      class="flex flex-col gap-8 lg:col-span-4 lg:col-start-2"
     >
       <h2 class="titulo-secao">Onde estamos</h2>
       <address class="flex flex-col text-lg not-italic">
@@ -37,17 +37,42 @@ const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
       <Btn href={contato.rotaGoogleMaps} variant="inline" class="text-sangue">
         Ver rota no Google Maps
       </Btn>
+      <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-6">
+          <p class="font-sans text-2xl font-medium">Fale Conosco</p>
+          <p class="max-w-md font-sans text-lg leading-snug opacity-80">
+            Entre em contato conosco via instagram ou e-mail para tirar dúvidas
+            e receber mais informações.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-6">
+          <a
+            href={contato.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-lg border border-sangue px-8 py-4 font-ui text-[15px] font-semibold text-sangue transition-colors hover:bg-sangue/10"
+          >
+            Instagram
+          </a>
+          <a
+            href={`mailto:${contato.email}`}
+            class="rounded-lg border border-sangue px-8 py-4 font-ui text-[15px] font-semibold text-sangue transition-colors hover:bg-sangue/10"
+          >
+            E-mail
+          </a>
+        </div>
+      </div>
     </div>
 
     <div
-      class="overflow-hidden rounded-xl border border-areia/60 lg:col-span-6 lg:col-start-6 2xl:col-span-5"
+      class="overflow-hidden rounded-xl border border-areia/60 lg:col-span-6 lg:col-start-6"
     >
       <iframe
         src={mapaEmbed}
         title="Mapa — localização da Igreja Batista Redenção"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
-        class="aspect-[637/412] w-full"></iframe>
+        class="aspect-square w-full"></iframe>
     </div>
   </div>
 </Secao>

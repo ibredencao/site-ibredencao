@@ -58,17 +58,20 @@ export const navEsquerda: ItemNav[] = [
 ];
 
 export const navDireita: ItemNav[] = [
-  { rotulo: "Agenda", href: "/#agenda" },
-  { rotulo: "Onde Estamos", href: "/#onde-estamos" },
+  { rotulo: "Agenda", href: "#agenda" },
+  { rotulo: "Onde Estamos", href: "#onde-estamos" },
   { rotulo: "Recursos", dropdown: recursos },
 ];
 
 export const contato = {
   email: "batistaredencaonatal@gmail.com",
-  // TODO: confirmar URLs oficiais com a igreja
-  instagram: "https://www.instagram.com/batistaredencao",
-  youtube: "https://www.youtube.com/@batistaredencao",
-  spotify: "https://open.spotify.com/",
+  whatsapp: {
+    placeholder: "(84) 9 8999-9999",
+    href: "https://wa.me/5584989999999"
+  },
+  instagram: "https://www.instagram.com/batistaredencaonatal",
+  youtube: "https://www.youtube.com/@batistaredencaonatal",
+  spotify: "https://open.spotify.com/show/0NVwK9Sigk6gRwhRQld3AN?si=2faee73f53cf4622",
   endereco: {
     nome: "Igreja Batista Redenção",
     rua: "Av. Prudente de Morais, 5220",

@@ -7,16 +7,16 @@ import Icone from "../components/ui/Icone.astro";
 import setaBaixo from "../assets/icones/seta-baixo.svg?raw";
 import { artigosConfissao, notaConfissao } from "../data/confissao";
 
-const subtitulo =
-  '"Antes, reverenciai a Cristo como Senhor no coração. Estai sempre preparados para responder a todo o que vos pedir a razão da esperança que há em vós." (1Pe 3.15)';
+// const subtitulo =
+//   '"Antes, reverenciai a Cristo como Senhor no coração. Estai sempre preparados para responder a todo o que vos pedir a razão da esperança que há em vós." (1Pe 3.15)';
 ---
 
 <BaseLayout
-  title="Confissão de Fé — Igreja Batista Redenção"
+  title="Confissão de Fé | Igreja Batista Redenção"
   description="A Confissão de Fé da Igreja Batista Redenção — Confissão de Fé de New Hampshire."
   temaHeader="escuro"
 >
-  <HeroInterno titulo="Confissão de Fé" subtitulo={subtitulo} />
+  <HeroInterno titulo="Confissão de Fé" />
 
   <div class="bg-branco pb-16 lg:py-24">
     <div
@@ -33,7 +33,7 @@ const subtitulo =
           class="group border-b border-preto/10 bg-creme lg:border-0 lg:bg-transparent"
         >
           <summary
-            class="flex cursor-pointer list-none items-center justify-between gap-2 px-6 py-4 font-display text-xl font-normal text-preto lg:pointer-events-none lg:p-0 lg:text-2xl"
+            class="flex cursor-pointer list-none items-center justify-between gap-2 px-6 py-4 font-sans text-md font-semibold text-preto uppercase lg:normal-case lg:font-medium lg:pointer-events-none lg:p-0 lg:text-xl"
           >
             Índice
             <Icone
@@ -109,11 +109,11 @@ const subtitulo =
           id="nota"
           class="flex scroll-mt-40 flex-col gap-6 border-t border-preto/10 pt-12 lg:scroll-mt-28"
         >
-          <h2 class="font-display text-2xl font-normal text-preto/50">Nota</h2>
+          <h2 class="font-display text-2xl font-normal text-preto">Nota</h2>
           {
             notaConfissao.map((bloco) =>
               bloco.tipo === "p" ? (
-                <p class="text-justify font-sans text-base leading-relaxed text-preto/70">
+                <p class="text-justify font-sans text-base text-preto">
                   {bloco.texto}
                 </p>
               ) : (

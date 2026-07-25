@@ -7,16 +7,16 @@ import type { ItemNav } from "../../data/navegacao";
 interface Props {
   itens: ItemNav[];
   alinhamento: "justify-start" | "justify-end";
-  /** Cor do texto no hover: "sangue" (padrão) ou "bege" (header sobre o hero vinho) */
-  hover?: "sangue" | "bege";
+  /** Cor do texto no hover: "sangue" (padrão) ou "branco" (header sobre o hero vinho) */
+  hover?: "sangue" | "branco";
 }
 const { itens, alinhamento, hover = "sangue" } = Astro.props;
 
 // Classes completas (literais) para o JIT do Tailwind gerar as variantes.
-const hoverLink = hover === "bege" ? "hover:text-bege" : "hover:text-sangue";
+const hoverLink = hover === "branco" ? "hover:text-branco" : "hover:text-sangue";
 const hoverBtn =
-  hover === "bege"
-    ? "hover:text-bege group-hover/drop:text-bege group-focus-within/drop:text-bege"
+  hover === "branco"
+    ? "hover:text-branco group-hover/drop:text-branco group-focus-within/drop:text-branco"
     : "hover:text-sangue group-hover/drop:text-sangue group-focus-within/drop:text-sangue";
 ---
 
@@ -52,7 +52,7 @@ const hoverBtn =
                   <li>
                     <a
                       href={sub.href}
-                      class="flex items-center gap-3 rounded-md py-4 pr-6 pl-4 font-sans text-[15px] whitespace-nowrap text-preto transition-colors hover:bg-sangue/10 hover:text-sangue"
+                      class="flex items-center gap-3 rounded-md py-4 pr-6 pl-4 font-ui text-[15px] font-medium whitespace-nowrap text-preto transition-colors hover:bg-sangue/10 hover:text-sangue"
                     >
                       <Icone svg={sub.icone} class="size-6" />
                       {sub.rotulo}

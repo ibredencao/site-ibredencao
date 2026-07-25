@@ -9,7 +9,7 @@
  */
 interface Props {
   href: string;
-  variant?: "solid" | "outline" | "inline";
+  variant?: "solid" | "outline" | "inline" | "inverted";
   icone?: "seta";
   /** Cor do texto no variant inline (padrão: sangue; no rodapé usa-se areia) */
   class?: string;
@@ -24,6 +24,7 @@ const variants = {
   outline:
     "border-sangue text-sangue hover:bg-sangue/10 rounded-lg border px-8 py-4",
   inline: "text-sangue hover:opacity-75",
+  inverted: "bg-areia text-sangue hover:bg-areia-escuro rounded-lg px-8 py-4",
 };
 
 const mostrarSeta = variant === "inline" || icone === "seta";

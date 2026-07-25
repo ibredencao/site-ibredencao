@@ -1,10 +1,11 @@
 ---
 import Secao from "../ui/Secao.astro";
 import MoldemImagem from "../ui/MoldemImagem.astro";
-import Icone from "../ui/Icone.astro";
+// import Icone from "../ui/Icone.astro";
 import iconeIgreja from "../../assets/icones/igreja.svg?raw";
 import iconeCasa from "../../assets/icones/casa.svg?raw";
-import { contato } from "../../data/navegacao";
+// import { contato } from "../../data/navegacao";
+import Btn from "../ui/Btn.astro";
 
 /**
  * Seção Agenda + Fale Conosco. Reutilizada na Home, Nossa História e Recursos.
@@ -16,6 +17,7 @@ const itens = [
     icone: iconeCasa,
     titulo: "Pequenos Grupos",
     horario: "Terças e quintas, às 19h30",
+    descricao: "Os pequenos grupos acontecem semanalmente e oferecem a oportunidade de comunhão, oração e estudo da Palavra de Deus junto com outros irmãos que moram na mesma região."
   },
 ];
 ---
@@ -26,59 +28,39 @@ const itens = [
     data-reveal
   >
     <div
-      class="flex flex-col gap-12 lg:col-span-3 lg:col-start-8 lg:row-start-1 lg:gap-16"
+      class="flex flex-col gap-12 lg:col-span-5 xl:col-span-4 lg:col-start-7 xl:col-start-8 lg:row-start-1 lg:gap-8"
     >
       <h2 class="titulo-secao">Agenda</h2>
 
-      <ul class="flex flex-col gap-6">
+      <ul class="flex flex-col gap-4">
         {
           itens.map((item, i) => (
             <li>
-              {i > 0 && <hr class="mb-6 border-preto/10" />}
-              <div class="flex items-center gap-4">
-                <Icone svg={item.icone} class="size-12 text-bege" />
+              {i > 0 && <hr class="mb-4 border-preto/10" />}
+              <div class="flex gap-4">
+                {/* <Icone svg={item.icone} class="size-12 text-bege" /> */}
                 <div class="flex flex-col">
-                  <p class="font-sans text-2xl font-medium">{item.titulo}</p>
-                  <p class="font-sans text-lg tracking-tight text-bege">
+                  <p class="font-sans text-xl font-medium">{item.titulo}</p>
+                  <p class="font-sans text-lg tracking-snug text-bege">
                     {item.horario}
                   </p>
+                  {item.descricao && (
+                    <p class="font-sans mt-2 leading-snug text-base opacity-70">
+                      {item.descricao}
+                    </p>
+                  )}
                 </div>
               </div>
             </li>
           ))
         }
       </ul>
-
-      <div class="flex flex-col gap-6">
-        <div class="flex flex-col gap-6">
-          <p class="font-sans text-2xl font-medium">Fale Conosco</p>
-          <p class="max-w-md font-sans text-lg leading-tight opacity-80">
-            Entre em contato conosco via instagram ou e-mail para tirar dúvidas
-            e receber mais informações.
-          </p>
-        </div>
-        <div class="flex flex-wrap gap-6">
-          <a
-            href={contato.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="rounded-lg border border-sangue px-8 py-4 font-ui text-[15px] font-semibold text-sangue transition-colors hover:bg-sangue/10"
-          >
-            Instagram
-          </a>
-          <a
-            href={`mailto:${contato.email}`}
-            class="rounded-lg border border-sangue px-8 py-4 font-ui text-[15px] font-semibold text-sangue transition-colors hover:bg-sangue/10"
-          >
-            E-mail
-          </a>
-        </div>
-      </div>
+      <Btn href="#onde-estamos" class="w-fit">Entrar em Contato</Btn>
     </div>
 
     <MoldemImagem
       proporcao="1/1"
-      class="w-full lg:col-span-5 lg:col-start-2 lg:row-start-1"
+      class="w-full xl:col-span-5 lg:col-span-6 xl:col-start-2 lg:row-start-1"
     />
   </div>
 </Secao>
