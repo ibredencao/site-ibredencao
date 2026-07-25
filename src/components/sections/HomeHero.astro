@@ -13,10 +13,10 @@ import { heroTitulo, missao } from "../../data/conteudo";
 
 <section class="relative bg-branco pt-[136px] lg:pt-[168px]">
   <div
-    class="mx-auto flex max-w-[1585px] flex-col items-center gap-10 px-6 text-center lg:px-10"
+    class="lg:mx-auto flex lg:max-w-[1585px] flex-col lg:items-center gap-10 px-6 lg:text-center lg:px-10"
   >
-    <h1 class="titulo-hero max-w-3xl text-balance">{heroTitulo}</h1>
-    <div class="flex flex-wrap justify-center gap-5">
+    <h1 class="titulo-hero lg:max-w-3xl text-balance">{heroTitulo}</h1>
+    <div class="flex flex-wrap lg:justify-center gap-5">
       <Btn href="/#onde-estamos">Onde estamos</Btn>
       <Btn href="/confissao-de-fe" variant="outline">Confissão de fé</Btn>
     </div>
@@ -40,9 +40,9 @@ import { heroTitulo, missao } from "../../data/conteudo";
 
 <section id="missao" class="scroll-mt-0 bg-bege pb-20 text-branco lg:pb-28">
   <div
-    class="mx-auto flex max-w-2xl flex-col items-center gap-10 px-6 pt-12 text-center lg:pt-16"
+    class="lg:mx-auto flex lg:max-w-2xl flex-col lg:items-center gap-6 px-6 pt-12 lg:text-center lg:pt-16"
   >
     <h2 class="titulo-secao">Missão</h2>
-    <p class="font-sans text-lg leading-relaxed" data-reveal>{missao}</p>
+    <p class="font-sans text-lg leading-snug lg:max-w-lg" data-reveal>{missao}</p>
   </div>
 </section>
