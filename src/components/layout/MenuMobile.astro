@@ -1,5 +1,5 @@
 ---
-import logo from "../../assets/logo.svg?raw";
+// import logo from "../../assets/logo.svg?raw";
 import Icone from "../ui/Icone.astro";
 import setaBaixo from "../../assets/icones/seta-baixo.svg?raw";
 import { documentosDeFe, recursos } from "../../data/navegacao";
@@ -7,12 +7,12 @@ import { documentosDeFe, recursos } from "../../data/navegacao";
 
 <div
   id="menu-mobile"
-  class="pointer-events-none fixed inset-0 z-[60] flex translate-y-2 flex-col overflow-y-auto bg-branco opacity-0 transition-all duration-300 data-[open=true]:pointer-events-auto data-[open=true]:translate-y-0 data-[open=true]:opacity-100 lg:hidden"
+  class="pointer-events-none fixed inset-0 z-60 flex translate-y-2 flex-col overflow-y-auto bg-branco opacity-0 transition-all duration-300 data-[open=true]:pointer-events-auto data-[open=true]:translate-y-0 data-[open=true]:opacity-100 lg:hidden"
   data-open="false"
   inert
 >
-  <div class="flex items-center justify-between px-[30px] py-6">
-    <Icone svg={logo} class="h-9 w-auto text-preto [&>svg]:w-auto" />
+  <div class="flex items-center justify-end px-6 py-6">
+    <!-- <Icone svg={logo} class="h-9 w-auto text-preto [&>svg]:w-auto" /> -->
     <button
       type="button"
       id="menu-close"
