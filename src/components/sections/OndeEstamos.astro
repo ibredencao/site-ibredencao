@@ -41,25 +41,17 @@ const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
         <div class="flex flex-col gap-6">
           <p class="font-sans text-2xl font-medium">Fale Conosco</p>
           <p class="max-w-md font-sans text-lg leading-snug opacity-80">
-            Entre em contato conosco via instagram ou e-mail para tirar dúvidas
-            e receber mais informações.
+            Entre em contato conosco via WhatsApp ou e-mail para tirar dúvidas
+            e receber informações.
           </p>
         </div>
         <div class="flex flex-wrap gap-6">
-          <a
-            href={contato.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="rounded-lg border border-sangue px-8 py-4 font-ui text-[15px] font-semibold text-sangue transition-colors hover:bg-sangue/10"
-          >
-            Instagram
-          </a>
-          <a
-            href={`mailto:${contato.email}`}
-            class="rounded-lg border border-sangue px-8 py-4 font-ui text-[15px] font-semibold text-sangue transition-colors hover:bg-sangue/10"
-          >
+          <Btn href={contato.whatsapp.href} variant="outline">
+            WhatsApp
+          </Btn>
+          <Btn href={contato.email} variant="outline">
             E-mail
-          </a>
+          </Btn>
         </div>
       </div>
     </div>
