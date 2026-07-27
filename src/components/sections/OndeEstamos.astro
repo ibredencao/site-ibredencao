@@ -22,9 +22,7 @@ const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
 
 <Secao id="onde-estamos" fundo="creme">
   <div class="grid items-center gap-x-10 gap-y-12 lg:grid-cols-12" data-reveal>
-    <div
-      class="flex flex-col gap-8 lg:col-span-4 lg:col-start-2"
-    >
+    <div class="flex flex-col gap-8 lg:col-span-4 lg:col-start-2">
       <h2 class="titulo-secao">Onde estamos</h2>
       <address class="flex flex-col text-lg not-italic">
         <span class="font-sans font-semibold">{endereco.nome}</span>
@@ -41,17 +39,13 @@ const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
         <div class="flex flex-col gap-6">
           <p class="font-sans text-2xl font-medium">Fale Conosco</p>
           <p class="max-w-md font-sans text-lg leading-snug opacity-80">
-            Entre em contato conosco via WhatsApp ou e-mail para tirar dúvidas
-            e receber informações.
+            Entre em contato conosco via WhatsApp ou e-mail para tirar dúvidas e
+            receber informações.
           </p>
         </div>
         <div class="flex flex-wrap gap-6">
-          <Btn href={contato.whatsapp.href} variant="outline">
-            WhatsApp
-          </Btn>
-          <Btn href={contato.email} variant="outline">
-            E-mail
-          </Btn>
+          <Btn href={contato.whatsapp.href} variant="outline"> WhatsApp </Btn>
+          <Btn href={contato.email} variant="outline"> E-mail </Btn>
         </div>
       </div>
     </div>

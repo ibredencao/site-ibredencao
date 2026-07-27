@@ -7,15 +7,18 @@ import Btn from "../components/ui/Btn.astro";
   title="404 | Igreja Batista Redenção"
   description="Página não encontrada."
 >
-  <div class=" absolute left-1/2 top-1/2 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col items-center px-8 py-10 text-center">
-    <h1 class="font-display font-light text-branco text-[20rem] leading-[0.8em]">
+  <div
+    class="absolute top-1/2 left-1/2 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col items-center px-8 py-10 text-center"
+  >
+    <h1
+      class="font-display text-[20rem] leading-[0.8em] font-light text-branco"
+    >
       404
     </h1>
     <p class="mt-4 max-w-[600px] font-sans text-lg text-preto">
-      A página que você está procurando não existe ou foi removida. Tente voltar para a página inicial.
+      A página que você está procurando não existe ou foi removida. Tente voltar
+      para a página inicial.
     </p>
-    <Btn href="/" class="mt-6">
-      Página Inicial
-    </Btn>
+    <Btn href="/" class="mt-6"> Página Inicial </Btn>
   </div>
 </ErrorLayout>

@@ -67,11 +67,12 @@ export const contato = {
   email: "batistaredencaonatal@gmail.com",
   whatsapp: {
     placeholder: "(84) 9 8999-9999",
-    href: "https://wa.me/5584989999999"
+    href: "https://wa.me/5584989999999",
   },
   instagram: "https://www.instagram.com/batistaredencaonatal",
   youtube: "https://www.youtube.com/@batistaredencaonatal",
-  spotify: "https://open.spotify.com/show/0NVwK9Sigk6gRwhRQld3AN?si=2faee73f53cf4622",
+  spotify:
+    "https://open.spotify.com/show/0NVwK9Sigk6gRwhRQld3AN?si=2faee73f53cf4622",
   endereco: {
     nome: "Igreja Batista Redenção",
     rua: "Av. Prudente de Morais, 5220",

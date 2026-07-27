@@ -98,24 +98,31 @@ const musicas: Musica[] = [
   },
 ];
 
+// PDFs hospedados em public/arquivos/ (servidos como estão pelo Cloudflare).
 const arquivos: Arquivo[] = [
   {
     titulo: "Diretório de Membros",
-    tipo: "Arquivo PDF ou INDD (InDesign)",
+    tipo: "Template em PDF",
+    // TODO(indd): restaurar o segundo download ("Download em INDD") quando o
+    // arquivo .indd for adicionado em public/arquivos/.
     downloads: [
-      { rotulo: "Download do PDF", href: "#" },
-      { rotulo: "Download em INDD", href: "#" },
+      {
+        rotulo: "Baixar",
+        href: "/arquivos/template-diretorio-de-membros.pdf",
+      },
     ],
   },
   {
     titulo: "Leitura Bíblica Anual",
     tipo: "Arquivo PDF",
-    downloads: [{ rotulo: "Download do PDF", href: "#" }],
+    downloads: [
+      { rotulo: "Baixar", href: "/arquivos/leitura-biblica-anual.pdf" },
+    ],
   },
   {
     titulo: "Boletim",
     tipo: "Arquivo PDF",
-    downloads: [{ rotulo: "Download do PDF", href: "#" }],
+    downloads: [{ rotulo: "Baixar", href: "/arquivos/boletim.pdf" }],
   },
 ];
 

@@ -21,11 +21,10 @@ const { tema = "claro" } = Astro.props;
 // Sobre o hero vinho (tema escuro) o hover é branco; nos demais casos, vermelho.
 const hoverTopo = tema === "escuro" ? "branco" : "sangue";
 
-const setaHamburguer = "M3 6h18M3 12h18M3 18h18";
 const navClasse =
   "mx-auto flex max-w-[1585px] items-center gap-10 px-6 py-4 lg:px-10";
 const toggleClasse =
-  "js-menu-toggle ml-auto flex size-10 items-center justify-center lg:hidden";
+  "js-menu-toggle ml-auto flex size-10 cursor-pointer flex-col items-center justify-center lg:hidden";
 ---
 
 {/* Header do topo — rola junto com a página (apenas no desktop) */}
@@ -58,21 +57,21 @@ const toggleClasse =
       aria-expanded="false"
       aria-controls="menu-mobile"
     >
-      <svg class="size-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path
-          d={setaHamburguer}
-          stroke="currentColor"
-          stroke-width="1.75"
-          stroke-linecap="round"></path>
-      </svg>
+      <span class="linha-menu"></span>
+      <span class="linha-menu"></span>
+      <span class="linha-menu"></span>
     </button>
   </nav>
 </header>
 
 {/* Header fixo compacto — aparece deslizando após o header do topo sumir */}
+{
+  /* z-70: acima do menu mobile (z-60), para o logo e o botão hambúrguer→X
+    continuarem visíveis e clicáveis com o menu aberto. */
+}
 <header
   id="header-fixo"
-  class="fixed inset-x-0 top-0 z-50 border-b border-b-black/10 bg-branco text-preto"
+  class="fixed inset-x-0 top-0 z-70 border-b border-b-black/10 bg-branco text-preto"
 >
   <nav class={navClasse} aria-label="Navegação principal">
     <NavColuna itens={navEsquerda} alinhamento="justify-start" hover="sangue" />
@@ -100,13 +99,9 @@ const toggleClasse =
       aria-expanded="false"
       aria-controls="menu-mobile"
     >
-      <svg class="size-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path
-          d={setaHamburguer}
-          stroke="currentColor"
-          stroke-width="1.75"
-          stroke-linecap="round"></path>
-      </svg>
+      <span class="linha-menu"></span>
+      <span class="linha-menu"></span>
+      <span class="linha-menu"></span>
     </button>
   </nav>
 </header>
@@ -141,8 +136,34 @@ const toggleClasse =
     }
   }
 
+  /* Botão do menu (hambúrguer → X): 3 linhas; ao abrir (aria-expanded, setado
+     pelo script do MenuMobile), as linhas de fora giram e se encontram no
+     centro enquanto a do meio some. Centros distam 7px (2px linha + 5px gap). */
+  .js-menu-toggle {
+    gap: 5px;
+  }
+  .linha-menu {
+    width: 21px;
+    height: 2px;
+    border-radius: 1px;
+    background: currentColor;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  .js-menu-toggle[aria-expanded="true"] .linha-menu:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .js-menu-toggle[aria-expanded="true"] .linha-menu:nth-child(2) {
+    opacity: 0;
+  }
+  .js-menu-toggle[aria-expanded="true"] .linha-menu:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    #header-fixo {
+    #header-fixo,
+    .linha-menu {
       transition: none;
     }
   }

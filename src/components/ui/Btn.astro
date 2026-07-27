@@ -20,11 +20,13 @@ const { href, variant = "solid", icone, class: className = "" } = Astro.props;
 const base =
   "font-ui flex-wrap gap-1 text-[14px] lg:text-[15px] font-semibold transition-colors duration-300";
 const variants = {
-  solid: "flex md:inline-flex justify-center bg-sangue text-branco hover:bg-sangue-escuro rounded-lg px-8 py-4",
+  solid:
+    "flex md:inline-flex justify-center bg-sangue text-branco hover:bg-sangue-escuro rounded-lg px-8 py-4",
   outline:
-    "flex md:inline-flex justify-center border-sangue text-sangue hover:bg-sangue/10 rounded-lg border px-8 py-4",
+    "flex md:inline-flex justify-center border-sangue text-sangue hover:bg-sangue hover:text-branco rounded-lg border px-8 py-4",
   inline: "inline-flex mr-auto text-sangue hover:opacity-75",
-  inverted: "flex md:inline-flex justify-center bg-areia text-sangue hover:bg-areia-escuro rounded-lg px-8 py-4",
+  inverted:
+    "flex md:inline-flex justify-center bg-areia text-sangue hover:bg-areia-escuro rounded-lg px-8 py-4",
 };
 
 const mostrarSeta = variant === "inline" || icone === "seta";

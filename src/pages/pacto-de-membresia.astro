@@ -18,9 +18,14 @@ import { pactoDeMembresia } from "../data/conteudo";
   <HeroInterno titulo="Pacto de Membresia" />
 
   <section class="bg-branco py-20 lg:py-28">
-    <div class="flex flex-col gap-6 mx-auto max-w-3xl px-6 text-center lg:px-10" data-reveal>
+    <div
+      class="mx-auto flex max-w-3xl flex-col gap-6 px-6 lg:px-10"
+      data-reveal
+    >
       {
-        pactoDeMembresia.map((p) => <p class="font-sans text-lg text-justify leading-snug">{p}</p>)
+        pactoDeMembresia.map((p) => (
+          <p class="font-sans text-lg leading-snug opacity-80">{p}</p>
+        ))
       }
     </div>
   </section>

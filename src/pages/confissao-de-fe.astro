@@ -33,7 +33,7 @@ import { artigosConfissao, notaConfissao } from "../data/confissao";
           class="group border-b border-preto/10 bg-creme lg:border-0 lg:bg-transparent"
         >
           <summary
-            class="flex cursor-pointer list-none items-center justify-between gap-2 px-6 py-4 font-sans text-md font-semibold text-preto uppercase lg:normal-case lg:font-medium lg:pointer-events-none lg:p-0 lg:text-xl"
+            class="text-md flex cursor-pointer list-none items-center justify-between gap-2 px-6 py-4 font-sans font-semibold text-preto uppercase lg:pointer-events-none lg:p-0 lg:text-xl lg:font-medium lg:normal-case"
           >
             Índice
             <Icone
@@ -41,9 +41,14 @@ import { artigosConfissao, notaConfissao } from "../data/confissao";
               class="size-6 shrink-0 transition-transform duration-300 group-open:rotate-180 lg:hidden"
             />
           </summary>
+          {
+            /* data-lenis-prevent: deixa a rolagem nativa do índice expandido
+              funcionar no mobile (sem ele o Lenis captura o wheel). */
+          }
           <nav
             aria-label="Índice da Confissão de Fé"
             class="px-6 pb-5 lg:mt-6 lg:p-0"
+            data-lenis-prevent
           >
             <ol class="flex flex-col gap-2">
               {
@@ -86,9 +91,7 @@ import { artigosConfissao, notaConfissao } from "../data/confissao";
               <div class="flex flex-col gap-6">
                 {artigo.blocos.map((bloco) =>
                   bloco.tipo === "p" ? (
-                    <p class="text-justify font-sans text-lg leading-snug">
-                      {bloco.texto}
-                    </p>
+                    <p class="font-sans text-lg leading-snug">{bloco.texto}</p>
                   ) : (
                     <ol class="flex list-decimal flex-col gap-1 pl-6 text-sm text-preto/50">
                       {bloco.itens?.map((ref) => (
@@ -150,11 +153,38 @@ import { artigosConfissao, notaConfissao } from "../data/confissao";
 </script>
 
 <style>
+  /* No mobile, o índice expandido tem rolagem própria (limitada ao espaço
+     abaixo do header fixo de 76px + barra "Índice" de 56px, com folga),
+     sem scrollbar visível e sem propagar a rolagem para a página. */
+  @media (max-width: 1023px) {
+    #indice-confissao > nav {
+      max-height: calc(100vh - 152px);
+      max-height: calc(100dvh - 152px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: none;
+    }
+    #indice-confissao > nav::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
   /* No desktop o índice fica sempre visível (barra lateral), ignorando o
-     estado aberto/fechado do <details> que controla o acordeão no mobile. */
+     estado aberto/fechado do <details> que controla o acordeão no mobile.
+     Em telas baixas a lista ganha rolagem própria (limitada ao espaço abaixo
+     do sticky top-28 de 112px + título de 28px + mt-6 de 24px, com folga),
+     sem scrollbar visível, para os últimos links não ficarem engolidos. */
   @media (min-width: 1024px) {
     #indice-confissao > nav {
       display: block;
+      max-height: calc(100vh - 188px);
+      max-height: calc(100dvh - 188px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: none;
+    }
+    #indice-confissao > nav::-webkit-scrollbar {
+      display: none;
     }
     #indice-confissao::details-content {
       content-visibility: visible;

@@ -5,31 +5,27 @@ import setaBaixo from "../../assets/icones/seta-baixo.svg?raw";
 import { documentosDeFe, recursos } from "../../data/navegacao";
 ---
 
+{
+  /* data-lenis-prevent: sem ele o Lenis captura o wheel e tenta rolar a página
+    (travada enquanto o menu está aberto), impedindo a rolagem do overlay. */
+}
 <div
   id="menu-mobile"
   class="pointer-events-none fixed inset-0 z-60 flex translate-y-2 flex-col overflow-y-auto bg-branco opacity-0 transition-all duration-300 data-[open=true]:pointer-events-auto data-[open=true]:translate-y-0 data-[open=true]:opacity-100 lg:hidden"
   data-open="false"
+  data-lenis-prevent
   inert
 >
-  <div class="flex items-center justify-end px-6 py-6">
-    <!-- <Icone svg={logo} class="h-9 w-auto text-preto [&>svg]:w-auto" /> -->
-    <button
-      type="button"
-      id="menu-close"
-      class="flex size-10 items-center justify-center text-preto"
-      aria-label="Fechar menu"
-    >
-      <svg class="size-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path
-          d="M6 6l12 12M18 6L6 18"
-          stroke="currentColor"
-          stroke-width="1.75"
-          stroke-linecap="round"></path>
-      </svg>
-    </button>
-  </div>
-
-  <nav class="flex flex-col gap-8 px-[30px] pt-4" aria-label="Menu">
+  {
+    /* Quem fecha é o próprio botão do header (hambúrguer → X), que fica acima
+      deste overlay (header-fixo em z-70). pt-26 compensa o header de 76px.
+      pb inclui env(safe-area-inset-bottom): em telas baixas o menu rola e o
+      último link não fica colado na base nem atrás da barra do navegador. */
+  }
+  <nav
+    class="flex flex-col gap-8 px-[30px] pt-26 pb-[calc(6rem+env(safe-area-inset-bottom))]"
+    aria-label="Menu"
+  >
     <a href="/#missao" class="font-ui text-xl font-medium text-preto">Missão</a>
 
     <details class="group">
@@ -96,38 +92,59 @@ import { documentosDeFe, recursos } from "../../data/navegacao";
   </nav>
 </div>
 
+<style>
+  /* Overlay rolável, mas sem scrollbar visível (Firefox e WebKit/Blink) */
+  #menu-mobile {
+    scrollbar-width: none;
+  }
+  #menu-mobile::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
 <script>
   function initMenuMobile() {
     const menu = document.getElementById("menu-mobile");
-    // Há um botão de menu em cada header (topo e fixo).
+    // Há um botão de menu em cada header (topo e fixo). O mesmo botão abre e
+    // fecha — o estado aria-expanded também dirige o morph hambúrguer → X.
     const toggles = document.querySelectorAll(".js-menu-toggle");
-    const close = document.getElementById("menu-close");
     if (!menu || !toggles.length) return;
 
-    const setExpanded = (v) =>
-      toggles.forEach((t) => t.setAttribute("aria-expanded", v));
+    const setEstado = (aberto: boolean) =>
+      toggles.forEach((t) => {
+        t.setAttribute("aria-expanded", String(aberto));
+        t.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
+      });
 
     const abrir = () => {
       menu.dataset.open = "true";
       menu.removeAttribute("inert");
-      setExpanded("true");
+      setEstado(true);
       document.body.style.overflow = "hidden";
     };
     const fechar = () => {
       menu.dataset.open = "false";
       menu.setAttribute("inert", "");
-      setExpanded("false");
+      setEstado(false);
       document.body.style.overflow = "";
     };
+    const alternar = () => (menu.dataset.open === "true" ? fechar() : abrir());
 
-    toggles.forEach((t) => t.addEventListener("click", abrir));
-    close?.addEventListener("click", fechar);
+    toggles.forEach((t) => t.addEventListener("click", alternar));
     menu
       .querySelectorAll("a")
       .forEach((a) => a.addEventListener("click", fechar));
-    document.addEventListener("keydown", (e) => {
+    const onKeydown = (e: KeyboardEvent) => {
       if (e.key === "Escape") fechar();
-    });
+    };
+    document.addEventListener("keydown", onKeydown);
+    // O document sobrevive às trocas de página: remove o listener antigo
+    // para não acumular um por navegação.
+    document.addEventListener(
+      "astro:before-swap",
+      () => document.removeEventListener("keydown", onKeydown),
+      { once: true },
+    );
   }
   document.addEventListener("astro:page-load", initMenuMobile);
 </script>

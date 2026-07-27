@@ -4,6 +4,7 @@ import MoldemImagem from "../ui/MoldemImagem.astro";
 // import Icone from "../ui/Icone.astro";
 import iconeIgreja from "../../assets/icones/igreja.svg?raw";
 import iconeCasa from "../../assets/icones/casa.svg?raw";
+import fotoAgenda from "../../assets/agenda.jpg";
 // import { contato } from "../../data/navegacao";
 import Btn from "../ui/Btn.astro";
 
@@ -17,7 +18,8 @@ const itens = [
     icone: iconeCasa,
     titulo: "Pequenos Grupos",
     horario: "Terças e quintas, às 19h30",
-    descricao: "Os pequenos grupos acontecem semanalmente e oferecem a oportunidade de comunhão, oração e estudo da Palavra de Deus junto com outros irmãos que moram na mesma região."
+    descricao:
+      "Os pequenos grupos acontecem semanalmente e oferecem a oportunidade de comunhão, oração e estudo da Palavra de Deus junto com outros irmãos que moram na mesma região.",
   },
 ];
 ---
@@ -28,7 +30,7 @@ const itens = [
     data-reveal
   >
     <div
-      class="flex flex-col gap-12 lg:col-span-5 xl:col-span-4 lg:col-start-7 xl:col-start-8 lg:row-start-1 lg:gap-8"
+      class="flex flex-col gap-12 lg:col-span-5 lg:col-start-7 lg:row-start-1 lg:gap-8 xl:col-span-4 xl:col-start-8"
     >
       <h2 class="titulo-secao">Agenda</h2>
 
@@ -41,11 +43,11 @@ const itens = [
                 {/* <Icone svg={item.icone} class="size-12 text-bege" /> */}
                 <div class="flex flex-col">
                   <p class="font-sans text-xl font-medium">{item.titulo}</p>
-                  <p class="font-sans text-lg tracking-snug text-bege">
+                  <p class="tracking-snug font-sans text-lg text-bege">
                     {item.horario}
                   </p>
                   {item.descricao && (
-                    <p class="font-sans mt-2 leading-snug text-base opacity-70">
+                    <p class="mt-2 font-sans text-base leading-snug opacity-70">
                       {item.descricao}
                     </p>
                   )}
@@ -59,8 +61,10 @@ const itens = [
     </div>
 
     <MoldemImagem
+      src={fotoAgenda}
+      alt="Pessoa sentada segurando o boletim do culto da Igreja Batista Redenção"
       proporcao="1/1"
-      class="w-full xl:col-span-5 lg:col-span-6 xl:col-start-2 lg:row-start-1"
+      class="w-full lg:col-span-6 lg:row-start-1 xl:col-span-5 xl:col-start-2"
     />
   </div>
 </Secao>

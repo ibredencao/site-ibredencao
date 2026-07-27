@@ -87,7 +87,7 @@ const { endereco } = contato;
         </a>
         <a
           href={`mailto:${contato.email}`}
-          class="flex items-center gap-2 font-ui font-medium text-base break-all transition-opacity hover:opacity-75"
+          class="flex items-center gap-2 font-ui text-base font-medium break-all transition-opacity hover:opacity-75"
         >
           <Icone svg={email} class="size-6 shrink-0 text-areia" />
           {contato.email}
@@ -141,7 +141,8 @@ const { endereco } = contato;
     </picture>
 
     <p class="mt-10 text-center text-sm text-sangue-escuro">
-      Igreja Batista Redenção © {new Date().getFullYear()}. Todos os direitos reservados.
+      Igreja Batista Redenção © {new Date().getFullYear()}. Todos os direitos
+      reservados.
     </p>
   </div>
 </footer>

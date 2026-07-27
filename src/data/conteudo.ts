@@ -25,4 +25,4 @@ export const pactoDeMembresia: string[] = [
   "Contribuir alegremente com as nossas posses, conforme a prosperidade que Deus nos concedeu, para o sustento de um ministério fiel e apegado ao Evangelho entre nós, bem como para a ajuda do necessitado e para a propagação do Evangelho pelo mundo.",
   "Esforçar-nos para, em todas as condições, até a morte, vivermos para a glória daquele que nos chamou das trevas para a sua maravilhosa luz.",
   "“Ora, o Deus de paz, que pelo sangue da aliança eterna tornou a trazer dos mortos a nosso Senhor Jesus Cristo, grande Pastor das ovelhas, vos aperfeiçoe em toda a boa obra, para fazerdes a sua vontade, operando em vós o que perante ele é agradável por Cristo Jesus, ao qual seja glória para todo o sempre. Amém!”. (Hebreus 13.20-21)",
-]
+];

@@ -13,11 +13,17 @@ interface Props {
 const { itens, alinhamento, hover = "sangue" } = Astro.props;
 
 // Classes completas (literais) para o JIT do Tailwind gerar as variantes.
-const hoverLink = hover === "branco" ? "hover:text-branco" : "hover:text-sangue";
+const hoverLink =
+  hover === "branco" ? "hover:text-branco" : "hover:text-sangue";
 const hoverBtn =
   hover === "branco"
     ? "hover:text-branco group-hover/drop:text-branco group-focus-within/drop:text-branco"
     : "hover:text-sangue group-hover/drop:text-sangue group-focus-within/drop:text-sangue";
+
+// Na coluna da direita o dropdown ancora pela direita do item (abre para
+// dentro da tela); centralizado, ele estoura a borda em janelas estreitas.
+const posDropdown =
+  alinhamento === "justify-end" ? "right-0" : "left-1/2 -translate-x-1/2";
 ---
 
 <ul
@@ -46,7 +52,12 @@ const hoverBtn =
                 class="size-6 transition-transform duration-300 group-hover/drop:rotate-180"
               />
             </button>
-            <div class="invisible absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-focus-within/drop:visible group-focus-within/drop:opacity-100 group-hover/drop:visible group-hover/drop:opacity-100">
+            <div
+              class:list={[
+                "invisible absolute top-full pt-3 opacity-0 transition-all duration-200 group-focus-within/drop:visible group-focus-within/drop:opacity-100 group-hover/drop:visible group-hover/drop:opacity-100",
+                posDropdown,
+              ]}
+            >
               <ul class="flex min-w-[240px] flex-col gap-1.5 rounded-lg border border-preto/10 bg-branco p-2 shadow-[0_37px_18px_rgba(111,110,103,0.09),0_9px_10px_rgba(111,110,103,0.1)]">
                 {item.dropdown.map((sub) => (
                   <li>
