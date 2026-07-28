@@ -5,7 +5,7 @@
 
 //   = espaço não separável: a única quebra possível fica antes de
 // "a salvação", reproduzindo a divisão do design (duas linhas no desktop).
-export const heroTitulo = "Ao\u00A0Senhor\u00A0pertence a\u00A0salvação";
+export const heroTitulo = `"A salvação pertence ao Senhor."`;
 
 /** Referência bíblica exibida como legenda sob o título do hero */
 export const heroReferencia = "Jonas 2.9";
