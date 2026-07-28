@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroInterno from "../components/sections/HeroInterno.astro";
+import MoldemImagem from "../components/ui/MoldemImagem.astro";
+import Agenda from "../components/sections/Agenda.astro";
+import OndeEstamos from "../components/sections/OndeEstamos.astro";
+
+// TODO(conteúdo): placeholder — substituir pelo texto real sobre o
+// Pr. Filipe Ribeiro (pastor plantador) e pela(s) foto(s) quando o usuário
+// fornecer (idealmente movendo o texto para src/data/conteudo.ts).
+const paragrafos: string[] = [
+  "Esta página apresentará o ministério pastoral da Igreja Batista Redenção e o Pr. Filipe Ribeiro, pastor plantador da igreja.",
+  "O conteúdo definitivo será adicionado em breve.",
+];
+---
+
+<BaseLayout
+  title="Ministério Pastoral | Igreja Batista Redenção"
+  description="O ministério pastoral da Igreja Batista Redenção — Pr. Filipe Ribeiro."
+  temaHeader="escuro"
+>
+  <HeroInterno titulo="Ministério Pastoral" />
+
+  <section class="bg-branco py-16 lg:py-24">
+    <div class="mx-auto flex max-w-3xl flex-col gap-12 px-6 lg:px-10">
+      <div
+        class="flex flex-col gap-6 font-sans text-lg leading-relaxed"
+        data-reveal
+      >
+        {paragrafos.map((p) => <p>{p}</p>)}
+      </div>
+      <div data-reveal>
+        <MoldemImagem proporcao="16/10" class="w-full" />
+      </div>
+    </div>
+  </section>
+
+  <Agenda />
+  <OndeEstamos />
+</BaseLayout>

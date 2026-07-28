@@ -2,7 +2,7 @@
 // import logo from "../../assets/logo.svg?raw";
 import Icone from "../ui/Icone.astro";
 import setaBaixo from "../../assets/icones/seta-baixo.svg?raw";
-import { documentosDeFe, recursos } from "../../data/navegacao";
+import { aIgreja, recursos } from "../../data/navegacao";
 ---
 
 {
@@ -26,13 +26,13 @@ import { documentosDeFe, recursos } from "../../data/navegacao";
     class="flex flex-col gap-8 px-[30px] pt-26 pb-[calc(6rem+env(safe-area-inset-bottom))]"
     aria-label="Menu"
   >
-    <a href="/#missao" class="font-ui text-xl font-medium text-preto">Missão</a>
+    <a href="/" class="font-ui text-xl font-medium text-preto">Início</a>
 
     <details class="group">
       <summary
         class="flex cursor-pointer list-none items-center gap-1 font-ui text-xl font-medium text-preto"
       >
-        Documentos de Fé
+        A igreja
         <Icone
           svg={setaBaixo}
           class="size-6 transition-transform duration-300 group-open:rotate-180"
@@ -40,7 +40,7 @@ import { documentosDeFe, recursos } from "../../data/navegacao";
       </summary>
       <ul class="mt-4 flex flex-col">
         {
-          documentosDeFe.map((sub) => (
+          aIgreja.map((sub) => (
             <li>
               <a
                 href={sub.href}
@@ -55,12 +55,12 @@ import { documentosDeFe, recursos } from "../../data/navegacao";
       </ul>
     </details>
 
-    <a href="/nossa-historia" class="font-ui text-xl font-medium text-preto">
-      Nossa História
-    </a>
     <a href="/#agenda" class="font-ui text-xl font-medium text-preto">Agenda</a>
     <a href="/#onde-estamos" class="font-ui text-xl font-medium text-preto">
       Onde Estamos
+    </a>
+    <a href="/contribua" class="font-ui text-xl font-medium text-preto">
+      Contribua
     </a>
 
     <details class="group">

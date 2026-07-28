@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroInterno from "../components/sections/HeroInterno.astro";
+import Agenda from "../components/sections/Agenda.astro";
+import OndeEstamos from "../components/sections/OndeEstamos.astro";
+import Btn from "../components/ui/Btn.astro";
+import { contato } from "../data/navegacao";
+import {
+  versiculoMembresia,
+  introMembresia,
+  passosMembresia,
+} from "../data/membresia";
+---
+
+<BaseLayout
+  title="Quero ser membro | Igreja Batista Redenção"
+  description="Como se tornar membro da Igreja Batista Redenção: classe de membresia, entrevista pastoral e reunião de membresia."
+  temaHeader="escuro"
+>
+  <HeroInterno
+    titulo="Quero ser membro"
+    subtitulo={`"${versiculoMembresia.texto}" — ${versiculoMembresia.referencia}`}
+  />
+
+  <section class="bg-branco py-16 lg:py-24">
+    <div class="mx-auto flex max-w-3xl flex-col gap-14 px-6 lg:px-10">
+      <div
+        class="flex flex-col gap-6 font-sans text-lg leading-relaxed"
+        data-reveal
+      >
+        {introMembresia.map((p) => <p>{p}</p>)}
+      </div>
+
+      {/* Trilha: classe → entrevista → reunião */}
+      <ol class="flex flex-col gap-10" data-reveal>
+        {
+          passosMembresia.map((passo, i) => (
+            <li class="flex gap-6">
+              <span
+                class="font-display text-4xl leading-none font-light text-bege"
+                aria-hidden="true"
+              >
+                {i + 1}
+              </span>
+              <div class="flex flex-col gap-2">
+                <h2 class="font-sans text-xl font-medium">{passo.titulo}</h2>
+                <p class="font-sans text-lg leading-snug opacity-80">
+                  {passo.descricao}
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="flex flex-col gap-6" data-reveal>
+        <p class="font-sans text-lg leading-snug opacity-80">
+          Quer começar? Fale conosco e daremos os próximos passos com você.
+        </p>
+        <div class="flex flex-wrap gap-6">
+          <Btn href={contato.whatsapp.href}>Quero começar</Btn>
+          <Btn href="/confissao-de-fe" variant="outline"
+            >Ler a Confissão de Fé</Btn
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Agenda />
+  <OndeEstamos />
+</BaseLayout>

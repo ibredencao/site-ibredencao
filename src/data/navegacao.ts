@@ -4,6 +4,10 @@ import iconeYoutube from "../assets/icones/youtube.svg?raw";
 import iconeSpotify from "../assets/icones/spotify.svg?raw";
 import iconeMusica from "../assets/icones/musica.svg?raw";
 import iconeDownload from "../assets/icones/download.svg?raw";
+// Stand-ins para os itens novos de "A igreja" (até o designer criar próprios)
+import iconeIgreja from "../assets/icones/igreja.svg?raw";
+import iconeLivro from "../assets/icones/diretorio.svg?raw";
+import iconeCasa from "../assets/icones/casa.svg?raw";
 
 export interface ItemDropdown {
   rotulo: string;
@@ -18,7 +22,13 @@ export interface ItemNav {
   dropdown?: ItemDropdown[];
 }
 
-export const documentosDeFe: ItemDropdown[] = [
+export const aIgreja: ItemDropdown[] = [
+  { rotulo: "Nossa História", href: "/nossa-historia", icone: iconeIgreja },
+  {
+    rotulo: "Ministério Pastoral",
+    href: "/ministerio-pastoral",
+    icone: iconeLivro,
+  },
   {
     rotulo: "Confissão de Fé",
     href: "/confissao-de-fe",
@@ -29,6 +39,7 @@ export const documentosDeFe: ItemDropdown[] = [
     href: "/pacto-de-membresia",
     icone: iconePacto,
   },
+  { rotulo: "Quero ser membro", href: "/quero-ser-membro", icone: iconeCasa },
 ];
 
 export const recursos: ItemDropdown[] = [
@@ -52,14 +63,14 @@ export const recursos: ItemDropdown[] = [
 
 /** Lado esquerdo e direito do header desktop (logo fica no centro) */
 export const navEsquerda: ItemNav[] = [
-  { rotulo: "Missão", href: "/#missao" },
-  { rotulo: "Documentos de Fé", dropdown: documentosDeFe },
-  { rotulo: "Nossa História", href: "/nossa-historia" },
+  { rotulo: "Início", href: "/" },
+  { rotulo: "A igreja", dropdown: aIgreja },
+  { rotulo: "Agenda", href: "#agenda" },
 ];
 
 export const navDireita: ItemNav[] = [
-  { rotulo: "Agenda", href: "#agenda" },
   { rotulo: "Onde Estamos", href: "#onde-estamos" },
+  { rotulo: "Contribua", href: "/contribua" },
   { rotulo: "Recursos", dropdown: recursos },
 ];
 

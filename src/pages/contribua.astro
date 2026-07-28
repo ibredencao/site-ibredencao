@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroInterno from "../components/sections/HeroInterno.astro";
+import OndeEstamos from "../components/sections/OndeEstamos.astro";
+
+const versiculo =
+  "Cada um dê conforme determinou em seu coração, não com pesar ou por obrigação, pois Deus ama quem dá com alegria.";
+const referencia = "2 Coríntios 9.7 (NVI)";
+
+// TODO(conteúdo): dados bancários e QR code do PIX serão fornecidos pelo
+// usuário. Ao recebê-los: preencher os campos abaixo e colocar a imagem do
+// QR code em src/assets/ (ex.: qr-pix.png), renderizando com astro:assets.
+const dadosBancarios = [
+  { rotulo: "Chave PIX", valor: "(em breve)" },
+  { rotulo: "Banco", valor: "(em breve)" },
+  { rotulo: "Agência", valor: "(em breve)" },
+  { rotulo: "Conta", valor: "(em breve)" },
+  { rotulo: "Favorecido", valor: "Igreja Batista Redenção" },
+];
+---
+
+<BaseLayout
+  title="Contribua | Igreja Batista Redenção"
+  description="Contribua com dízimos e ofertas para a obra da Igreja Batista Redenção."
+  temaHeader="escuro"
+>
+  <HeroInterno
+    titulo="Contribua"
+    subtitulo={`"${versiculo}" — ${referencia}`}
+  />
+
+  <section class="bg-branco py-16 lg:py-24">
+    <div
+      class="mx-auto grid max-w-[1585px] items-start gap-y-12 px-6 lg:grid-cols-12 lg:gap-x-10 lg:px-10"
+      data-reveal
+    >
+      <div class="flex flex-col gap-6 lg:col-span-4 lg:col-start-3">
+        <h2 class="titulo-secao">Dízimos e ofertas</h2>
+        <p class="font-sans text-lg leading-snug opacity-80">
+          A sua contribuição sustenta a pregação do evangelho, o cuidado com os
+          membros e o avanço da obra na cidade e além. Você pode contribuir por
+          PIX ou transferência bancária.
+        </p>
+      </div>
+
+      <div
+        class="flex flex-col gap-6 rounded-3xl border border-preto/10 p-10 lg:col-span-4 lg:col-start-8"
+      >
+        {/* TODO(conteúdo): QR code do PIX entra aqui (imagem quadrada) */}
+        <dl class="flex flex-col gap-4">
+          {
+            dadosBancarios.map((item) => (
+              <div class="flex flex-col">
+                <dt class="font-ui text-sm font-semibold text-bege">
+                  {item.rotulo}
+                </dt>
+                <dd class="font-sans text-lg">{item.valor}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <OndeEstamos />
+</BaseLayout>
