@@ -147,15 +147,20 @@ const toggleClasse =
     height: 2px;
     border-radius: 1px;
     background: currentColor;
+    /* Fechando: a linha do meio reaparece com atraso, perto do fim da rotação */
     transition:
       transform 0.3s ease,
-      opacity 0.3s ease;
+      opacity 0.15s ease 0.1s;
   }
   .js-menu-toggle[aria-expanded="true"] .linha-menu:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
   }
   .js-menu-toggle[aria-expanded="true"] .linha-menu:nth-child(2) {
     opacity: 0;
+    /* Abrindo: some quase de imediato para não "vazar" dentro do X */
+    transition:
+      transform 0.3s ease,
+      opacity 0.1s ease;
   }
   .js-menu-toggle[aria-expanded="true"] .linha-menu:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
