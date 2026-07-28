@@ -1,19 +1,13 @@
-import iconeConfissao from "../assets/icones/confissao-de-fe.svg?raw";
-import iconePacto from "../assets/icones/pacto-de-membresia.svg?raw";
 import iconeYoutube from "../assets/icones/youtube.svg?raw";
 import iconeSpotify from "../assets/icones/spotify.svg?raw";
 import iconeMusica from "../assets/icones/musica.svg?raw";
 import iconeDownload from "../assets/icones/download.svg?raw";
-// Stand-ins para os itens novos de "A igreja" (até o designer criar próprios)
-import iconeIgreja from "../assets/icones/igreja.svg?raw";
-import iconeLivro from "../assets/icones/diretorio.svg?raw";
-import iconeCasa from "../assets/icones/casa.svg?raw";
 
 export interface ItemDropdown {
   rotulo: string;
   href: string;
-  /** SVG inline (importado com ?raw) — herda a cor do texto via currentColor */
-  icone: string;
+  /** SVG inline (?raw), opcional — "A igreja" não usa; Recursos usa */
+  icone?: string;
 }
 
 export interface ItemNav {
@@ -23,23 +17,11 @@ export interface ItemNav {
 }
 
 export const aIgreja: ItemDropdown[] = [
-  { rotulo: "Nossa História", href: "/nossa-historia", icone: iconeIgreja },
-  {
-    rotulo: "Ministério Pastoral",
-    href: "/ministerio-pastoral",
-    icone: iconeLivro,
-  },
-  {
-    rotulo: "Confissão de Fé",
-    href: "/confissao-de-fe",
-    icone: iconeConfissao,
-  },
-  {
-    rotulo: "Pacto de Membresia",
-    href: "/pacto-de-membresia",
-    icone: iconePacto,
-  },
-  { rotulo: "Quero ser membro", href: "/quero-ser-membro", icone: iconeCasa },
+  { rotulo: "Nossa História", href: "/nossa-historia" },
+  { rotulo: "Ministério Pastoral", href: "/ministerio-pastoral" },
+  { rotulo: "Confissão de Fé", href: "/confissao-de-fe" },
+  { rotulo: "Pacto de Membresia", href: "/pacto-de-membresia" },
+  { rotulo: "Quero ser membro", href: "/quero-ser-membro" },
 ];
 
 export const recursos: ItemDropdown[] = [

@@ -45,7 +45,7 @@ const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
         </div>
         <div class="flex flex-wrap gap-6">
           <Btn href={contato.whatsapp.href} variant="outline"> WhatsApp </Btn>
-          <Btn href={contato.email} variant="outline"> E-mail </Btn>
+          <Btn href={`mailto:${contato.email}`} variant="outline"> E-mail </Btn>
         </div>
       </div>
     </div>

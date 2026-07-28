@@ -3,8 +3,12 @@
  * Editar aqui — não hardcodar nos componentes.
  */
 
-export const heroTitulo =
-  "Firmada no evangelho, dedicada ao discipulado e à glória de Deus.";
+//   = espaço não separável: a única quebra possível fica antes de
+// "a salvação", reproduzindo a divisão do design (duas linhas no desktop).
+export const heroTitulo = "Ao\u00A0Senhor\u00A0pertence a\u00A0salvação";
+
+/** Referência bíblica exibida como legenda sob o título do hero */
+export const heroReferencia = "Jonas 2.9";
 
 export const missao =
   "Somos uma igreja que existe para fazer discípulos do Senhor Jesus e, no poder do Espírito Santo, instruí-los no conhecimento de Deus e no caráter cristão, mediante a pregação do evangelho da graça, a fim de que sejam fiéis testemunhas de Cristo na cidade e além, para a glória de Deus Pai.";

@@ -7,22 +7,33 @@ import spotify from "../../assets/icones/spotify.svg?raw";
 import email from "../../assets/icones/email.svg?raw";
 import whatsapp from "../../assets/icones/whatsapp.svg?raw";
 import setaDireita from "../../assets/icones/seta-direita.svg?raw";
-import { contato } from "../../data/navegacao";
+import { contato, navEsquerda, navDireita } from "../../data/navegacao";
 
-const links = [
-  { rotulo: "Missão", href: "/#missao" },
-  { rotulo: "Documentos de Fé", href: "/confissao-de-fe" },
-  { rotulo: "Nossa História", href: "/nossa-historia" },
-  { rotulo: "Agenda", href: "/#agenda" },
-  { rotulo: "Onde Estamos", href: "/#onde-estamos" },
-  { rotulo: "Recursos", href: "/recursos/youtube" },
-];
+// Mesmos itens da barra de navegação (fonte única em navegacao.ts).
+// Dropdowns apontam para o primeiro subitem. Âncoras ficam relativas
+// ("#agenda"): as seções Agenda/Onde Estamos se repetem nas páginas.
+const links = [...navEsquerda, ...navDireita].map((item) => ({
+  rotulo: item.rotulo,
+  href: item.href ?? item.dropdown?.[0].href ?? "/",
+}));
 
 const redes = [
   { rotulo: "Instagram", href: contato.instagram, icone: instagram },
   { rotulo: "Youtube", href: contato.youtube, icone: youtube },
   { rotulo: "Spotify", href: contato.spotify, icone: spotify },
 ];
+
+// Frase de encerramento (Sl 90.17). Cada trecho é um bloco: no desktop cada
+// um cabe numa linha (quebras nos ponto-e-vírgulas); no mobile quebram
+// internamente, como no design.
+const fraseFinal = {
+  linhas: [
+    "Seja sobre nós a graça do Senhor, nosso Deus;",
+    "e confirma sobre nós a obra das nossas mãos;",
+    "sim, confirma a obra das nossas mãos.",
+  ],
+  referencia: "Salmos 90.17",
+};
 
 const { endereco } = contato;
 ---
@@ -119,36 +130,47 @@ const { endereco } = contato;
       </div>
     </div>
 
-    <hr class="mt-20 mb-16 border-preto/20 lg:mt-24 lg:mb-20" />
+    <hr class="my-20 border-preto/20 lg:my-24" />
 
     {
-      /*
-      Frase de destaque — texto em curvas (Forevs) exportado como SVG, em duas
-      versões (grande/pequena). Arquivos esperados em public/:
-        - frase-salvacao.svg        (telas grandes)
-        - frase-salvacao-mobile.svg (telas pequenas)
-      Cor do traçado/preenchimento: sangue-escuro (#6A2429).
-    */
+      /* Frase de encerramento — base no Figma (nós 170:3877 / 170:4061):
+        mobile com fluxo natural; a partir de md, 3 linhas quebrando nos
+        ponto-e-vírgulas, com a fonte escalando até 50.8px (o clamp acompanha
+        a largura útil até a caixa de 900px caber);
+        referência em Work Sans Medium uppercase 14px/18px. */
     }
-    <picture>
-      <source media="(max-width: 640px)" srcset="/frase-salvacao-mobile.svg" />
-      <img
-        src="/frase-salvacao.svg"
-        alt="Ao Senhor pertence a salvação — Jonas 2.9"
-        loading="lazy"
-        class="block w-full"
-      />
-    </picture>
+    <div
+      class="text-sangue-profundo flex flex-col items-center gap-6 text-center"
+    >
+      <p
+        class="font-display text-[2rem] leading-[0.98] font-light md:max-w-[900px] md:text-[clamp(1rem,calc(5.64vw_-_0.17rem),3.175rem)] md:leading-[1.03]"
+      >
+        {
+          fraseFinal.linhas.map((linha) => (
+            <span class="md:block">{linha} </span>
+          ))
+        }
+      </p>
+      <p class="font-sans text-sm font-medium uppercase md:text-[18px]">
+        {fraseFinal.referencia}
+      </p>
+    </div>
 
-    <p class="mt-10 text-center text-sm text-sangue-escuro">
-      Igreja Batista Redenção © {new Date().getFullYear()}. Todos os direitos
-      reservados. <span aria-hidden="true">·</span>
+    <div
+      class="mt-20 flex flex-col items-center gap-4 text-center font-sans text-sm text-sangue-profundo"
+    >
+      <p>
+        <span class="block sm:inline">
+          Igreja Batista Redenção © {new Date().getFullYear()}.{" "}
+        </span>
+        <span class="block sm:inline">Todos os direitos reservados.</span>
+      </p>
       <a
         href="/politica-de-privacidade"
-        class="underline decoration-sangue-escuro/40 underline-offset-2 transition-colors hover:text-areia"
+        class="underline decoration-sangue-profundo/40 underline-offset-2 transition-colors hover:text-areia"
       >
         Política de Privacidade
       </a>
-    </p>
+    </div>
   </div>
 </footer>

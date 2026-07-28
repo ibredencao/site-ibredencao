@@ -65,7 +65,7 @@ const posDropdown =
                       href={sub.href}
                       class="flex items-center gap-3 rounded-md py-4 pr-6 pl-4 font-ui text-[15px] font-medium whitespace-nowrap text-preto transition-colors hover:bg-sangue/10 hover:text-sangue"
                     >
-                      <Icone svg={sub.icone} class="size-6" />
+                      {sub.icone && <Icone svg={sub.icone} class="size-6" />}
                       {sub.rotulo}
                     </a>
                   </li>

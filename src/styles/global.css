@@ -28,8 +28,10 @@
   --color-branco: #efece1;
   --color-sangue: #8c3238;
   --color-areia: #dacbb4;
-  /* Tom escuro do vinho usado em textos sobre fundo sangue (frase do rodapé, copyright) */
+  /* Tom escuro do vinho usado no hover dos botões sólidos */
   --color-sangue-escuro: #6a2429;
+  /* Tom mais profundo (Figma): frase, referência e copyright do rodapé */
+  --color-sangue-profundo: #5e1f23;
   /* Creme levemente mais claro que o branco, usado em seções alternadas (ex.: Onde Estamos) */
   --color-creme: #f7f5ee;
 

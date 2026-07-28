@@ -46,7 +46,7 @@ import { aIgreja, recursos } from "../../data/navegacao";
                 href={sub.href}
                 class="flex items-center gap-3 py-4 font-sans text-base text-preto"
               >
-                <Icone svg={sub.icone} class="size-6" />
+                {sub.icone && <Icone svg={sub.icone} class="size-6" />}
                 {sub.rotulo}
               </a>
             </li>
@@ -81,7 +81,7 @@ import { aIgreja, recursos } from "../../data/navegacao";
                 href={sub.href}
                 class="flex items-center gap-3 py-4 font-sans text-base text-preto"
               >
-                <Icone svg={sub.icone} class="size-6" />
+                {sub.icone && <Icone svg={sub.icone} class="size-6" />}
                 {sub.rotulo}
               </a>
             </li>

@@ -30,9 +30,18 @@ const variants = {
 };
 
 const mostrarSeta = variant === "inline" || icone === "seta";
+
+// Links externos (WhatsApp, rota no Google Maps, Youtube...) abrem em nova
+// aba; internos e mailto: seguem na mesma.
+const externo = /^https?:\/\//.test(href);
 ---
 
-<a href={href} class:list={[base, variants[variant], className]}>
+<a
+  href={href}
+  target={externo ? "_blank" : undefined}
+  rel={externo ? "noopener noreferrer" : undefined}
+  class:list={[base, variants[variant], className]}
+>
   <slot />
   {
     mostrarSeta && (

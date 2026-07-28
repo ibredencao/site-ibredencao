@@ -150,9 +150,7 @@ const classeRefBotao =
           {
             notaConfissao.map((bloco) =>
               bloco.tipo === "p" ? (
-                <p class="text-justify font-sans text-base text-preto">
-                  {bloco.texto}
-                </p>
+                <p class="font-sans text-base text-preto">{bloco.texto}</p>
               ) : (
                 <ol class="flex list-decimal flex-col gap-1 pl-6 text-sm text-preto/40">
                   {bloco.itens?.map((ref) => (
