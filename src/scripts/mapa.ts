@@ -29,11 +29,18 @@ function initMapa() {
 }
 
 async function criarMapa(alvo: HTMLElement) {
-  const [maplibre] = await Promise.all([
+  const [maplibre, { default: urlWorker }] = await Promise.all([
     import("maplibre-gl"),
+    // O bundle procura "./maplibre-gl-worker.mjs" relativo ao chunk, mas o
+    // build não emite esse arquivo (404 em produção → mapa sem tiles).
+    // ?worker&url faz o Vite empacotar o worker COM as dependências
+    // (maplibre-gl-shared.mjs) num arquivo autocontido e devolver a URL.
+    // @ts-expect-error — import ?worker&url resolvido pelo Vite
+    import("maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url"),
     // @ts-expect-error — import de CSS resolvido pelo Vite
     import("maplibre-gl/dist/maplibre-gl.css"),
   ]);
+  maplibre.setWorkerUrl(urlWorker);
 
   const lng = Number(alvo.dataset.lng);
   const lat = Number(alvo.dataset.lat);
