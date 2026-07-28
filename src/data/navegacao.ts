@@ -78,6 +78,8 @@ export const contato = {
     rua: "Av. Prudente de Morais, 5220",
     bairro: "Lagoa Nova",
     cidade: "Natal/RN",
+    // Pin do lugar "Igreja Batista Redenção" no Google Maps
+    coordenadas: { lat: -5.8268809, lng: -35.2169504 },
   },
   rotaGoogleMaps:
     "https://www.google.com/maps/search/?api=1&query=Igreja+Batista+Reden%C3%A7%C3%A3o+Av.+Prudente+de+Morais+5220+Lagoa+Nova+Natal+RN",

@@ -5,7 +5,8 @@ import { contato } from "../../data/navegacao";
 
 /**
  * Seção "Onde estamos": endereço + mapa. Reutilizada na Home, Nossa História
- * e Recursos. O mapa é um embed do Google Maps (sem necessidade de chave).
+ * e Recursos. O mapa é MapLibre GL + tiles da OpenFreeMap com tema nas cores
+ * da marca (src/scripts/mapa.ts + src/lib/mapaEstilo.ts), sem chave de API.
  *
  * Grid do site: 12 colunas, gutter 40px (gap-x-10) sobre o container de 1585px.
  * Responsivo:
@@ -15,9 +16,6 @@ import { contato } from "../../data/navegacao";
  *  - <1024px: empilhado.
  */
 const { endereco } = contato;
-const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
-  `${endereco.nome}, ${endereco.rua}, ${endereco.bairro}, ${endereco.cidade}`,
-)}&output=embed`;
 ---
 
 <Secao id="onde-estamos" fundo="creme">
@@ -53,12 +51,24 @@ const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
     <div
       class="overflow-hidden rounded-xl border border-areia/60 lg:col-span-6 lg:col-start-6"
     >
-      <iframe
-        src={mapaEmbed}
-        title="Mapa — localização da Igreja Batista Redenção"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        class="aspect-square w-full"></iframe>
+      <div
+        id="mapa-localizacao"
+        class="aspect-square w-full bg-areia/40"
+        data-lat={endereco.coordenadas.lat}
+        data-lng={endereco.coordenadas.lng}
+        aria-label="Mapa — localização da Igreja Batista Redenção"
+      >
+        <noscript>
+          <p class="p-6 font-sans">
+            Ative o JavaScript para ver o mapa, ou
+            <a href={contato.rotaGoogleMaps} class="text-sangue underline">
+              abra a localização no Google Maps</a
+            >.
+          </p>
+        </noscript>
+      </div>
     </div>
   </div>
 </Secao>
+
+<script src="../../scripts/mapa.ts"></script>
