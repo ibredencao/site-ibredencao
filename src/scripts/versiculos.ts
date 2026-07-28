@@ -41,7 +41,7 @@ function initVersiculos() {
     "shadow-[0_37px_18px_rgba(111,110,103,0.09),0_9px_10px_rgba(111,110,103,0.1)] " +
     "invisible opacity-0 motion-safe:transition-opacity motion-safe:duration-200";
   const refEl = document.createElement("p");
-  refEl.className = "font-ui text-[13px] font-semibold text-sangue";
+  refEl.className = "font-sans text-[13px] font-semibold text-sangue";
   const textoEl = document.createElement("p");
   textoEl.className = "mt-2 font-sans text-sm leading-snug text-preto/80";
   popover.append(refEl, textoEl);

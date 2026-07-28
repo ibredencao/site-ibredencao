@@ -4,14 +4,18 @@ import HeroInterno from "../components/sections/HeroInterno.astro";
 import MoldemImagem from "../components/ui/MoldemImagem.astro";
 import Agenda from "../components/sections/Agenda.astro";
 import OndeEstamos from "../components/sections/OndeEstamos.astro";
+import fotoPastor from "../assets/filipe-ribeiro.jpg";
 
-// TODO(conteúdo): placeholder — substituir pelo texto real sobre o
-// Pr. Filipe Ribeiro (pastor plantador) e pela(s) foto(s) quando o usuário
-// fornecer (idealmente movendo o texto para src/data/conteudo.ts).
-const paragrafos: string[] = [
-  "Esta página apresentará o ministério pastoral da Igreja Batista Redenção e o Pr. Filipe Ribeiro, pastor plantador da igreja.",
-  "O conteúdo definitivo será adicionado em breve.",
+// TODO(conteúdo): o primeiro parágrafo é real; os demais são lorem do Figma.
+// Substituir quando o usuário fornecer o texto definitivo, junto com as
+// fotos (primeira 4:5, segunda 16:9) via MoldemImagem src.
+const paragrafosIntro: string[] = [
+  "Filipe Ribeiro é pastor da Igreja Batista Redenção. É bacharel em Teologia pelo Seminário Teológico Batista do Sul do Brasil e também serve na Pro Nobis Editora. Casado com Tacyla, é pai de quatro filhos: Cecília, Tito, Teodoro e Tomás.",
+  "Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
 ];
+
+const paragrafoLargo =
+  "Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in elementum tellus.";
 ---
 
 <BaseLayout
@@ -22,15 +26,40 @@ const paragrafos: string[] = [
   <HeroInterno titulo="Ministério Pastoral" />
 
   <section class="bg-branco py-16 lg:py-24">
-    <div class="mx-auto flex max-w-3xl flex-col gap-12 px-6 lg:px-10">
-      <div
-        class="flex flex-col gap-6 font-sans text-lg leading-relaxed"
+    <div
+      class="mx-auto grid max-w-[1585px] gap-y-10 px-6 lg:grid-cols-12 lg:gap-x-10 lg:px-10"
+    >
+      {/* Bio à esquerda, primeira foto (4:5) à direita */}
+      <div class="flex flex-col gap-8 lg:col-span-3 lg:col-start-4" data-reveal>
+        <h2
+          class="font-display text-[clamp(1.75rem,3vw,2.7rem)] leading-tight font-light text-bege"
+        >
+          Pastor
+        </h2>
+        <div class="flex flex-col gap-6 font-sans text-lg leading-snug">
+          {paragrafosIntro.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+      <div class="lg:col-span-3 lg:col-start-7" data-reveal>
+        <MoldemImagem
+          src={fotoPastor}
+          alt="Pr. Filipe Ribeiro, pastor da Igreja Batista Redenção"
+          proporcao="4/5"
+          class="w-full"
+        />
+      </div>
+
+      {
+        /* Parágrafo largo + segunda foto (16:9), atravessando as duas colunas */
+      }
+      <p
+        class="font-sans text-lg leading-snug lg:col-span-6 lg:col-start-4"
         data-reveal
       >
-        {paragrafos.map((p) => <p>{p}</p>)}
-      </div>
-      <div data-reveal>
-        <MoldemImagem proporcao="16/10" class="w-full" />
+        {paragrafoLargo}
+      </p>
+      <div class="lg:col-span-6 lg:col-start-4" data-reveal>
+        <MoldemImagem proporcao="16/9" class="w-full" />
       </div>
     </div>
   </section>

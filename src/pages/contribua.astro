@@ -1,22 +1,39 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroInterno from "../components/sections/HeroInterno.astro";
 import OndeEstamos from "../components/sections/OndeEstamos.astro";
+import qrCodePix from "../assets/qr-code.png";
 
 const versiculo =
-  "Cada um dê conforme determinou em seu coração, não com pesar ou por obrigação, pois Deus ama quem dá com alegria.";
-const referencia = "2 Coríntios 9.7 (NVI)";
+  "Cada um contribua de acordo com o que decidiu no coração; não com tristeza nem por constrangimento, pois Deus ama a quem contribui com alegria.";
+const referencia = "2 Coríntios 9.7";
 
-// TODO(conteúdo): dados bancários e QR code do PIX serão fornecidos pelo
-// usuário. Ao recebê-los: preencher os campos abaixo e colocar a imagem do
-// QR code em src/assets/ (ex.: qr-pix.png), renderizando com astro:assets.
-const dadosBancarios = [
-  { rotulo: "Chave PIX", valor: "(em breve)" },
-  { rotulo: "Banco", valor: "(em breve)" },
-  { rotulo: "Agência", valor: "(em breve)" },
-  { rotulo: "Conta", valor: "(em breve)" },
-  { rotulo: "Favorecido", valor: "Igreja Batista Redenção" },
+const chavePix = {
+  rotulo: "Chave PIX",
+  valor: "igbatistabetelmesquita@yahoo.com.br",
+};
+// Exibidos lado a lado numa única linha do card
+const linhaBancaria = [
+  { rotulo: "Banco", valor: "Cora" },
+  { rotulo: "Agência", valor: "0001" },
+  { rotulo: "Conta", valor: "4854863-2" },
 ];
+const favorecido = {
+  rotulo: "Favorecido",
+  valor: "Igreja Batista Betel de Mesquita",
+};
+const dadosBancarios = [chavePix, ...linhaBancaria, favorecido];
+
+// A conta é da igreja-mãe: a Redenção é uma plantação da Batista Betel de
+// Mesquita e ainda não é uma igreja independente.
+const notaConta =
+  "A conta é mantida em nome da Igreja Batista Betel de Mesquita/RJ, igreja-mãe da Igreja Batista Redenção.";
+
+// Texto copiado pelo botão do card
+const dadosParaCopiar = dadosBancarios
+  .map((item) => `${item.rotulo}: ${item.valor}`)
+  .join("\n");
 ---
 
 <BaseLayout
@@ -24,44 +41,125 @@ const dadosBancarios = [
   description="Contribua com dízimos e ofertas para a obra da Igreja Batista Redenção."
   temaHeader="escuro"
 >
-  <HeroInterno
-    titulo="Contribua"
-    subtitulo={`"${versiculo}" — ${referencia}`}
-  />
+  <HeroInterno titulo="Contribua" />
 
   <section class="bg-branco py-16 lg:py-24">
     <div
-      class="mx-auto grid max-w-[1585px] items-start gap-y-12 px-6 lg:grid-cols-12 lg:gap-x-10 lg:px-10"
+      class="mx-auto flex max-w-[1585px] flex-col gap-12 px-6 lg:px-10"
       data-reveal
     >
-      <div class="flex flex-col gap-6 lg:col-span-4 lg:col-start-3">
-        <h2 class="titulo-secao">Dízimos e ofertas</h2>
-        <p class="font-sans text-lg leading-snug opacity-80">
-          A sua contribuição sustenta a pregação do evangelho, o cuidado com os
-          membros e o avanço da obra na cidade e além. Você pode contribuir por
-          PIX ou transferência bancária.
-        </p>
-      </div>
-
-      <div
-        class="flex flex-col gap-6 rounded-3xl border border-preto/10 p-10 lg:col-span-4 lg:col-start-8"
+      {/* Versículo centralizado acima do card */}
+      <blockquote
+        class="mx-auto flex max-w-xl flex-col items-center gap-3 text-center"
       >
-        {/* TODO(conteúdo): QR code do PIX entra aqui (imagem quadrada) */}
-        <dl class="flex flex-col gap-4">
-          {
-            dadosBancarios.map((item) => (
-              <div class="flex flex-col">
-                <dt class="font-ui text-sm font-semibold text-bege">
-                  {item.rotulo}
-                </dt>
-                <dd class="font-sans text-lg">{item.valor}</dd>
+        <p class="font-sans text-lg leading-snug opacity-80">"{versiculo}"</p>
+        <cite
+          class="font-sans text-sm font-semibold tracking-wide text-bege uppercase not-italic"
+        >
+          {referencia}
+        </cite>
+      </blockquote>
+
+      {
+        /* Card: QR à esquerda no desktop, empilhado no mobile. No desktop a
+          coluna de dados se distribui na altura do QR (justify-between),
+          alinhando o pé do botão com o pé do código. */
+      }
+      <div class="mx-auto flex w-full max-w-2xl flex-col gap-4">
+        <div class="rounded-3xl border border-preto/10 p-6 sm:p-8">
+          <div class="flex flex-col gap-8 sm:flex-row">
+            <Image
+              src={qrCodePix}
+              alt="QR code do PIX para contribuição"
+              class="w-full sm:w-60 sm:self-start"
+            />
+            <div class="flex flex-1 flex-col gap-5 sm:justify-between sm:gap-0">
+              <div class="flex flex-col gap-1">
+                <p
+                  class="font-sans text-sm font-semibold tracking-wide text-bege uppercase"
+                >
+                  {chavePix.rotulo}
+                </p>
+                <p class="font-sans text-sm break-all sm:text-base">
+                  {chavePix.valor}
+                </p>
               </div>
-            ))
-          }
-        </dl>
+
+              <div class="flex flex-wrap gap-x-8 gap-y-5">
+                {
+                  linhaBancaria.map((item) => (
+                    <div class="flex flex-col gap-1">
+                      <p class="font-sans text-sm font-semibold tracking-wide text-bege uppercase">
+                        {item.rotulo}
+                      </p>
+                      <p class="font-sans text-base">{item.valor}</p>
+                    </div>
+                  ))
+                }
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <p
+                  class="font-sans text-sm font-semibold tracking-wide text-bege uppercase"
+                >
+                  {favorecido.rotulo}
+                </p>
+                <p class="font-sans text-base">{favorecido.valor}</p>
+              </div>
+
+              <button
+                type="button"
+                id="copiar-dados"
+                data-dados={dadosParaCopiar}
+                aria-live="polite"
+                class="mt-1 cursor-pointer rounded-lg bg-sangue px-8 py-4 text-center font-ui text-[14px] font-semibold text-branco transition-colors duration-300 hover:bg-sangue-escuro lg:text-[15px]"
+              >
+                Copiar dados bancários
+              </button>
+            </div>
+          </div>
+        </div>
+        <p class="text-center font-sans text-sm leading-snug opacity-70">
+          {notaConta}
+        </p>
       </div>
     </div>
   </section>
 
   <OndeEstamos />
 </BaseLayout>
+
+<script>
+  // Copia os dados bancários (do data-dados) e dá feedback no próprio botão
+  async function copiarTexto(texto: string): Promise<boolean> {
+    try {
+      await navigator.clipboard.writeText(texto);
+      return true;
+    } catch {
+      // Fallback para navegadores antigos ou contextos sem permissão
+      const area = document.createElement("textarea");
+      area.value = texto;
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      document.body.appendChild(area);
+      area.select();
+      const ok = document.execCommand("copy");
+      area.remove();
+      return ok;
+    }
+  }
+
+  function initCopiarDados() {
+    const botao = document.getElementById("copiar-dados");
+    if (!botao) return;
+    const rotuloOriginal = botao.textContent;
+    botao.addEventListener("click", async () => {
+      const ok = await copiarTexto(botao.dataset.dados ?? "");
+      botao.textContent = ok ? "Copiado!" : "Não foi possível copiar";
+      setTimeout(() => {
+        botao.textContent = rotuloOriginal;
+      }, 2000);
+    });
+  }
+  document.addEventListener("astro:page-load", initCopiarDados);
+</script>
