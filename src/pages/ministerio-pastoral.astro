@@ -29,24 +29,33 @@ const paragrafoLargo =
     <div
       class="mx-auto grid max-w-[1585px] gap-y-10 px-6 lg:grid-cols-12 lg:gap-x-10 lg:px-10"
     >
-      {/* Bio à esquerda, primeira foto (4:5) à direita */}
-      <div class="flex flex-col gap-8 lg:col-span-3 lg:col-start-4" data-reveal>
-        <h2
-          class="font-display text-[clamp(1.75rem,3vw,2.7rem)] leading-tight font-light text-bege"
-        >
-          Pastor
-        </h2>
-        <div class="flex flex-col gap-6 font-sans text-lg leading-snug">
-          {paragrafosIntro.map((p) => <p>{p}</p>)}
-        </div>
-      </div>
-      <div class="lg:col-span-3 lg:col-start-7" data-reveal>
+      {
+        /* Bio à esquerda, primeira foto (4:5) à direita. Título, foto e texto
+          são itens separados do grid: no mobile empilham como título → foto →
+          texto; no desktop a foto ocupa a coluna da direita nas duas linhas. */
+      }
+      <h2
+        class="font-display text-[clamp(1.75rem,3vw,2.7rem)] leading-tight font-light text-bege lg:col-span-3 lg:col-start-4 lg:row-start-1"
+        data-reveal
+      >
+        Pastor
+      </h2>
+      <div
+        class="lg:col-span-3 lg:col-start-7 lg:row-span-2 lg:row-start-1"
+        data-reveal
+      >
         <MoldemImagem
           src={fotoPastor}
           alt="Pr. Filipe Ribeiro, pastor da Igreja Batista Redenção"
           proporcao="4/5"
           class="w-full"
         />
+      </div>
+      <div
+        class="flex flex-col gap-6 font-sans text-lg leading-snug lg:col-span-3 lg:col-start-4 lg:row-start-2"
+        data-reveal
+      >
+        {paragrafosIntro.map((p) => <p>{p}</p>)}
       </div>
 
       {
