@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroInterno from "../components/sections/HeroInterno.astro";
+import { atualizadaEm, secoesPrivacidade } from "../data/privacidade";
+---
+
+<BaseLayout
+  title="Política de Privacidade | Igreja Batista Redenção"
+  description="Como o site da Igreja Batista Redenção lida com os dados dos visitantes."
+  temaHeader="escuro"
+>
+  <HeroInterno
+    titulo="Política de Privacidade"
+    subtitulo={`Última atualização: ${atualizadaEm}`}
+  />
+
+  <section class="bg-branco py-20 lg:py-28">
+    <div
+      class="mx-auto flex max-w-3xl flex-col gap-12 px-6 lg:px-10"
+      data-reveal
+    >
+      {
+        secoesPrivacidade.map((secao) => (
+          <article class="flex flex-col gap-4">
+            <h2 class="font-display text-2xl font-normal text-bege lg:text-3xl">
+              {secao.titulo}
+            </h2>
+            {secao.paragrafos.map((p) => (
+              <p class="font-sans text-lg leading-snug opacity-80">{p}</p>
+            ))}
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
