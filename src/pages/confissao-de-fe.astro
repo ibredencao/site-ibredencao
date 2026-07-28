@@ -6,6 +6,22 @@ import OndeEstamos from "../components/sections/OndeEstamos.astro";
 import Icone from "../components/ui/Icone.astro";
 import setaBaixo from "../assets/icones/seta-baixo.svg?raw";
 import { artigosConfissao, notaConfissao } from "../data/confissao";
+import versiculos from "../data/versiculos-confissao.json";
+
+/**
+ * Referências → segmentos com popover de versículo (gerados por
+ * scripts/gerar-versiculos.mjs). Item fora do mapa vira texto simples.
+ */
+interface SegmentoRef {
+  rotulo: string;
+  id?: string;
+}
+const itensVersiculos: Record<string, SegmentoRef[]> = versiculos.itens;
+const segmentosDe = (item: string): SegmentoRef[] =>
+  itensVersiculos[item] ?? [{ rotulo: item.replace(/\.$/, "") }];
+
+const classeRefBotao =
+  "cursor-default underline decoration-dotted decoration-preto/25 underline-offset-2 transition-colors duration-300 hover:text-sangue focus-visible:text-sangue";
 
 // const subtitulo =
 //   '"Antes, reverenciai a Cristo como Senhor no coração. Estai sempre preparados para responder a todo o que vos pedir a razão da esperança que há em vós." (1Pe 3.15)';
@@ -96,7 +112,25 @@ import { artigosConfissao, notaConfissao } from "../data/confissao";
                     <ol class="flex list-decimal flex-col gap-1 pl-6 text-sm text-preto/50">
                       {bloco.itens?.map((ref) => (
                         <li>
-                          <span class="leading-snug">{ref}</span>
+                          <span class="leading-snug">
+                            {segmentosDe(ref).map((seg, i) => (
+                              <>
+                                {i > 0 && "; "}
+                                {seg.id ? (
+                                  <button
+                                    type="button"
+                                    class={classeRefBotao}
+                                    data-versiculo={seg.id}
+                                  >
+                                    {seg.rotulo}
+                                  </button>
+                                ) : (
+                                  seg.rotulo
+                                )}
+                              </>
+                            ))}
+                            .
+                          </span>
                         </li>
                       ))}
                     </ol>
@@ -122,7 +156,25 @@ import { artigosConfissao, notaConfissao } from "../data/confissao";
               ) : (
                 <ol class="flex list-decimal flex-col gap-1 pl-6 text-sm text-preto/40">
                   {bloco.itens?.map((ref) => (
-                    <li>{ref}</li>
+                    <li>
+                      {segmentosDe(ref).map((seg, i) => (
+                        <>
+                          {i > 0 && "; "}
+                          {seg.id ? (
+                            <button
+                              type="button"
+                              class={classeRefBotao}
+                              data-versiculo={seg.id}
+                            >
+                              {seg.rotulo}
+                            </button>
+                          ) : (
+                            seg.rotulo
+                          )}
+                        </>
+                      ))}
+                      .
+                    </li>
                   ))}
                 </ol>
               ),
@@ -136,6 +188,8 @@ import { artigosConfissao, notaConfissao } from "../data/confissao";
   <Agenda />
   <OndeEstamos />
 </BaseLayout>
+
+<script src="../scripts/versiculos.ts"></script>
 
 <script>
   // Ao clicar num tópico do índice, fecha o acordeão (mobile) para não tapar

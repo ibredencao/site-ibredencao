@@ -48,12 +48,17 @@ const { endereco } = contato;
       </div>
     </div>
 
+    {
+      /* O tamanho vem SÓ deste wrapper (aspect-square); o mapa é absolute
+         inset-0 para o ResizeObserver do MapLibre nunca realimentar a altura
+         do layout (loop de crescimento infinito ao redimensionar o canvas). */
+    }
     <div
-      class="overflow-hidden rounded-xl border border-areia/60 lg:col-span-6 lg:col-start-6"
+      class="relative aspect-square w-full overflow-hidden rounded-xl border border-areia/60 lg:col-span-6 lg:col-start-6"
     >
       <div
         id="mapa-localizacao"
-        class="aspect-square w-full bg-areia/40"
+        class="bg-areia/40"
         data-lat={endereco.coordenadas.lat}
         data-lng={endereco.coordenadas.lng}
         aria-label="Mapa — localização da Igreja Batista Redenção"
@@ -72,3 +77,15 @@ const { endereco } = contato;
 </Secao>
 
 <script src="../../scripts/mapa.ts"></script>
+
+<style>
+  /* Ancorado no id (sem @layer): o CSS do MapLibre aplica
+     .maplibregl-map { position: relative } fora de camadas, o que venceria a
+     utility `absolute` do Tailwind (que vive em @layer utilities). Absoluto
+     dentro do wrapper aspect-square, o mapa nunca dita a altura do layout —
+     era isso que causava o crescimento infinito via ResizeObserver. */
+  #mapa-localizacao {
+    position: absolute;
+    inset: 0;
+  }
+</style>
