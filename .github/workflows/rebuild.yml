@@ -6,9 +6,9 @@ name: Rebuild do site (episódios novos)
 # (UTC-3 → 14:00 e 22:00 UTC), cobrindo o episódio que sobe até o meio-dia.
 #
 # Requisito (uma única vez): criar um Build Hook na Netlify
-# (Site configuration → Build & deploy → Build hooks) e salvar a URL como
-# secret NETLIFY_BUILD_HOOK no GitHub (Settings → Secrets and variables →
-# Actions → New repository secret).
+# (Project configuration → Build & deploy → Continuous deployment →
+# Build hooks) e salvar a URL como secret NETLIFY_BUILD_HOOK no GitHub
+# (Settings → Secrets and variables → Actions → New repository secret).
 
 on:
   schedule:
