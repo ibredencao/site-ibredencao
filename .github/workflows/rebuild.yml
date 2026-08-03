@@ -1,0 +1,32 @@
+name: Rebuild do site (episódios novos)
+
+# Os sermões do YouTube e do Spotify são buscados dos feeds RSS durante o
+# build — o site publicado só atualiza quando a Netlify reconstrói. Este
+# workflow dispara o rebuild toda segunda-feira às 11h e às 19h de Natal/RN
+# (UTC-3 → 14:00 e 22:00 UTC), cobrindo o episódio que sobe até o meio-dia.
+#
+# Requisito (uma única vez): criar um Build Hook na Netlify
+# (Site configuration → Build & deploy → Build hooks) e salvar a URL como
+# secret NETLIFY_BUILD_HOOK no GitHub (Settings → Secrets and variables →
+# Actions → New repository secret).
+
+on:
+  schedule:
+    - cron: "0 14 * * 1" # segunda, 11h em Natal/RN
+    - cron: "0 22 * * 1" # segunda, 19h em Natal/RN
+  workflow_dispatch: # permite disparar manualmente na aba Actions
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Chamar o Build Hook da Netlify
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::error::Secret NETLIFY_BUILD_HOOK não configurado no repositório."
+            exit 1
+          fi
+          curl -fsS -X POST -d '{}' "$HOOK"
+          echo "Rebuild disparado com sucesso."
