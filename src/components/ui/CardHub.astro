@@ -1,0 +1,28 @@
+---
+import Icone from "./Icone.astro";
+
+/**
+ * Card de página-hub (/recursos, /a-igreja): link em Bitter com ícone
+ * opcional no quadrado sangue — mesmo padrão dos cards da página /links.
+ */
+interface Props {
+  rotulo: string;
+  href: string;
+  icone?: string;
+}
+const { rotulo, href, icone } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group flex items-center gap-5 rounded-2xl border border-preto/10 bg-creme p-5 transition-colors duration-300 hover:border-sangue/40"
+>
+  {
+    icone && (
+      <span class="flex size-16 shrink-0 items-center justify-center rounded-xl bg-sangue text-areia">
+        <Icone svg={icone} class="size-8" />
+      </span>
+    )
+  }
+  <span class="font-ui text-lg font-semibold text-preto">{rotulo}</span>
+</a>

@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HeroInterno from "../../components/sections/HeroInterno.astro";
+import Agenda from "../../components/sections/Agenda.astro";
+import OndeEstamos from "../../components/sections/OndeEstamos.astro";
+import CardHub from "../../components/ui/CardHub.astro";
+import { recursos } from "../../data/navegacao";
+
+/**
+ * Hub de /recursos: não aparece no menu (lá o dropdown lista as categorias);
+ * atende a URL "aparada", o rodapé e a página /links.
+ */
+---
+
+<BaseLayout
+  title="Recursos | Igreja Batista Redenção"
+  description="Recursos da Igreja Batista Redenção: sermões no YouTube e no Spotify, músicas e arquivos para download."
+  temaHeader="escuro"
+>
+  <HeroInterno titulo="Recursos" />
+
+  <section class="bg-branco py-16 lg:py-24">
+    <div
+      class="mx-auto grid max-w-[1585px] gap-y-10 px-6 lg:grid-cols-12 lg:gap-x-10 lg:px-10"
+    >
+      <div
+        class="grid gap-4 sm:grid-cols-2 lg:col-span-8 lg:col-start-3"
+        data-reveal
+      >
+        {
+          recursos.map((item) => (
+            <CardHub rotulo={item.rotulo} href={item.href} icone={item.icone} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Agenda />
+  <OndeEstamos />
+</BaseLayout>

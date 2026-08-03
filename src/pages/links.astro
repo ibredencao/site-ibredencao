@@ -1,0 +1,56 @@
+---
+import LayoutMinimo from "../layouts/LayoutMinimo.astro";
+import Icone from "../components/ui/Icone.astro";
+import logo from "../assets/logo.svg?raw";
+import { itensLinks } from "../data/links";
+
+const ehExterno = (href: string) => /^https?:\/\//.test(href);
+---
+
+<LayoutMinimo
+  title="Links | Igreja Batista Redenção"
+  description="Links úteis da Igreja Batista Redenção."
+  fundo="branco"
+>
+  <div
+    class="mx-auto flex w-full max-w-2xl flex-col items-center gap-8 px-6 py-12 lg:py-16"
+  >
+    {/* Logo horizontal do site (o mesmo da barra de navegação) */}
+    <a href="/" aria-label="Igreja Batista Redenção — visite o site">
+      <Icone svg={logo} class="h-12 w-auto text-preto [&>svg]:w-auto" />
+    </a>
+
+    <p class="max-w-xl text-center font-sans text-base leading-snug opacity-80">
+      Ao Senhor pertence a salvação. (Jonas 2.9)
+    </p>
+
+    <ul class="flex w-full flex-col gap-4">
+      {
+        itensLinks.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              target={ehExterno(item.href) ? "_blank" : undefined}
+              rel={ehExterno(item.href) ? "noopener noreferrer" : undefined}
+              class="group flex items-center gap-5 rounded-2xl border border-preto/10 bg-creme p-5 transition-colors duration-300 hover:border-sangue/40"
+            >
+              <span class="flex size-16 shrink-0 items-center justify-center rounded-xl bg-sangue text-areia">
+                <Icone svg={item.icone} class="size-8" />
+              </span>
+              <span class="flex flex-1 flex-col">
+                <span class="text-md font-ui font-semibold text-preto">
+                  {item.titulo}
+                </span>
+                {item.descricao && (
+                  <span class="font-sans text-sm leading-snug opacity-60">
+                    {item.descricao}
+                  </span>
+                )}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</LayoutMinimo>

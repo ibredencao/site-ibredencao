@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroInterno from "../components/sections/HeroInterno.astro";
+import Agenda from "../components/sections/Agenda.astro";
+import OndeEstamos from "../components/sections/OndeEstamos.astro";
+import CardHub from "../components/ui/CardHub.astro";
+import { aIgreja } from "../data/navegacao";
+
+/**
+ * Hub de /a-igreja: não aparece no menu (lá o dropdown lista as páginas);
+ * atende o rodapé e quem chegar pela URL direta.
+ */
+---
+
+<BaseLayout
+  title="A igreja | Igreja Batista Redenção"
+  description="Conheça a Igreja Batista Redenção: nossa história, ministério pastoral, Confissão de Fé, Pacto de Membresia e como se tornar membro."
+  temaHeader="escuro"
+>
+  <HeroInterno titulo="A igreja" />
+
+  <section class="bg-branco py-16 lg:py-24">
+    <div
+      class="mx-auto grid max-w-[1585px] gap-y-10 px-6 lg:grid-cols-12 lg:gap-x-10 lg:px-10"
+    >
+      <div
+        class="grid gap-4 sm:grid-cols-2 lg:col-span-8 lg:col-start-3"
+        data-reveal
+      >
+        {
+          aIgreja.map((item) => (
+            <CardHub rotulo={item.rotulo} href={item.href} icone={item.icone} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Agenda />
+  <OndeEstamos />
+</BaseLayout>

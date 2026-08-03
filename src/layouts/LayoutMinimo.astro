@@ -4,14 +4,21 @@ import "@fontsource-variable/work-sans";
 import "@fontsource-variable/bitter";
 import "../styles/global.css";
 
+/**
+ * Layout mínimo para páginas soltas, sem o chrome do site (Header, Footer,
+ * menu): usado no 404 e na página /links (destino do QR code).
+ */
 interface Props {
   title: string;
   description?: string;
+  /** Cor de fundo da página: "areia" (404) ou "branco" (ex.: /links) */
+  fundo?: "areia" | "branco";
 }
 
 const {
   title,
   description = "Igreja Batista Redenção — Firmada no evangelho, dedicada ao discipulado e à glória de Deus.",
+  fundo = "areia",
 } = Astro.props;
 ---
 
@@ -32,7 +39,12 @@ const {
     <title>{title}</title>
     <ClientRouter />
   </head>
-  <body class="selection:text-preto; bg-areia selection:bg-branco">
+  <body
+    class:list={[
+      "selection:bg-branco selection:text-preto",
+      fundo === "areia" ? "bg-areia" : "bg-branco",
+    ]}
+  >
     <main class="relative min-h-screen">
       <slot />
     </main>

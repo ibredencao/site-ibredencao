@@ -46,14 +46,14 @@ export const recursos: ItemDropdown[] = [
 /** Lado esquerdo e direito do header desktop (logo fica no centro) */
 export const navEsquerda: ItemNav[] = [
   { rotulo: "Início", href: "/" },
-  { rotulo: "A igreja", dropdown: aIgreja },
+  { rotulo: "A igreja", href: "/a-igreja", dropdown: aIgreja },
   { rotulo: "Agenda", href: "#agenda" },
 ];
 
 export const navDireita: ItemNav[] = [
   { rotulo: "Onde Estamos", href: "#onde-estamos" },
   { rotulo: "Contribua", href: "/contribua" },
-  { rotulo: "Recursos", dropdown: recursos },
+  { rotulo: "Recursos", href: "/recursos", dropdown: recursos },
 ];
 
 export const contato = {
