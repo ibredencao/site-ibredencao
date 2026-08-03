@@ -8,7 +8,7 @@ Site institucional estático. Idioma do projeto, do conteúdo e da comunicação
 - **Tailwind CSS v4** via `@tailwindcss/vite` — tema definido em `src/styles/global.css` (`@theme`)
 - **Lenis** para scroll suave — inicializado em `src/scripts/smooth-scroll.ts`, importado pelo BaseLayout
 - **View Transitions** (`<ClientRouter />`) para navegação suave entre páginas
-- Deploy: **Cloudflare Pages** (build `npm run build`, output `dist/`)
+- Deploy: **Netlify** (build `npm run build`, output `dist/`; config em `netlify.toml`). Rebuild agendado às segundas via GitHub Actions + Build Hook (episódios novos dos feeds RSS).
 
 ## Design
 

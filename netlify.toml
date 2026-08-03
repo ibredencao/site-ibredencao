@@ -1,0 +1,6 @@
+# Configuração de build da Netlify (portátil: vale para qualquer conta que
+# importe este repositório — útil na futura migração para o repo da igreja).
+# A versão do Node vem do .nvmrc.
+[build]
+  command = "npm run build"
+  publish = "dist"
