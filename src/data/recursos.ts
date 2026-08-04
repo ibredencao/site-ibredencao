@@ -20,6 +20,7 @@ export interface Musica {
   autor: string;
   versao?: string;
   letra?: string;
+  cifra?: string;
   partitura?: string;
   ouvir?: string;
 }
@@ -89,6 +90,7 @@ const musicas: Musica[] = [
     autor: "Jonny Robinson, Rich Thompson, Michael Farren",
     versao: "Versão: Luiz Felipe Moraes, Davi Resende (2025)",
     letra: "/arquivos/musicas/nao-mais-eu-mas-cristo-em-mim-letra.pdf",
+    partitura: "/arquivos/musicas/nao-mais-eu-mas-cristo-em-mim-partitura.pdf",
   },
 ];
 

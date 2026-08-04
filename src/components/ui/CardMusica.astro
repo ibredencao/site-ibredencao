@@ -1,6 +1,8 @@
 ---
 import Icone from "./Icone.astro";
 import iconeLetra from "../../assets/icones/letra.svg?raw";
+// Stand-in para a cifra (trocar se o designer criar um ícone próprio)
+import iconeCifra from "../../assets/icones/musica.svg?raw";
 import iconePartitura from "../../assets/icones/partitura.svg?raw";
 import iconeOuvir from "../../assets/icones/ouvir.svg?raw";
 import type { Musica } from "../../data/recursos";
@@ -13,6 +15,7 @@ const { musica } = Astro.props;
 
 const acoes = [
   { rotulo: "Letra", icone: iconeLetra, href: musica.letra },
+  { rotulo: "Cifra", icone: iconeCifra, href: musica.cifra },
   { rotulo: "Partitura", icone: iconePartitura, href: musica.partitura },
   { rotulo: "Ouvir", icone: iconeOuvir, href: musica.ouvir },
 ].filter((a) => a.href);
