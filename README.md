@@ -1,6 +1,8 @@
 # Site — Igreja Batista Redenção
 
-Site institucional estático, construído com **Astro + Tailwind CSS**, com scroll suave (**Lenis**) e transições de página (**View Transitions**). Hospedagem na **Netlify**.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f31d0285-04fa-4596-8641-cd002c21aad6/deploy-status)](https://app.netlify.com/projects/batistaredencaonatal/deploys)
+
+Site institucional estático, construído com **Astro + Tailwind CSS**, com scroll suave (**Lenis**) e transições de página (**View Transitions**). Hospedagem na **Netlify** — no ar em [batistaredencaonatal.com.br](https://batistaredencaonatal.com.br).
 
 ## Rodando localmente
 
