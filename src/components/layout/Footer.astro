@@ -43,7 +43,10 @@ const { endereco } = contato;
     <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
       {/* Marca + redes sociais */}
       <div class="flex flex-col gap-8">
-        <Icone svg={logo} class="h-12 w-auto text-branco [&>svg]:w-auto" />
+        <Icone
+          svg={logo}
+          class="h-11 w-auto self-start text-branco [&>svg]:w-auto"
+        />
         <ul class="flex flex-col gap-6">
           {
             redes.map((rede) => (
