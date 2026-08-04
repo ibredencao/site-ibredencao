@@ -55,46 +55,40 @@ export const SPOTIFY_SHOW_ID = "0NVwK9Sigk6gRwhRQld3AN";
 // Feed RSS do podcast (Anchor/Spotify for Podcasters). Episódios puxados no build.
 export const SPOTIFY_PODCAST_RSS = "https://anchor.fm/s/f4a394f0/podcast/rss";
 
+// PDFs em public/arquivos/musicas/ (kebab-case, sufixo -letra/-partitura).
+// Campos omitidos (partituras pendentes, links de "Ouvir") não renderizam —
+// o CardMusica filtra links ausentes. Adicionar aqui quando chegarem.
 const musicas: Musica[] = [
   {
     titulo: "Sua graça é maior",
     autor: "Matt Boswell, Matt Papa",
     versao: "Versão: Luiz Felipe Moraes (2025)",
-    letra: "#",
-    partitura: "#",
-    ouvir: "#",
+    letra: "/arquivos/musicas/sua-graca-e-maior-letra.pdf",
   },
   {
     titulo: "Seu fardo pelo meu",
     autor: "Chris Anderson",
     versao: "Versão: Luiz Felipe Moraes (2026)",
-    letra: "#",
-    partitura: "#",
-    ouvir: "#",
+    letra: "/arquivos/musicas/seu-fardo-pelo-meu-letra.pdf",
   },
   {
     titulo: "Tudo o que existe é teu",
     autor: "Autoral",
     versao: "Luiz Felipe Moraes (2026)",
-    letra: "#",
-    partitura: "#",
-    ouvir: "#",
+    letra: "/arquivos/musicas/tudo-o-que-existe-e-teu-letra.pdf",
+    partitura: "/arquivos/musicas/tudo-o-que-existe-e-teu-partitura.pdf",
   },
   {
     titulo: "Perante o trono de Deus no céu",
     autor: "Vikki Cook",
     versao: "Versão: Igreja Batista Betel de Mesquita",
-    letra: "#",
-    partitura: "#",
-    ouvir: "#",
+    letra: "/arquivos/musicas/perante-o-trono-de-deus-no-ceu-letra.pdf",
   },
   {
     titulo: "Não mais eu, mas Cristo em mim",
     autor: "Jonny Robinson, Rich Thompson, Michael Farren",
     versao: "Versão: Luiz Felipe Moraes, Davi Resende (2025)",
-    letra: "#",
-    partitura: "#",
-    ouvir: "#",
+    letra: "/arquivos/musicas/nao-mais-eu-mas-cristo-em-mim-letra.pdf",
   },
 ];
 
