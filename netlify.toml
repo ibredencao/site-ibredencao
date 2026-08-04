@@ -4,3 +4,14 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+# Headers de segurança (defesa em profundidade; o site é estático, sem
+# dados de usuário — isso blinda contra clickjacking, MIME sniffing etc.)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=31536000"
