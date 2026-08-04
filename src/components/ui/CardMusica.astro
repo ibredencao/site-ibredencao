@@ -22,11 +22,11 @@ const acoes = [
 ---
 
 <article
-  class="flex flex-col gap-6 rounded-3xl border border-preto/15 p-10 duration-300 hover:border-preto/40"
+  class="flex flex-col justify-between gap-6 rounded-2xl border border-preto/15 p-10 duration-300 hover:border-preto/40"
 >
-  <div class="flex flex-col gap-2">
-    <h3 class="font-display text-2xl text-preto">{musica.titulo}</h3>
-    <div class="flex flex-col gap-1 font-sans text-lg opacity-70">
+  <div class="flex flex-col">
+    <h3 class="mb-0 font-display text-2xl text-preto">{musica.titulo}</h3>
+    <div class="flex flex-col font-sans text-lg opacity-70">
       <p>{musica.autor}</p>
       {musica.versao && <p>{musica.versao}</p>}
     </div>

@@ -62,32 +62,32 @@ export const SPOTIFY_PODCAST_RSS = "https://anchor.fm/s/f4a394f0/podcast/rss";
 const musicas: Musica[] = [
   {
     titulo: "Sua graça é maior",
-    autor: "Matt Boswell, Matt Papa",
+    autor: "Letra e Música: Matt Boswell, Matt Papa",
     versao: "Versão: Luiz Felipe Moraes (2025)",
     letra: "/arquivos/musicas/sua-graca-e-maior-letra.pdf",
   },
   {
     titulo: "Seu fardo pelo meu",
-    autor: "Chris Anderson",
+    autor: "Letra: Chris Anderson",
     versao: "Versão: Luiz Felipe Moraes (2026)",
     letra: "/arquivos/musicas/seu-fardo-pelo-meu-letra.pdf",
   },
   {
     titulo: "Tudo o que existe é teu",
-    autor: "Autoral",
-    versao: "Luiz Felipe Moraes (2026)",
+    autor: "Letra e Música: Luiz Felipe Moraes (2026)",
+    versao: "",
     letra: "/arquivos/musicas/tudo-o-que-existe-e-teu-letra.pdf",
     partitura: "/arquivos/musicas/tudo-o-que-existe-e-teu-partitura.pdf",
   },
   {
     titulo: "Perante o trono de Deus no céu",
-    autor: "Vikki Cook",
+    autor: "Letra e Música: Charitie Lees Bancroft, Vikki Cook",
     versao: "Versão: Igreja Batista Betel de Mesquita",
     letra: "/arquivos/musicas/perante-o-trono-de-deus-no-ceu-letra.pdf",
   },
   {
     titulo: "Não mais eu, mas Cristo em mim",
-    autor: "Jonny Robinson, Rich Thompson, Michael Farren",
+    autor: "Letra e Música: J. Robinson, R. Thompson, M. Farren",
     versao: "Versão: Luiz Felipe Moraes, Davi Resende (2025)",
     letra: "/arquivos/musicas/nao-mais-eu-mas-cristo-em-mim-letra.pdf",
     partitura: "/arquivos/musicas/nao-mais-eu-mas-cristo-em-mim-partitura.pdf",
