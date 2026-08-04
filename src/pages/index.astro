@@ -1,14 +1,24 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import HomeHero from "../components/sections/HomeHero.astro";
-import NoQueCremos from "../components/sections/NoQueCremos.astro";
-import Agenda from "../components/sections/Agenda.astro";
-import OndeEstamos from "../components/sections/OndeEstamos.astro";
+import LayoutMinimo from "../layouts/LayoutMinimo.astro";
+
+/**
+ * PROVISÓRIO: splash "Em breve" enquanto o site não é lançado.
+ * A home real está preservada em _home.astro (o prefixo "_" a exclui do
+ * roteamento) — para restaurar, apagar este arquivo e renomear o outro de
+ * volta para index.astro. A página /links segue funcionando normalmente.
+ */
 ---
 
-<BaseLayout title="Igreja Batista Redenção" temaHeader="claro">
-  <HomeHero />
-  <NoQueCremos />
-  <Agenda />
-  <OndeEstamos />
-</BaseLayout>
+<LayoutMinimo
+  title="Em breve | Igreja Batista Redenção"
+  description="O site da Igreja Batista Redenção está chegando."
+  fundo="branco"
+>
+  <div class="flex min-h-screen items-center justify-center px-6">
+    <h1
+      class="text-center font-display text-5xl leading-none font-light text-preto lg:text-7xl"
+    >
+      Em breve
+    </h1>
+  </div>
+</LayoutMinimo>
