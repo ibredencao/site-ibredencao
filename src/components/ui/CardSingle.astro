@@ -1,0 +1,163 @@
+---
+import Btn from "./Btn.astro";
+import type { Musica } from "../../data/recursos";
+
+/**
+ * Visualização "single": a capa da música abre uma modal (dialog nativo)
+ * com os créditos e os botões de Letra/Partitura — links ausentes não
+ * renderizam. Créditos vêm com o rótulo embutido nos dados ("Letra e
+ * Música: Fulano"); o prefixo antes de ":" vira a etiqueta em bege.
+ */
+interface Props {
+  musica: Musica;
+  indice: number;
+}
+const { musica, indice } = Astro.props;
+const idModal = `single-${indice}`;
+
+const dividir = (texto?: string) => {
+  if (!texto) return null;
+  const m = texto.match(/^([^:]+):\s*(.+)$/);
+  return m ? { rotulo: m[1], valor: m[2] } : { rotulo: null, valor: texto };
+};
+const creditos = [dividir(musica.autor), dividir(musica.versao)].filter(
+  (c) => c !== null,
+);
+---
+
+<button
+  type="button"
+  data-abre-single={idModal}
+  aria-haspopup="dialog"
+  aria-label={`Detalhes de ${musica.titulo}`}
+  class="group cursor-pointer overflow-hidden rounded-xl shadow-[0_12px_24px_rgba(29,27,26,0.12)] transition-transform duration-300 hover:scale-[1.02]"
+>
+  <img
+    src={musica.capa}
+    alt={`Capa de ${musica.titulo}`}
+    loading="lazy"
+    class="aspect-square w-full object-cover"
+  />
+</button>
+
+<dialog
+  id={idModal}
+  data-single
+  class="m-auto w-[calc(100%_-_3rem)] max-w-sm rounded-3xl border-none bg-creme p-0 shadow-[0_37px_18px_rgba(111,110,103,0.09),0_9px_10px_rgba(111,110,103,0.1)] backdrop:bg-preto/60"
+>
+  <div class="relative flex flex-col gap-5 p-6">
+    <button
+      type="button"
+      data-fechar
+      aria-label="Fechar"
+      class="absolute top-3 right-3 flex size-9 cursor-pointer items-center justify-center text-creme transition-colors hover:text-branco"
+    >
+      <svg class="size-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M6 6l12 12M18 6L6 18"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"></path>
+      </svg>
+    </button>
+
+    <img
+      src={musica.capa}
+      alt={`Capa de ${musica.titulo}`}
+      class="aspect-square w-full rounded-xl object-cover"
+    />
+
+    <div class="flex flex-col gap-3">
+      <h3 class="font-display text-2xl text-preto">{musica.titulo}</h3>
+      {
+        creditos.map((credito) => (
+          <div class="flex flex-col gap-0.5">
+            {credito.rotulo && (
+              <p class="font-sans text-xs font-semibold tracking-wide text-bege uppercase">
+                {credito.rotulo}
+              </p>
+            )}
+            <p class="font-sans text-base text-preto">{credito.valor}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    {
+      (musica.letra || musica.partitura || musica.cifra) && (
+        <div class="flex flex-wrap gap-3">
+          {musica.letra && (
+            <Btn href={musica.letra} icone="seta" class="px-6! py-3!">
+              Letra
+            </Btn>
+          )}
+          {musica.cifra && (
+            <Btn href={musica.cifra} icone="seta" class="px-6! py-3!">
+              Cifra
+            </Btn>
+          )}
+          {musica.partitura && (
+            <Btn href={musica.partitura} icone="seta" class="px-6! py-3!">
+              Partitura
+            </Btn>
+          )}
+        </div>
+      )
+    }
+  </div>
+</dialog>
+
+<script>
+  function initSingles() {
+    document
+      .querySelectorAll<HTMLElement>("[data-abre-single]")
+      .forEach((botao) => {
+        botao.addEventListener("click", () => {
+          const alvo = document.getElementById(botao.dataset.abreSingle ?? "");
+          if (alvo instanceof HTMLDialogElement) {
+            alvo.showModal();
+            document.body.style.overflow = "hidden";
+          }
+        });
+      });
+
+    document
+      .querySelectorAll<HTMLDialogElement>("dialog[data-single]")
+      .forEach((dialog) => {
+        const fechar = () => {
+          dialog.close();
+          document.body.style.overflow = "";
+        };
+        // Clique no backdrop (o próprio dialog, já que o conteúdo tem wrapper)
+        dialog.addEventListener("click", (e) => {
+          if (e.target === dialog) fechar();
+        });
+        dialog
+          .querySelector("[data-fechar]")
+          ?.addEventListener("click", fechar);
+        // O Esc nativo dispara "close" sem passar pelos handlers acima
+        dialog.addEventListener("close", () => {
+          document.body.style.overflow = "";
+        });
+      });
+  }
+  document.addEventListener("astro:page-load", initSingles);
+</script>
+
+<style>
+  /* Entrada suave da modal (e nada de animação com reduced motion) */
+  dialog[data-single][open] {
+    animation: single-aparecer 0.2s ease;
+  }
+  @keyframes single-aparecer {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    dialog[data-single][open] {
+      animation: none;
+    }
+  }
+</style>

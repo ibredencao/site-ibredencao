@@ -19,6 +19,8 @@ export interface Musica {
   titulo: string;
   autor: string;
   versao?: string;
+  /** Capa quadrada (public/arquivos/musicas/<slug>-capa.jpg) */
+  capa?: string;
   letra?: string;
   cifra?: string;
   partitura?: string;
@@ -62,18 +64,21 @@ export const SPOTIFY_PODCAST_RSS = "https://anchor.fm/s/f4a394f0/podcast/rss";
 const musicas: Musica[] = [
   {
     titulo: "Sua graça é maior",
+    capa: "/arquivos/musicas/sua-graca-e-maior-capa.jpg",
     autor: "Letra e Música: Matt Boswell, Matt Papa",
     versao: "Versão: Luiz Felipe Moraes (2025)",
     letra: "/arquivos/musicas/sua-graca-e-maior-letra.pdf",
   },
   {
     titulo: "Seu fardo pelo meu",
+    capa: "/arquivos/musicas/seu-fardo-pelo-meu-capa.jpg",
     autor: "Letra: Chris Anderson",
     versao: "Versão: Luiz Felipe Moraes (2026)",
     letra: "/arquivos/musicas/seu-fardo-pelo-meu-letra.pdf",
   },
   {
     titulo: "Tudo o que existe é teu",
+    capa: "/arquivos/musicas/tudo-o-que-existe-e-teu-capa.jpg",
     autor: "Letra e Música: Luiz Felipe Moraes (2026)",
     versao: "",
     letra: "/arquivos/musicas/tudo-o-que-existe-e-teu-letra.pdf",
@@ -81,12 +86,14 @@ const musicas: Musica[] = [
   },
   {
     titulo: "Perante o trono de Deus no céu",
+    capa: "/arquivos/musicas/perante-o-trono-de-deus-no-ceu-capa.jpg",
     autor: "Letra e Música: Charitie Lees Bancroft, Vikki Cook",
     versao: "Versão: Igreja Batista Betel de Mesquita",
     letra: "/arquivos/musicas/perante-o-trono-de-deus-no-ceu-letra.pdf",
   },
   {
     titulo: "Não mais eu, mas Cristo em mim",
+    capa: "/arquivos/musicas/nao-mais-eu-mas-cristo-em-mim-capa.jpg",
     autor: "Letra e Música: J. Robinson, R. Thompson, M. Farren",
     versao: "Versão: Luiz Felipe Moraes, Davi Resende (2025)",
     letra: "/arquivos/musicas/nao-mais-eu-mas-cristo-em-mim-letra.pdf",

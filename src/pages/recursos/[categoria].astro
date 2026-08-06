@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HeroInterno from "../../components/sections/HeroInterno.astro";
 import CardRecurso from "../../components/ui/CardRecurso.astro";
-import CardMusica from "../../components/ui/CardMusica.astro";
+import CardSingle from "../../components/ui/CardSingle.astro";
 import CardArquivo from "../../components/ui/CardArquivo.astro";
 import Btn from "../../components/ui/Btn.astro";
 import Agenda from "../../components/sections/Agenda.astro";
@@ -111,9 +111,9 @@ const gridInterno =
       {
         categoria.layout === "musicas" && (
           <div class={gridWrapper}>
-            <div class:list={[gridInterno, "lg:grid-cols-2"]} data-reveal>
-              {categoria.musicas?.map((m) => (
-                <CardMusica musica={m} />
+            <div class:list={[gridInterno, "lg:grid-cols-3"]} data-reveal>
+              {categoria.musicas?.map((m, i) => (
+                <CardSingle musica={m} indice={i} />
               ))}
             </div>
           </div>
