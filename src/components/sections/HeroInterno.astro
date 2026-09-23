@@ -24,13 +24,15 @@ const { titulo, subtitulo } = Astro.props;
     class="relative mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 pt-40 pb-20 text-center lg:pt-48 lg:pb-28"
   >
     <h1
-      class="font-display text-[clamp(2.75rem,7vw,5rem)] leading-none font-light"
+      class="entrada-hero font-display text-[clamp(2.75rem,7vw,5rem)] leading-none font-light text-balance"
     >
       {titulo}
     </h1>
     {
       subtitulo && (
-        <p class="max-w-xl font-sans text-lg opacity-80">{subtitulo}</p>
+        <p class="entrada-hero max-w-xl font-sans text-lg opacity-80 [--atraso-entrada:80ms]">
+          {subtitulo}
+        </p>
       )
     }
   </div>

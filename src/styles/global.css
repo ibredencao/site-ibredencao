@@ -41,6 +41,9 @@
   --font-ui:
     "Bitter Variable", "Bitter", "Work Sans Variable", "Work Sans", system-ui,
     sans-serif;
+
+  /* Ease-out forte para entradas (as curvas nativas do CSS são fracas) */
+  --ease-saida: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @layer base {
@@ -80,26 +83,106 @@
 
   /*
    * Reveal-on-scroll — ativado por src/scripts/reveal.ts.
+   * [data-reveal]: o bloco entra inteiro. [data-reveal-grupo]: os filhos
+   * diretos entram em cascata (60ms entre cada um — grades de cards).
    * Só escondemos quando há JS (classe .js no <html>): se o JS falhar ou
    * não carregar, o conteúdo continua visível (nunca some para o usuário).
    */
-  .js [data-reveal] {
+  .js [data-reveal],
+  .js [data-reveal-grupo] > * {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(16px);
     transition:
-      opacity 0.7s ease,
-      transform 0.7s ease;
+      opacity 0.6s var(--ease-saida),
+      transform 0.6s var(--ease-saida);
   }
 
-  .js [data-reveal].is-visible {
+  .js [data-reveal].is-visible,
+  .js [data-reveal-grupo].is-visible > * {
     opacity: 1;
     transform: none;
   }
 
+  .js [data-reveal-grupo].is-visible > *:nth-child(2) {
+    transition-delay: 60ms;
+  }
+  .js [data-reveal-grupo].is-visible > *:nth-child(3) {
+    transition-delay: 120ms;
+  }
+  .js [data-reveal-grupo].is-visible > *:nth-child(4) {
+    transition-delay: 180ms;
+  }
+  .js [data-reveal-grupo].is-visible > *:nth-child(5) {
+    transition-delay: 240ms;
+  }
+  .js [data-reveal-grupo].is-visible > *:nth-child(6) {
+    transition-delay: 300ms;
+  }
+  .js [data-reveal-grupo].is-visible > *:nth-child(7) {
+    transition-delay: 360ms;
+  }
+  .js [data-reveal-grupo].is-visible > *:nth-child(8) {
+    transition-delay: 420ms;
+  }
+  .js [data-reveal-grupo].is-visible > *:nth-child(n + 9) {
+    transition-delay: 480ms;
+  }
+
+  /*
+   * Entrada da primeira dobra (heros) — animação CSS que roda no load e nas
+   * navegações do ClientRouter. Opt-in pela media query positiva: com
+   * reduced-motion o elemento simplesmente já nasce visível e parado.
+   * O atraso escalonado vem de --atraso-entrada (utility arbitrária).
+   */
+  /* Só o "from": o fim implícito é o estilo natural do elemento — assim
+     utilities como opacity-80 sobrevivem à animação. */
+  @keyframes entrada-suave {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .entrada-hero {
+      animation: entrada-suave 0.6s var(--ease-saida) both;
+      animation-delay: var(--atraso-entrada, 0s);
+    }
+  }
+
+  /*
+   * Missão (Home): as palavras "acendem" conforme o scroll — script no
+   * HomeHero alterna .acesa por palavra. Sem JS o texto já nasce na cor
+   * plena; a transição de cor é barata (paint de texto, sem layout).
+   */
+  .js [data-acende] > span {
+    color: color-mix(in srgb, currentColor 30%, transparent);
+    transition: color 0.35s linear;
+  }
+
+  .js [data-acende] > span.acesa {
+    color: currentColor;
+  }
+
+  /*
+   * Reduced-motion em camadas, não interruptor: manter um fade curto de
+   * opacidade (sumir/aparecer de supetão também desorienta) e remover
+   * deslocamento e cascata — movimento é o gatilho vestibular, não o fade.
+   * O acender da missão vira texto pleno e parado.
+   */
   @media (prefers-reduced-motion: reduce) {
-    .js [data-reveal] {
-      opacity: 1;
+    .js [data-reveal],
+    .js [data-reveal-grupo] > * {
       transform: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .js [data-reveal-grupo].is-visible > *:nth-child(n) {
+      transition-delay: 0s;
+    }
+
+    .js [data-acende] > span {
+      color: currentColor;
       transition: none;
     }
   }

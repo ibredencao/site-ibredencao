@@ -1,10 +1,14 @@
 /**
  * Reveal-on-scroll minimalista: elementos com [data-reveal] entram com
- * fade + leve deslocamento quando ficam visíveis. Respeita prefers-reduced-motion
- * (nesse caso apenas garante que tudo fique visível).
+ * fade + leve deslocamento quando ficam visíveis; em [data-reveal-grupo]
+ * os filhos diretos entram em cascata (delays no CSS). Com
+ * prefers-reduced-motion tudo fica visível de imediato (o CSS reduz a
+ * entrada a um fade curto, sem deslocamento).
  */
 function initReveal() {
-  const alvos = document.querySelectorAll<HTMLElement>("[data-reveal]");
+  const alvos = document.querySelectorAll<HTMLElement>(
+    "[data-reveal], [data-reveal-grupo]",
+  );
   if (!alvos.length) return;
 
   const semAnimacao = window.matchMedia(

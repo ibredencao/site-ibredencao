@@ -91,7 +91,10 @@ const gridInterno =
             </div>
           ) : sermoes.length > 0 ? (
             <div class={gridWrapper}>
-              <div class:list={[gridInterno, "lg:grid-cols-3"]} data-reveal>
+              <div
+                class:list={[gridInterno, "lg:grid-cols-3"]}
+                data-reveal-grupo
+              >
                 {sermoes.map((item) => (
                   <CardRecurso
                     item={item}
@@ -113,7 +116,7 @@ const gridInterno =
       {
         categoria.layout === "musicas" && (
           <div class={gridWrapper}>
-            <div class:list={[gridInterno, "lg:grid-cols-3"]} data-reveal>
+            <div class:list={[gridInterno, "lg:grid-cols-3"]} data-reveal-grupo>
               {categoria.musicas?.map((m) => (
                 <CardMusica musica={m} />
               ))}
@@ -126,7 +129,7 @@ const gridInterno =
       {
         categoria.layout === "arquivos" && (
           <div class={gridWrapper}>
-            <div class:list={[gridInterno, "lg:grid-cols-3"]} data-reveal>
+            <div class:list={[gridInterno, "lg:grid-cols-3"]} data-reveal-grupo>
               {categoria.arquivos?.map((a) => (
                 <CardArquivo arquivo={a} />
               ))}
