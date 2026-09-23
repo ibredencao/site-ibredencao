@@ -5,16 +5,22 @@ import MoldemImagem from "../components/ui/MoldemImagem.astro";
 import Agenda from "../components/sections/Agenda.astro";
 import OndeEstamos from "../components/sections/OndeEstamos.astro";
 import { blocosHistoria } from "../data/historia";
+import fotoPequenoGrupo from "../assets/historia-pequeno-grupo.jpg";
 import fotoPrimeiroCulto from "../assets/historia-primeiro-culto.jpg";
 import fotoBatismo from "../assets/historia-batismo.jpg";
 import fotoIgrejaReunida from "../assets/historia-igreja-reunida.jpg";
+import fotoEspacoAtual from "../assets/historia-espaco-atual.jpg";
 
 /**
  * Nossa História: blocos de texto intercalados com fotos (16:9), na ordem
- * da narrativa — culto, batismo, igreja reunida. O último bloco fecha sem
- * foto. A foto i fecha o bloco i.
+ * da narrativa — pequeno grupo, primeiro culto, batismo, igreja reunida —
+ * e, fechando a página, o culto no espaço atual. A foto i fecha o bloco i.
  */
 const fotos = [
+  {
+    src: fotoPequenoGrupo,
+    alt: "Pequeno grupo de estudos bíblicos reunido em oração no apartamento da família pastoral",
+  },
   {
     src: fotoPrimeiroCulto,
     alt: "Congregação reunida em oração durante culto da Igreja Batista Redenção",
@@ -26,6 +32,10 @@ const fotos = [
   {
     src: fotoIgrejaReunida,
     alt: "Membros da Igreja Batista Redenção reunidos em confraternização",
+  },
+  {
+    src: fotoEspacoAtual,
+    alt: "Igreja reunida em culto no espaço atual, na Av. Prudente de Morais",
   },
 ];
 ---

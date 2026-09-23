@@ -2,8 +2,9 @@
  * Nossa História — texto do Pr. Filipe (set/2026), dividido em blocos
  * temáticos; entre os blocos a página intercala fotos (MoldemImagem).
  *
- * Blocos: 1) as raízes e o envio; 2) da chegada ao nascimento da igreja;
- * 3) crescimento, serviço e formação; 4) o presente.
+ * Blocos: 1) as raízes e o envio; 2) a chegada e o pequeno grupo;
+ * 3) o nascimento da igreja; 4) crescimento, serviço e formação;
+ * 5) o presente.
  */
 
 export interface BlocoHistoria {
@@ -24,6 +25,10 @@ export const blocosHistoria: BlocoHistoria[] = [
     paragrafos: [
       "Assim, no dia 18 de setembro de 2023, a família pastoral chegou a Natal. Depois de se estabelecer na cidade, deu-se início a um pequeno grupo de estudos bíblicos. A primeira reunião aconteceu no apartamento onde a família estava estabelecida, no dia 17 de outubro de 2023, reunindo sete adultos e quatro crianças.",
       "Aquele pequeno grupo cresceu ao longo dos meses seguintes. O Senhor acrescentou pessoas, fortaleceu relacionamentos e concedeu maturidade àqueles que caminhavam juntos. O que começou em uma sala de apartamento foi tomando forma de uma comunidade que desejava viver o evangelho em comunhão.",
+    ],
+  },
+  {
+    paragrafos: [
       "No dia 2 de março de 2024, pela graça de Deus, a Igreja Batista Redenção nasceu. Vinte e três irmãos assumiram publicamente o compromisso de caminhar juntos como uma igreja local, pactuando uns com os outros e reconhecendo Cristo como Senhor da igreja.",
       "No dia seguinte, 3 de março de 2024, aconteceu o primeiro culto público da igreja, no Hotel Villa Park, com 34 adultos e 7 crianças. Poucos dias depois, no dia 9 de março, foram celebrados os dois primeiros batismos, testemunhando publicamente a obra da graça de Deus na vida daqueles que haviam professado sua fé em Cristo.",
     ],
