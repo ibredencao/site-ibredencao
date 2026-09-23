@@ -5,19 +5,17 @@
 
 //   = espaço não separável: a única quebra possível fica antes de
 // "a salvação", reproduzindo a divisão do design (duas linhas no desktop).
-export const heroTitulo = `"A salvação pertence ao Senhor."`;
+export const heroTitulo = `A salvação pertence ao Senhor`;
 
 /** Referência bíblica exibida como legenda sob o título do hero */
 export const heroReferencia = "Jonas 2.9";
 
 export const missao =
-  "Somos uma igreja que existe para fazer discípulos do Senhor Jesus e, no poder do Espírito Santo, instruí-los no conhecimento de Deus e no caráter cristão, mediante a pregação do evangelho da graça, a fim de que sejam fiéis testemunhas de Cristo na cidade e além, para a glória de Deus Pai.";
+  "Somos uma igreja que existe para fazer discípulos do Senhor Jesus e, no poder do Espírito Santo, instruí-los no conhecimento de Deus e no caráter cristão, mediante a pregação do evangelho da graça, a fim de que sejam fiéis testemunhas de Cristo, para a glória de Deus Pai.";
 
 /** Parágrafos da seção "No que cremos" (resumo na Home). */
 export const noQueCremos: string[] = [
-  "Cremos na Escritura, a Palavra de Deus, como nossa autoridade suprema de fé e prática. Cremos na soberania de Deus sobre todas as coisas. Cremos que o objetivo de toda a nossa vida é glorificar a Deus e deleitar-nos Nele para sempre.",
-  "Cremos nos cinco solas da Reforma Protestante, nas doutrinas da graça e nos distintivos que moldam nossa identidade batista.",
-  "Cremos no Princípio Regulador do Culto. Cremos que a pregação deve ser bíblica, expositiva e cristocêntrica. Cremos que o canto da igreja deve ser congregacional, com a única intenção de louvar o Deus-Trino e as suas obras.",
+  "Somos uma igreja confessional. Isso significa que não apenas afirmamos crer na Bíblia, mas também confessamos publicamente como compreendemos e ensinamos as verdades fundamentais das Escrituras.",
 ];
 
 export const pactoDeMembresia: string[] = [

@@ -24,12 +24,22 @@ const hoverBtn =
 // dentro da tela); centralizado, ele estoura a borda em janelas estreitas.
 const posDropdown =
   alinhamento === "justify-end" ? "right-0" : "left-1/2 -translate-x-1/2";
+
+// Na faixa lg (1024–1279px) os links alinham ao grid do site: a coluna da
+// esquerda começa na col 2 e a da direita termina na col 11 (penúltima).
+// Recuo = 1 coluna + 1 gutter, com coluna = (100vw − 2×40px − 11×40px)/12.
+// De xl em diante os links voltam a ocupar a largura toda do container.
+const recuoLg =
+  alinhamento === "justify-start"
+    ? "lg:pl-[calc((100vw_-_520px)/12_+_40px)] xl:pl-0"
+    : "lg:pr-[calc((100vw_-_520px)/12_+_40px)] xl:pr-0";
 ---
 
 <ul
   class:list={[
     "hidden flex-1 items-center gap-8 lg:flex xl:gap-14",
     alinhamento,
+    recuoLg,
   ]}
 >
   {
@@ -40,7 +50,7 @@ const posDropdown =
             <button
               type="button"
               class:list={[
-                "flex items-center gap-1 font-ui text-[15px] font-medium transition-colors",
+                "flex items-center gap-1 font-ui text-[15px] font-medium transition-colors duration-300",
                 hoverBtn,
               ]}
               aria-haspopup="true"
@@ -54,7 +64,7 @@ const posDropdown =
             </button>
             <div
               class:list={[
-                "invisible absolute top-full pt-3 opacity-0 transition-all duration-200 group-focus-within/drop:visible group-focus-within/drop:opacity-100 group-hover/drop:visible group-hover/drop:opacity-100",
+                "invisible absolute top-full pt-3 opacity-0 transition-all duration-300 group-focus-within/drop:visible group-focus-within/drop:opacity-100 group-hover/drop:visible group-hover/drop:opacity-100",
                 posDropdown,
               ]}
             >
@@ -63,7 +73,7 @@ const posDropdown =
                   <li>
                     <a
                       href={sub.href}
-                      class="flex items-center gap-3 rounded-md py-4 pr-6 pl-4 font-ui text-[15px] font-medium whitespace-nowrap text-preto transition-colors hover:bg-sangue/10 hover:text-sangue"
+                      class="flex items-center gap-3 rounded-md py-4 pr-6 pl-4 font-ui text-[15px] font-medium whitespace-nowrap text-preto transition-colors duration-300 hover:bg-sangue/10 hover:text-sangue"
                     >
                       {sub.icone && <Icone svg={sub.icone} class="size-6" />}
                       {sub.rotulo}
@@ -77,7 +87,7 @@ const posDropdown =
           <a
             href={item.href}
             class:list={[
-              "font-ui text-[15px] font-medium transition-colors",
+              "font-ui text-[15px] font-medium transition-colors duration-300",
               hoverLink,
             ]}
           >

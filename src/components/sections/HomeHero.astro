@@ -11,16 +11,18 @@ import { heroTitulo, heroReferencia, missao } from "../../data/conteudo";
  */
 ---
 
-<section class="relative bg-branco pt-30 lg:pt-[136px] lg:pt-[168px]">
+<section class="relative bg-branco pt-30 lg:pt-[168px]">
   <div
     class="flex flex-col gap-10 px-6 text-center lg:mx-auto lg:max-w-[1585px] lg:items-center lg:px-10"
   >
     <div class="flex flex-col items-center gap-4">
       {
-        /* max-w-xl força a quebra em duas linhas ("Ao Senhor pertence / a
-          salvação"), com o text-balance equilibrando a divisão */
+        /* max-w-* força a quebra em duas linhas; o text-balance do
+          .titulo-hero equilibra a divisão */
       }
-      <h1 class="titulo-hero text-[2.7rem] md:text-5xl lg:text-6xl">
+      <h1
+        class="titulo-hero max-w-sm text-[2.7rem] uppercase md:max-w-lg md:text-5xl lg:max-w-2xl lg:text-6xl"
+      >
         {heroTitulo}
       </h1>
       <p class="font-sans text-[13px] font-medium text-preto/50 uppercase">
@@ -62,7 +64,7 @@ import { heroTitulo, heroReferencia, missao } from "../../data/conteudo";
 <section
   id="missao"
   aria-label="Missão"
-  class="scroll-mt-0 bg-bege pb-20 text-branco lg:pb-20"
+  class="scroll-mt-0 bg-bege pb-20 text-branco"
 >
   <p
     class="px-6 pt-12 font-sans text-lg leading-snug lg:mx-auto lg:max-w-2xl lg:pt-16 lg:text-center lg:text-2xl"

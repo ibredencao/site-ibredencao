@@ -1,11 +1,7 @@
 ---
 import Secao from "../ui/Secao.astro";
 import MoldemImagem from "../ui/MoldemImagem.astro";
-// import Icone from "../ui/Icone.astro";
-import iconeIgreja from "../../assets/icones/igreja.svg?raw";
-import iconeCasa from "../../assets/icones/casa.svg?raw";
 import fotoAgenda from "../../assets/agenda.jpg";
-// import { contato } from "../../data/navegacao";
 import Btn from "../ui/Btn.astro";
 
 /**
@@ -13,13 +9,12 @@ import Btn from "../ui/Btn.astro";
  * Layout: imagem à esquerda, agenda à direita (empilha no mobile).
  */
 const itens = [
-  { icone: iconeIgreja, titulo: "Culto Público", horario: "Domingo, às 10h" },
+  { titulo: "Culto Público", horario: "Domingo, às 10h" },
   {
-    icone: iconeCasa,
     titulo: "Pequenos Grupos",
     horario: "Terças e quintas, às 19h30",
     descricao:
-      "Os pequenos grupos acontecem semanalmente e oferecem a oportunidade de comunhão, oração e estudo da Palavra de Deus junto com outros irmãos que moram na mesma região.",
+      "Os Pequenos Grupos acontecem semanalmente e oferecem um espaço para comunhão, oração e estudo da Palavra de Deus, fortalecendo nossos relacionamentos e nossa caminhada cristã.",
   },
 ];
 ---
@@ -40,10 +35,9 @@ const itens = [
             <li>
               {i > 0 && <hr class="mb-4 border-preto/10" />}
               <div class="flex gap-4">
-                {/* <Icone svg={item.icone} class="size-12 text-bege" /> */}
                 <div class="flex flex-col">
-                  <p class="font-sans text-xl font-medium">{item.titulo}</p>
-                  <p class="tracking-snug font-sans text-lg text-bege">
+                  <h3 class="font-sans text-xl font-medium">{item.titulo}</h3>
+                  <p class="font-sans text-lg leading-snug text-bege">
                     {item.horario}
                   </p>
                   {item.descricao && (
@@ -57,7 +51,7 @@ const itens = [
           ))
         }
       </ul>
-      <Btn href="#onde-estamos" class="w-fit">Entrar em Contato</Btn>
+      <Btn href="#onde-estamos" class="w-fit">Entrar em contato</Btn>
     </div>
 
     <MoldemImagem

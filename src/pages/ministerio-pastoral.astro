@@ -6,16 +6,20 @@ import Agenda from "../components/sections/Agenda.astro";
 import OndeEstamos from "../components/sections/OndeEstamos.astro";
 import fotoPastor from "../assets/filipe-ribeiro.jpg";
 
-// TODO(conteúdo): o primeiro parágrafo é real; os demais são lorem do Figma.
-// Substituir quando o usuário fornecer o texto definitivo, junto com as
-// fotos (primeira 4:5, segunda 16:9) via MoldemImagem src.
+// TODO(conteúdo): falta apenas a segunda foto (16:9) via MoldemImagem src.
+// Bio na coluna ao lado da foto (credenciais + família)...
 const paragrafosIntro: string[] = [
-  "Filipe Ribeiro é pastor da Igreja Batista Redenção. É bacharel em Teologia pelo Seminário Teológico Batista do Sul do Brasil e também serve na Pro Nobis Editora. Casado com Tacyla, é pai de quatro filhos: Cecília, Tito, Teodoro e Tomás.",
-  "Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+  "Filipe Ribeiro é bacharel em Teologia pelo Seminário Teológico Batista do Sul do Brasil, no Rio de Janeiro/RJ, pastor batista filiado à OPBB/RN e colaborador da Pro Nobis Editora.",
+  "É casado com Tacyla desde 2016, com quem tem quatro filhos: Cecília, Tito, Teodoro e Tomás. Ele e sua esposa são pernambucanos de origem, mas passaram a viver no Rio Grande do Norte durante a adolescência. No início de 2017, o casal mudou-se para o Rio de Janeiro com o propósito de estudar e se preparar para o serviço ao Senhor.",
 ];
 
-const paragrafoLargo =
-  "Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in elementum tellus.";
+// ...e a trajetória na faixa larga abaixo.
+const paragrafosLargos: string[] = [
+  "Durante os anos em que viveu no Rio de Janeiro, Filipe conciliou sua formação teológica com diferentes frentes de serviço. Entre 2017 e 2019, ele e Tacyla integraram a equipe da Junta de Missões Nacionais da CBB, tendo Filipe atuado nos setores de Mobilização Missionária e Evangelismo. Nesse período, também serviu como seminarista na Igreja Batista do Jardim Botânico, sob a liderança do pastor Judiclay Santos, e na Igreja Batista Betel de Mesquita/RJ, sob a liderança do pastor Fábio Santos.",
+  "Foi na Igreja Batista Betel de Mesquita que Filipe foi ordenado ao ministério pastoral, em 2021, tornando-se pastor auxiliar. Posteriormente, em 2023, foi enviado a Natal/RN para iniciar a plantação da Igreja Batista Redenção, dando continuidade ao chamado para o ministério pastoral e à preparação que havia marcado os anos anteriores.",
+  "Como parte de sua formação e busca por maior preparo para o ministério, em 2022, fez parte da comitiva de pastores brasileiros que participou do programa intensivo do ministério 9Marks, realizado na Capitol Hill Baptist Church, em Washington, DC, com foco em eclesiologia.",
+  "Atualmente, o pastor Filipe serve na Igreja Batista Redenção, dedicando-se ao ensino das Escrituras, ao cuidado do rebanho e à expansão do evangelho da graça em solo potiguar.",
+];
 ---
 
 <BaseLayout
@@ -25,7 +29,7 @@ const paragrafoLargo =
 >
   <HeroInterno titulo="Ministério Pastoral" />
 
-  <section class="bg-branco py-16 lg:py-24">
+  <section class="bg-branco py-20 lg:py-28">
     <div
       class="mx-auto grid max-w-[1585px] gap-y-10 px-6 lg:grid-cols-12 lg:gap-x-10 lg:px-10"
     >
@@ -52,21 +56,21 @@ const paragrafoLargo =
         />
       </div>
       <div
-        class="flex flex-col gap-6 font-sans text-lg leading-snug lg:col-span-3 lg:col-start-4 lg:row-start-2"
+        class="flex flex-col gap-6 font-sans text-lg leading-relaxed lg:col-span-3 lg:col-start-4 lg:row-start-2"
         data-reveal
       >
         {paragrafosIntro.map((p) => <p>{p}</p>)}
       </div>
 
       {
-        /* Parágrafo largo + segunda foto (16:9), atravessando as duas colunas */
+        /* Parágrafos largos + segunda foto (16:9), atravessando as duas colunas */
       }
-      <p
-        class="font-sans text-lg leading-snug lg:col-span-6 lg:col-start-4"
+      <div
+        class="flex flex-col gap-6 font-sans text-lg leading-relaxed lg:col-span-6 lg:col-start-4"
         data-reveal
       >
-        {paragrafoLargo}
-      </p>
+        {paragrafosLargos.map((p) => <p>{p}</p>)}
+      </div>
       <div class="lg:col-span-6 lg:col-start-4" data-reveal>
         <MoldemImagem proporcao="16/9" class="w-full" />
       </div>

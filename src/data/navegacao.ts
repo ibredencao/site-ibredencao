@@ -51,7 +51,7 @@ export const navEsquerda: ItemNav[] = [
 ];
 
 export const navDireita: ItemNav[] = [
-  { rotulo: "Onde Estamos", href: "#onde-estamos" },
+  { rotulo: "Endereço", href: "#onde-estamos" },
   { rotulo: "Contribua", href: "/contribua" },
   { rotulo: "Recursos", href: "/recursos", dropdown: recursos },
 ];
