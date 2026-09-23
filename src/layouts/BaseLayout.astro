@@ -11,8 +11,9 @@ import { fraseIdentidade } from "../data/conteudo";
 interface Props {
   title: string;
   description?: string;
-  /** Tema inicial do header: "claro" sobre fundo claro (Home), "escuro" sobre hero vinho */
-  temaHeader?: "claro" | "escuro";
+  /** Tema inicial do header: "claro" sobre fundo claro (Home), "escuro"
+   * sobre hero vinho, "foto" sobre hero com foto de fundo */
+  temaHeader?: "claro" | "escuro" | "foto";
 }
 
 const {

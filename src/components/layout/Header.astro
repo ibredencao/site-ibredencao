@@ -8,18 +8,21 @@ import { navEsquerda, navDireita } from "../../data/navegacao";
 /**
  * Dois headers:
  *  1. #header-topo — sobre o hero (transparente), rola JUNTO com a página e some.
- *     tema "claro" (texto escuro, Home) ou "escuro" (texto areia, hero vinho).
+ *     tema "claro" (texto escuro, Home), "escuro" (texto areia, hero vinho)
+ *     ou "foto" (texto branco, hero com foto de fundo — mesma cor do título).
  *  2. #header-fixo — compacto (só o símbolo), fixo no topo. Fica escondido e
  *     desliza para dentro depois que o header do topo desaparece com o scroll.
  *     Sempre sólido (fundo branco, texto escuro), sem sombra.
  */
 interface Props {
-  tema?: "claro" | "escuro";
+  tema?: "claro" | "escuro" | "foto";
 }
 const { tema = "claro" } = Astro.props;
 
-// Sobre o hero vinho (tema escuro) o hover é branco; nos demais casos, vermelho.
-const hoverTopo = tema === "escuro" ? "branco" : "sangue";
+// Sobre o hero vinho (tema escuro) o hover é branco; sobre a foto (texto já
+// branco) o hover esquenta para areia; nos demais casos, vermelho.
+const hoverTopo =
+  tema === "escuro" ? "branco" : tema === "foto" ? "areia" : "sangue";
 
 const navClasse =
   "mx-auto flex max-w-[1585px] items-center gap-10 px-6 py-4 lg:px-10";
@@ -112,6 +115,9 @@ const toggleClasse =
   }
   #header-topo[data-tema="escuro"] {
     color: var(--color-areia);
+  }
+  #header-topo[data-tema="foto"] {
+    color: var(--color-branco);
   }
 
   /* Header fixo: escondido acima da viewport; desliza para dentro quando visível.

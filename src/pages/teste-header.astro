@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroFoto from "../components/sections/HeroFoto.astro";
+import Missao from "../components/sections/Missao.astro";
+import NoQueCremos from "../components/sections/NoQueCremos.astro";
+import Agenda from "../components/sections/Agenda.astro";
+import OndeEstamos from "../components/sections/OndeEstamos.astro";
+
+/**
+ * TESTE (temporário): Home com a foto do culto como fundo do hero em todas
+ * as larguras (HeroFoto), para avaliar a proposta como definitiva.
+ * Se aprovada, o HeroFoto substitui o HomeHero na index e esta página sai.
+ */
+---
+
+<BaseLayout title="Teste do header | Igreja Batista Redenção" temaHeader="foto">
+  <HeroFoto />
+  <Missao />
+  <NoQueCremos />
+  <Agenda />
+  <OndeEstamos />
+</BaseLayout>

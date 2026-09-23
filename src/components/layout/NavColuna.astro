@@ -7,18 +7,29 @@ import type { ItemNav } from "../../data/navegacao";
 interface Props {
   itens: ItemNav[];
   alinhamento: "justify-start" | "justify-end";
-  /** Cor do texto no hover: "sangue" (padrão) ou "branco" (header sobre o hero vinho) */
-  hover?: "sangue" | "branco";
+  /** Cor do texto no hover: "sangue" (padrão), "branco" (hero vinho) ou
+   * "areia" (hero com foto, texto já branco) */
+  hover?: "sangue" | "branco" | "areia";
 }
 const { itens, alinhamento, hover = "sangue" } = Astro.props;
 
 // Classes completas (literais) para o JIT do Tailwind gerar as variantes.
-const hoverLink =
-  hover === "branco" ? "hover:text-branco" : "hover:text-sangue";
-const hoverBtn =
-  hover === "branco"
-    ? "hover:text-branco group-hover/drop:text-branco group-focus-within/drop:text-branco"
-    : "hover:text-sangue group-hover/drop:text-sangue group-focus-within/drop:text-sangue";
+const hovers = {
+  sangue: {
+    link: "hover:text-sangue",
+    btn: "hover:text-sangue group-hover/drop:text-sangue group-focus-within/drop:text-sangue",
+  },
+  branco: {
+    link: "hover:text-branco",
+    btn: "hover:text-branco group-hover/drop:text-branco group-focus-within/drop:text-branco",
+  },
+  areia: {
+    link: "hover:text-areia",
+    btn: "hover:text-areia group-hover/drop:text-areia group-focus-within/drop:text-areia",
+  },
+};
+const hoverLink = hovers[hover].link;
+const hoverBtn = hovers[hover].btn;
 
 // Na coluna da direita o dropdown ancora pela direita do item (abre para
 // dentro da tela); centralizado, ele estoura a borda em janelas estreitas.
