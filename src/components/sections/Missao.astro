@@ -1,0 +1,84 @@
+---
+import { missao } from "../../data/conteudo";
+
+/**
+ * Missão como declaração tipográfica (referência: churchcenteredmissions.org):
+ * rótulo pequeno em areia + frase grande em Collier, à esquerda no grid,
+ * com as palavras acendendo conforme o scroll. Leitores de tela recebem a
+ * frase inteira (sr-only); os spans palavra-a-palavra ficam aria-hidden.
+ * O id fica para deep links.
+ */
+
+// Uma palavra por <span> para o efeito de acender (o espaço vai dentro do
+// span, como texto — some no fim de linha e mantém as quebras naturais).
+const palavrasMissao = missao.split(" ");
+---
+
+<section
+  id="missao"
+  aria-label="Missão"
+  class="scroll-mt-0 bg-bege text-branco"
+>
+  <div
+    class="mx-auto grid max-w-[1585px] gap-y-6 px-6 py-16 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-8 lg:px-10 lg:py-24"
+  >
+    <p
+      class="font-sans text-[13px] font-medium tracking-[0.3em] text-areia uppercase lg:col-span-8 lg:col-start-3"
+      data-reveal
+    >
+      Nossa missão
+    </p>
+    <p
+      class="max-w-[36ch] font-display text-[clamp(1.75rem,3vw,2.75rem)] leading-[1.28] font-light lg:col-span-9 lg:col-start-3"
+    >
+      <span class="sr-only">{missao}</span>
+      <span aria-hidden="true" data-acende
+        >{palavrasMissao.map((palavra) => <span>{palavra + " "}</span>)}</span
+      >
+    </p>
+  </div>
+</section>
+
+<script>
+  // Acende as palavras da missão conforme a frase atravessa o viewport:
+  // progresso 0 com o topo da frase a 88% da tela, 1 com o fundo a 55%.
+  // Só cor (paint de texto) e throttle por rAF — sem custo de layout.
+  function initMissaoAcende() {
+    const bloco = document.querySelector<HTMLElement>("[data-acende]");
+    if (!bloco) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const palavras = [...bloco.querySelectorAll<HTMLElement>(":scope > span")];
+    let agendado = false;
+
+    const atualizar = () => {
+      agendado = false;
+      const r = bloco.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const percorrido = 0.88 * vh - r.top;
+      const total = 0.33 * vh + r.height;
+      const progresso = Math.min(1, Math.max(0, percorrido / total));
+      const acesas = Math.round(progresso * palavras.length);
+      palavras.forEach((p, i) => p.classList.toggle("acesa", i < acesas));
+    };
+
+    const aoRolar = () => {
+      if (agendado) return;
+      agendado = true;
+      requestAnimationFrame(atualizar);
+    };
+
+    atualizar();
+    window.addEventListener("scroll", aoRolar, { passive: true });
+    window.addEventListener("resize", aoRolar, { passive: true });
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        window.removeEventListener("scroll", aoRolar);
+        window.removeEventListener("resize", aoRolar);
+      },
+      { once: true },
+    );
+  }
+  document.addEventListener("astro:page-load", initMissaoAcende);
+</script>

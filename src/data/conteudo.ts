@@ -7,9 +7,9 @@
 export const fraseIdentidade =
   "Firmada no evangelho, dedicada ao discipulado e à glória de Deus.";
 
-//   = espaço não separável: a única quebra possível fica antes de
-// "a salvação", reproduzindo a divisão do design (duas linhas no desktop).
-export const heroTitulo = `A salvação pertence ao Senhor`;
+// \u00A0 = espaço não separável: a única quebra possível fica entre "salvação"
+// e "pertence" — duas linhas equilibradas em qualquer largura.
+export const heroTitulo = `A salvação pertence ao Senhor`;
 
 /** Referência bíblica exibida como legenda sob o título do hero */
 export const heroReferencia = "Jonas 2.9";
