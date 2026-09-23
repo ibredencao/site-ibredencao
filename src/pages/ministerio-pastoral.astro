@@ -6,15 +6,10 @@ import Agenda from "../components/sections/Agenda.astro";
 import OndeEstamos from "../components/sections/OndeEstamos.astro";
 import fotoPastor from "../assets/filipe-ribeiro.jpg";
 
-// TODO(conteúdo): falta apenas a segunda foto (16:9) via MoldemImagem src.
-// Bio na coluna ao lado da foto (credenciais + família)...
-const paragrafosIntro: string[] = [
+// Bio completa do pastor (texto definitivo, set/2026).
+const paragrafos: string[] = [
   "Filipe Ribeiro é bacharel em Teologia pelo Seminário Teológico Batista do Sul do Brasil, no Rio de Janeiro/RJ, pastor batista filiado à OPBB/RN e colaborador da Pro Nobis Editora.",
   "É casado com Tacyla desde 2016, com quem tem quatro filhos: Cecília, Tito, Teodoro e Tomás. Ele e sua esposa são pernambucanos de origem, mas passaram a viver no Rio Grande do Norte durante a adolescência. No início de 2017, o casal mudou-se para o Rio de Janeiro com o propósito de estudar e se preparar para o serviço ao Senhor.",
-];
-
-// ...e a trajetória na faixa larga abaixo.
-const paragrafosLargos: string[] = [
   "Durante os anos em que viveu no Rio de Janeiro, Filipe conciliou sua formação teológica com diferentes frentes de serviço. Entre 2017 e 2019, ele e Tacyla integraram a equipe da Junta de Missões Nacionais da CBB, tendo Filipe atuado nos setores de Mobilização Missionária e Evangelismo. Nesse período, também serviu como seminarista na Igreja Batista do Jardim Botânico, sob a liderança do pastor Judiclay Santos, e na Igreja Batista Betel de Mesquita/RJ, sob a liderança do pastor Fábio Santos.",
   "Foi na Igreja Batista Betel de Mesquita que Filipe foi ordenado ao ministério pastoral, em 2021, tornando-se pastor auxiliar. Posteriormente, em 2023, foi enviado a Natal/RN para iniciar a plantação da Igreja Batista Redenção, dando continuidade ao chamado para o ministério pastoral e à preparação que havia marcado os anos anteriores.",
   "Como parte de sua formação e busca por maior preparo para o ministério, em 2022, fez parte da comitiva de pastores brasileiros que participou do programa intensivo do ministério 9Marks, realizado na Capitol Hill Baptist Church, em Washington, DC, com foco em eclesiologia.",
@@ -33,46 +28,26 @@ const paragrafosLargos: string[] = [
     <div
       class="mx-auto grid max-w-[1585px] gap-y-10 px-6 lg:grid-cols-12 lg:gap-x-10 lg:px-10"
     >
-      {
-        /* Bio à esquerda, primeira foto (4:5) à direita. Título, foto e texto
-          são itens separados do grid: no mobile empilham como título → foto →
-          texto; no desktop a foto ocupa a coluna da direita nas duas linhas. */
-      }
+      {/* Título → foto (16:9) → bio, empilhados na coluna central do grid */}
       <h2
-        class="font-display text-[clamp(1.75rem,3vw,2.7rem)] leading-tight font-light text-bege lg:col-span-3 lg:col-start-4 lg:row-start-1"
+        class="font-display text-[clamp(1.75rem,3vw,2.7rem)] leading-tight font-light text-bege lg:col-span-6 lg:col-start-4"
         data-reveal
       >
         Pastor
       </h2>
-      <div
-        class="lg:col-span-3 lg:col-start-7 lg:row-span-2 lg:row-start-1"
-        data-reveal
-      >
+      <div class="lg:col-span-6 lg:col-start-4" data-reveal>
         <MoldemImagem
           src={fotoPastor}
           alt="Pr. Filipe Ribeiro, pastor da Igreja Batista Redenção"
-          proporcao="4/5"
+          proporcao="16/9"
           class="w-full"
         />
       </div>
       <div
-        class="flex flex-col gap-6 font-sans text-lg leading-relaxed lg:col-span-3 lg:col-start-4 lg:row-start-2"
-        data-reveal
-      >
-        {paragrafosIntro.map((p) => <p>{p}</p>)}
-      </div>
-
-      {
-        /* Parágrafos largos + segunda foto (16:9), atravessando as duas colunas */
-      }
-      <div
         class="flex flex-col gap-6 font-sans text-lg leading-relaxed lg:col-span-6 lg:col-start-4"
         data-reveal
       >
-        {paragrafosLargos.map((p) => <p>{p}</p>)}
-      </div>
-      <div class="lg:col-span-6 lg:col-start-4" data-reveal>
-        <MoldemImagem proporcao="16/9" class="w-full" />
+        {paragrafos.map((p) => <p>{p}</p>)}
       </div>
     </div>
   </section>
