@@ -13,10 +13,12 @@ export const heroReferencia = "Jonas 2.9";
 export const missao =
   "Somos uma igreja que existe para fazer discípulos do Senhor Jesus e, no poder do Espírito Santo, instruí-los no conhecimento de Deus e no caráter cristão, mediante a pregação do evangelho da graça, a fim de que sejam fiéis testemunhas de Cristo, para a glória de Deus Pai.";
 
-/** Parágrafos da seção "No que cremos" (resumo na Home). */
-export const noQueCremos: string[] = [
-  "Somos uma igreja confessional. Isso significa que não apenas afirmamos crer na Bíblia, mas também confessamos publicamente como compreendemos e ensinamos as verdades fundamentais das Escrituras.",
-];
+/** Seção "No que cremos" (Home): frase de abertura em destaque + apoio. */
+export const noQueCremos = {
+  destaque: "Somos uma igreja confessional.",
+  apoio:
+    "Isso significa que não apenas afirmamos crer na Bíblia, mas também confessamos publicamente como compreendemos e ensinamos as verdades fundamentais das Escrituras.",
+};
 
 export const pactoDeMembresia: string[] = [
   "Tendo sido, conforme cremos, trazidos pela graça divina a abraçarmos o Senhor Jesus Cristo e a nos entregarmos inteiramente a Ele, nós, solene e alegremente, firmamos uns com os outros o pacto de andarmos juntos nele em amor fraternal, para a glória de nosso Senhor. Portanto, na força de Deus, comprometemo-nos a:",

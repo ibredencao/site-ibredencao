@@ -9,16 +9,26 @@ import { noQueCremos } from "../../data/conteudo";
 ---
 
 <Secao fundo="branco">
+  {/* Cascata sutil: o bloco de texto entra e a foto o segue (60ms) */}
   <div
     class="grid items-center gap-y-12 lg:grid-cols-12 lg:gap-x-10"
-    data-reveal
+    data-reveal-grupo
   >
     <div class="flex flex-col gap-8 lg:col-span-6 xl:col-span-4 xl:col-start-2">
       <h2 class="titulo-secao">No que cremos</h2>
-      <div
-        class="flex flex-col gap-4 font-sans text-base leading-snug opacity-80"
-      >
-        {noQueCremos.map((paragrafo) => <p>{paragrafo}</p>)}
+      {
+        /* Frase de abertura em Collier (escala entre o título e o corpo) +
+          apoio no padrão de leitura do site */
+      }
+      <div class="flex flex-col gap-5">
+        <p
+          class="font-display text-[clamp(1.4rem,2.2vw,1.9rem)] leading-snug text-balance"
+        >
+          {noQueCremos.destaque}
+        </p>
+        <p class="max-w-md font-sans text-lg leading-relaxed opacity-80">
+          {noQueCremos.apoio}
+        </p>
       </div>
       <Btn href="/confissao-de-fe" icone="seta" class="w-fit">
         Conheça nossa Confissão de Fé
