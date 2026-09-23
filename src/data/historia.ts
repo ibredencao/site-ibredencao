@@ -41,9 +41,7 @@ export const blocosHistoria: BlocoHistoria[] = [
     paragrafos: [
       "Em 2026, a Redenção vive uma nova etapa de sua história, agora reunida em seu espaço na Avenida Prudente de Morais, 5220, onde segue se consolidando como uma igreja local comprometida com Cristo, com sua Palavra e com a missão de fazer discípulos. A igreja permanece consciente de que pertence ao seu Senhor e de que toda a sua história é resultado da graça e da providência de Deus.",
       "Sua história, portanto, não conta sobre aquilo que homens fizeram, mas sobre aquilo que Deus, pela sua graça, fez e continua fazendo.",
+      "Soli Deo Gloria.",
     ],
   },
 ];
-
-/** Fecho da página, em destaque tipográfico. */
-export const fechoHistoria = "Soli Deo Gloria.";

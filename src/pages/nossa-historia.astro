@@ -4,14 +4,13 @@ import HeroInterno from "../components/sections/HeroInterno.astro";
 import MoldemImagem from "../components/ui/MoldemImagem.astro";
 import Agenda from "../components/sections/Agenda.astro";
 import OndeEstamos from "../components/sections/OndeEstamos.astro";
-import { blocosHistoria, fechoHistoria } from "../data/historia";
+import { blocosHistoria } from "../data/historia";
 
 /**
  * Nossa História: blocos de texto intercalados com fotos (16:10).
  * TODO(fotos): trocar os placeholders pelas fotos reais quando chegarem —
  * sugestão por posição: 1) família pastoral / envio; 2) primeiro culto ou
- * batismos; 3) igreja reunida no espaço atual. O último bloco fecha sem
- * foto, com o "Soli Deo Gloria." em destaque.
+ * batismos; 3) igreja reunida no espaço atual. O último bloco fecha sem foto.
  */
 ---
 
@@ -43,10 +42,6 @@ import { blocosHistoria, fechoHistoria } from "../data/historia";
           </>
         ))
       }
-
-      <p class="font-display text-2xl text-bege lg:text-3xl" data-reveal>
-        {fechoHistoria}
-      </p>
     </div>
   </section>
 
