@@ -8,6 +8,7 @@ import email from "../../assets/icones/email.svg?raw";
 import whatsapp from "../../assets/icones/whatsapp.svg?raw";
 import setaDireita from "../../assets/icones/seta-direita.svg?raw";
 import { contato, navEsquerda, navDireita } from "../../data/navegacao";
+import { fraseIdentidade } from "../../data/conteudo";
 
 // Mesmos itens da barra de navegação (fonte única em navegacao.ts).
 // Dropdowns apontam para o primeiro subitem. Âncoras ficam relativas
@@ -47,12 +48,15 @@ const { endereco } = contato;
         (diferente do header, que só recua na faixa lg). */
     }
     <div class="grid gap-12 lg:grid-cols-12 lg:gap-x-10">
-      {/* Marca + redes sociais */}
-      <div class="flex flex-col gap-8 lg:col-span-3 lg:col-start-2">
+      {/* Marca + frase-identidade + redes sociais */}
+      <div class="flex flex-col gap-6 lg:col-span-3 lg:col-start-2">
         <Icone
           svg={logo}
           class="h-9 w-auto self-start text-branco [&>svg]:w-auto"
         />
+        <p class="max-w-[30ch] font-sans text-base leading-relaxed opacity-80">
+          {fraseIdentidade}
+        </p>
         <ul class="flex gap-4">
           {
             redes.map((rede) => (

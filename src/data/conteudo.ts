@@ -3,6 +3,10 @@
  * Editar aqui — não hardcodar nos componentes.
  */
 
+/** Frase-identidade da igreja — meta description e bloco da marca no rodapé. */
+export const fraseIdentidade =
+  "Firmada no evangelho, dedicada ao discipulado e à glória de Deus.";
+
 //   = espaço não separável: a única quebra possível fica antes de
 // "a salvação", reproduzindo a divisão do design (duas linhas no desktop).
 export const heroTitulo = `A salvação pertence ao Senhor`;

@@ -3,6 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import "@fontsource-variable/work-sans";
 import "@fontsource-variable/bitter";
 import "../styles/global.css";
+import { fraseIdentidade } from "../data/conteudo";
 
 /**
  * Layout mínimo para páginas soltas, sem o chrome do site (Header, Footer,
@@ -17,7 +18,7 @@ interface Props {
 
 const {
   title,
-  description = "Igreja Batista Redenção — Firmada no evangelho, dedicada ao discipulado e à glória de Deus.",
+  description = `Igreja Batista Redenção — ${fraseIdentidade}`,
   fundo = "areia",
 } = Astro.props;
 
