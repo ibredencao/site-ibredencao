@@ -151,24 +151,9 @@
   }
 
   /*
-   * Missão (Home): as palavras "acendem" conforme o scroll — script no
-   * HomeHero alterna .acesa por palavra. Sem JS o texto já nasce na cor
-   * plena; a transição de cor é barata (paint de texto, sem layout).
-   */
-  .js [data-acende] > span {
-    color: color-mix(in srgb, currentColor 30%, transparent);
-    transition: color 0.35s linear;
-  }
-
-  .js [data-acende] > span.acesa {
-    color: currentColor;
-  }
-
-  /*
    * Reduced-motion em camadas, não interruptor: manter um fade curto de
    * opacidade (sumir/aparecer de supetão também desorienta) e remover
    * deslocamento e cascata — movimento é o gatilho vestibular, não o fade.
-   * O acender da missão vira texto pleno e parado.
    */
   @media (prefers-reduced-motion: reduce) {
     .js [data-reveal],
@@ -179,11 +164,6 @@
 
     .js [data-reveal-grupo].is-visible > *:nth-child(n) {
       transition-delay: 0s;
-    }
-
-    .js [data-acende] > span {
-      color: currentColor;
-      transition: none;
     }
   }
 }

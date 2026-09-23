@@ -1,6 +1,9 @@
 ---
 import Secao from "../ui/Secao.astro";
 import Btn from "../ui/Btn.astro";
+import Icone from "../ui/Icone.astro";
+import whatsapp from "../../assets/icones/whatsapp.svg?raw";
+import email from "../../assets/icones/email.svg?raw";
 import { contato } from "../../data/navegacao";
 
 /**
@@ -44,8 +47,22 @@ const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
           </p>
         </div>
         <div class="flex flex-wrap gap-6">
-          <Btn href={contato.whatsapp.href} variant="outline"> WhatsApp </Btn>
-          <Btn href={`mailto:${contato.email}`} variant="outline"> E-mail </Btn>
+          <Btn
+            href={contato.whatsapp.href}
+            variant="outline"
+            class="items-center gap-2"
+          >
+            <Icone svg={whatsapp} class="size-5" />
+            WhatsApp
+          </Btn>
+          <Btn
+            href={`mailto:${contato.email}`}
+            variant="outline"
+            class="items-center gap-2"
+          >
+            <Icone svg={email} class="size-5" />
+            E-mail
+          </Btn>
         </div>
       </div>
     </div>

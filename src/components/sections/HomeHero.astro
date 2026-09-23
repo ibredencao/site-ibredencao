@@ -1,63 +1,82 @@
 ---
 import { Image } from "astro:assets";
 import Btn from "../ui/Btn.astro";
+import Icone from "../ui/Icone.astro";
+import setaBaixo from "../../assets/icones/seta-baixo.svg?raw";
 import heroCulto from "../../assets/hero.jpg";
 import { heroTitulo, heroReferencia } from "../../data/conteudo";
 
 /**
- * Hero da Home: título + CTAs sobre fundo claro, foto do culto que avança
- * sobre a faixa marrom, metade sobre o creme e metade sobre o marrom
- * (como no Figma). A variante com a foto de fundo vive em HeroFoto.astro
- * (em teste na página /teste-header).
+ * Hero da Home: a foto do culto como fundo em todas as larguras
+ * (referência: churchcenteredmissions.org) — tela cheia, véu de gradiente
+ * para legibilidade e texto em branco/areia por cima.
+ * O header sobre este hero usa temaHeader="foto" (texto branco, a mesma
+ * cor do título).
  */
 ---
 
-<section class="relative bg-branco pt-30 lg:pt-[168px]">
+<section
+  class="relative flex min-h-[100svh] flex-col justify-center overflow-hidden pt-20 pb-16"
+>
+  <div class="absolute inset-0">
+    <Image
+      src={heroCulto}
+      alt="Congregação reunida durante um culto na Igreja Batista Redenção"
+      class="h-full w-full object-cover"
+      widths={[640, 1024, 1440, 1920]}
+      sizes="100vw"
+      loading="eager"
+    />
+    {/* Véu para legibilidade do texto sobre a foto */}
+    <div
+      class="absolute inset-0 bg-[linear-gradient(to_bottom,color-mix(in_srgb,var(--color-preto)_68%,transparent),color-mix(in_srgb,var(--color-preto)_50%,transparent)_38%,color-mix(in_srgb,var(--color-preto)_56%,transparent)_62%,color-mix(in_srgb,var(--color-preto)_80%,transparent))]"
+    >
+    </div>
+    {
+      /* Gradiente extra sob a barra de navegação (empilhado sobre o véu,
+        como o scrim da referência): reforça o contraste dos links no topo */
+    }
+    <div
+      class="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-preto/50 to-transparent lg:h-44"
+    >
+    </div>
+  </div>
+
   <div
-    class="flex flex-col gap-10 px-6 text-center lg:mx-auto lg:max-w-[1585px] lg:items-center lg:px-10"
+    class="relative mx-auto flex w-full max-w-[1585px] flex-col gap-10 px-6 text-center text-branco lg:items-center lg:px-10"
   >
     <div class="flex flex-col items-center gap-4">
+      {/* Eyebrow discreto, como o "WELCOME" da referência */}
+      <p
+        class="entrada-hero font-sans text-[13px] font-medium tracking-[0.3em] text-areia uppercase"
+      >
+        Bem-vindo
+      </p>
       {
-        /* Os espaços não separáveis do heroTitulo garantem a quebra única
-          entre "salvação" e "pertence" — duas linhas em qualquer largura */
+        /* Caixa natural (sem uppercase), em escala de capa.
+          No mobile o clamp segue a largura da tela (~11.5vw) e o título
+          avança de leve sobre o respiro lateral, como display de capa. */
       }
       <h1
-        class="titulo-hero entrada-hero text-[clamp(2.25rem,12.3vw,3.25rem)] md:max-w-lg md:text-5xl lg:max-w-2xl lg:text-6xl"
+        class="titulo-hero entrada-hero text-[clamp(2.25rem,12.3vw,3.25rem)] [--atraso-entrada:80ms] md:max-w-lg md:text-6xl lg:max-w-2xl lg:text-7xl"
       >
         {heroTitulo}
       </h1>
       <p
-        class="entrada-hero font-sans text-[13px] font-medium text-preto/50 uppercase [--atraso-entrada:80ms]"
+        class="entrada-hero font-sans text-[13px] font-medium text-areia uppercase [--atraso-entrada:160ms]"
       >
         {heroReferencia}
       </p>
     </div>
-    <div
-      class="entrada-hero flex justify-center gap-5 [--atraso-entrada:160ms]"
-    >
-      <Btn href="/#onde-estamos" class="w-full px-4! lg:w-auto lg:px-9!"
-        >Onde estamos</Btn
-      >
-      <Btn
-        href="/confissao-de-fe"
-        variant="outline"
-        class="w-full px-4! lg:w-auto lg:px-9!">Confissão de fé</Btn
-      >
-    </div>
-  </div>
-
-  {/* Zona de sobreposição: foto sobre a faixa marrom */}
-  <div class="relative mt-14 lg:mt-20">
-    <div class="absolute inset-x-0 top-[55%] bottom-0 bg-bege"></div>
-    <div class="relative mx-auto max-w-[1585px] px-6 lg:px-10">
-      <Image
-        src={heroCulto}
-        alt="Congregação reunida durante um culto na Igreja Batista Redenção"
-        class="aspect-square w-full rounded-xl object-cover lg:aspect-[1584/784]"
-        widths={[640, 1024, 1440, 1600]}
-        sizes="(max-width: 1600px) 100vw, 1585px"
-        loading="eager"
-      />
+    {
+      /* CTA único: convite para descer até a missão (a seta-baixo reforça a
+        direção; o scroll suave da âncora é o do Lenis) */
+    }
+    <div class="entrada-hero flex justify-center [--atraso-entrada:240ms]">
+      <Btn href="#missao" class="items-center">
+        Conhecer a igreja
+        <Icone svg={setaBaixo} class="size-5" />
+      </Btn>
     </div>
   </div>
 </section>
