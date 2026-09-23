@@ -5,13 +5,29 @@ import MoldemImagem from "../components/ui/MoldemImagem.astro";
 import Agenda from "../components/sections/Agenda.astro";
 import OndeEstamos from "../components/sections/OndeEstamos.astro";
 import { blocosHistoria } from "../data/historia";
+import fotoPrimeiroCulto from "../assets/historia-primeiro-culto.jpg";
+import fotoBatismo from "../assets/historia-batismo.jpg";
+import fotoIgrejaReunida from "../assets/historia-igreja-reunida.jpg";
 
 /**
- * Nossa História: blocos de texto intercalados com fotos (16:10).
- * TODO(fotos): trocar os placeholders pelas fotos reais quando chegarem —
- * sugestão por posição: 1) família pastoral / envio; 2) primeiro culto ou
- * batismos; 3) igreja reunida no espaço atual. O último bloco fecha sem foto.
+ * Nossa História: blocos de texto intercalados com fotos (16:9), na ordem
+ * da narrativa — culto, batismo, igreja reunida. O último bloco fecha sem
+ * foto. A foto i fecha o bloco i.
  */
+const fotos = [
+  {
+    src: fotoPrimeiroCulto,
+    alt: "Congregação reunida em oração durante culto da Igreja Batista Redenção",
+  },
+  {
+    src: fotoBatismo,
+    alt: "Pr. Filipe Ribeiro celebrando o batismo de um irmão",
+  },
+  {
+    src: fotoIgrejaReunida,
+    alt: "Membros da Igreja Batista Redenção reunidos em confraternização",
+  },
+];
 ---
 
 <BaseLayout
@@ -34,9 +50,14 @@ import { blocosHistoria } from "../data/historia";
                 <p>{p}</p>
               ))}
             </div>
-            {i < blocosHistoria.length - 1 && (
+            {fotos[i] && (
               <div data-reveal>
-                <MoldemImagem proporcao="16/10" class="w-full" />
+                <MoldemImagem
+                  src={fotos[i].src}
+                  alt={fotos[i].alt}
+                  proporcao="16/9"
+                  class="w-full"
+                />
               </div>
             )}
           </>
