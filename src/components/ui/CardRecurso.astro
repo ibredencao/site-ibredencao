@@ -24,7 +24,7 @@ const aspectoClasse = aspecto === "square" ? "aspect-square" : "aspect-video";
 >
   <div
     class:list={[
-      "relative overflow-hidden rounded-xl bg-areia/60",
+      "relative overflow-hidden rounded-lg bg-areia/60",
       aspectoClasse,
     ]}
   >
@@ -48,11 +48,11 @@ const aspectoClasse = aspecto === "square" ? "aspect-square" : "aspect-video";
     }
   </div>
   <div class="flex flex-col gap-3">
-    <p
-      class="font-sans text-base font-semibold transition-colors group-hover:text-sangue"
+    <h3
+      class="font-sans text-base font-semibold transition-colors duration-300 group-hover:text-sangue"
     >
       {item.titulo}
-    </p>
+    </h3>
     {
       item.data && (
         <div class="flex items-center gap-1.5 opacity-50">

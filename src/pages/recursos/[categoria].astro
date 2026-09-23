@@ -52,22 +52,24 @@ const gridInterno =
 ---
 
 <BaseLayout
-  title={`${categoria.titulo} — Igreja Batista Redenção`}
+  title={`${categoria.titulo} | Igreja Batista Redenção`}
   description={`${categoria.titulo} da Igreja Batista Redenção.`}
   temaHeader="escuro"
 >
   <HeroInterno titulo={categoria.titulo} />
 
-  <section class="bg-branco py-16 lg:py-24">
+  <section class="bg-branco py-20 lg:py-28">
     <div class="mx-auto max-w-[1585px] px-6 lg:px-10">
       {
         categoria.intro && (
-          <p
-            class="mb-12 max-w-3xl font-sans text-lg leading-relaxed lg:mb-16 lg:ml-[8.5%]"
-            data-reveal
-          >
-            {categoria.intro}
-          </p>
+          <div class:list={[gridWrapper, "mb-12 lg:mb-16"]}>
+            <p
+              class="max-w-3xl font-sans text-lg leading-relaxed lg:col-span-10 lg:col-start-2"
+              data-reveal
+            >
+              {categoria.intro}
+            </p>
+          </div>
         )
       }
 
@@ -111,7 +113,7 @@ const gridInterno =
       {
         categoria.layout === "musicas" && (
           <div class={gridWrapper}>
-            <div class:list={[gridInterno, "lg:grid-cols-2"]} data-reveal>
+            <div class:list={[gridInterno, "lg:grid-cols-3"]} data-reveal>
               {categoria.musicas?.map((m) => (
                 <CardMusica musica={m} />
               ))}

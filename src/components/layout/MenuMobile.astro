@@ -1,8 +1,15 @@
 ---
-// import logo from "../../assets/logo.svg?raw";
 import Icone from "../ui/Icone.astro";
 import setaBaixo from "../../assets/icones/seta-baixo.svg?raw";
-import { aIgreja, recursos } from "../../data/navegacao";
+import { navEsquerda, navDireita } from "../../data/navegacao";
+
+// Mesmos itens (e mesma ordem) da barra de navegação — fonte única em
+// navegacao.ts. Âncoras ganham "/" na frente: o menu pode ser aberto em
+// páginas que não têm as seções #agenda/#onde-estamos.
+const itens = [...navEsquerda, ...navDireita].map((item) => ({
+  ...item,
+  href: item.href?.startsWith("#") ? `/${item.href}` : item.href,
+}));
 ---
 
 {
@@ -26,69 +33,38 @@ import { aIgreja, recursos } from "../../data/navegacao";
     class="flex flex-col gap-8 px-[30px] pt-26 pb-[calc(6rem+env(safe-area-inset-bottom))]"
     aria-label="Menu"
   >
-    <a href="/" class="font-ui text-xl font-medium text-preto">Início</a>
-
-    <details class="group">
-      <summary
-        class="flex cursor-pointer list-none items-center gap-1 font-ui text-xl font-medium text-preto"
-      >
-        A igreja
-        <Icone
-          svg={setaBaixo}
-          class="size-6 transition-transform duration-300 group-open:rotate-180"
-        />
-      </summary>
-      <ul class="mt-4 flex flex-col">
-        {
-          aIgreja.map((sub) => (
-            <li>
-              <a
-                href={sub.href}
-                class="flex items-center gap-3 py-4 font-sans text-base text-preto"
-              >
-                {sub.icone && <Icone svg={sub.icone} class="size-6" />}
-                {sub.rotulo}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </details>
-
-    <a href="/#agenda" class="font-ui text-xl font-medium text-preto">Agenda</a>
-    <a href="/#onde-estamos" class="font-ui text-xl font-medium text-preto">
-      Onde Estamos
-    </a>
-    <a href="/contribua" class="font-ui text-xl font-medium text-preto">
-      Contribua
-    </a>
-
-    <details class="group">
-      <summary
-        class="flex cursor-pointer list-none items-center gap-1 font-ui text-xl font-medium text-preto"
-      >
-        Recursos
-        <Icone
-          svg={setaBaixo}
-          class="size-6 transition-transform duration-300 group-open:rotate-180"
-        />
-      </summary>
-      <ul class="mt-4 flex flex-col">
-        {
-          recursos.map((sub) => (
-            <li>
-              <a
-                href={sub.href}
-                class="flex items-center gap-3 py-4 font-sans text-base text-preto"
-              >
-                {sub.icone && <Icone svg={sub.icone} class="size-6" />}
-                {sub.rotulo}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </details>
+    {
+      itens.map((item) =>
+        item.dropdown ? (
+          <details class="group">
+            <summary class="flex cursor-pointer list-none items-center gap-1 font-ui text-xl font-medium text-preto">
+              {item.rotulo}
+              <Icone
+                svg={setaBaixo}
+                class="size-6 transition-transform duration-300 group-open:rotate-180"
+              />
+            </summary>
+            <ul class="mt-4 flex flex-col">
+              {item.dropdown.map((sub) => (
+                <li>
+                  <a
+                    href={sub.href}
+                    class="flex items-center gap-3 py-4 font-sans text-base text-preto"
+                  >
+                    {sub.icone && <Icone svg={sub.icone} class="size-6" />}
+                    {sub.rotulo}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        ) : (
+          <a href={item.href} class="font-ui text-xl font-medium text-preto">
+            {item.rotulo}
+          </a>
+        ),
+      )
+    }
   </nav>
 </div>
 

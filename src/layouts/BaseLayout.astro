@@ -19,6 +19,8 @@ const {
   description = "Igreja Batista Redenção — Firmada no evangelho, dedicada ao discipulado e à glória de Deus.",
   temaHeader = "claro",
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -33,8 +35,16 @@ const {
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#EFECE1" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Igreja Batista Redenção" />
+    <meta property="og:locale" content="pt_BR" />
     <title>{title}</title>
     <ClientRouter />
   </head>

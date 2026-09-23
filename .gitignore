@@ -15,3 +15,8 @@ node_modules/
 
 # logs
 npm-debug.log*
+
+# skills de agente (npx skills add) — ferramenta local, fora do site
+.agents/
+.claude/skills/
+skills-lock.json

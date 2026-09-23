@@ -49,7 +49,7 @@ const classeRefBotao =
           class="group border-b border-preto/10 bg-creme lg:border-0 lg:bg-transparent"
         >
           <summary
-            class="text-md flex cursor-pointer list-none items-center justify-between gap-2 px-6 py-4 font-sans font-semibold text-preto uppercase lg:pointer-events-none lg:p-0 lg:text-xl lg:font-medium lg:normal-case"
+            class="flex cursor-pointer list-none items-center justify-between gap-2 px-6 py-4 font-sans text-base font-semibold text-preto uppercase lg:pointer-events-none lg:p-0 lg:text-xl lg:font-medium lg:normal-case"
           >
             Índice
             <Icone
@@ -72,7 +72,7 @@ const classeRefBotao =
                   <li>
                     <a
                       href={`#${a.slug}`}
-                      class="font-ui text-base leading-0! opacity-70 transition-colors hover:text-sangue hover:opacity-100"
+                      class="font-ui text-base leading-tight opacity-70 transition-colors duration-300 hover:text-sangue hover:opacity-100"
                     >
                       {a.titulo}
                     </a>
@@ -82,7 +82,7 @@ const classeRefBotao =
               <li>
                 <a
                   href="#nota"
-                  class="font-sans text-base transition-colors hover:text-sangue"
+                  class="font-ui text-base opacity-70 transition-colors duration-300 hover:text-sangue hover:opacity-100"
                 >
                   Nota
                 </a>

@@ -53,6 +53,13 @@
     @apply bg-branco font-sans text-preto antialiased;
     @apply selection:bg-areia selection:text-preto;
   }
+
+  /* Foco visível consistente (teclado): currentColor se adapta ao contexto —
+     escuro sobre fundos claros, claro sobre o vinho do rodapé/hero. */
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
 }
 
 @layer components {
@@ -61,12 +68,14 @@
     @apply font-display font-light;
     font-size: clamp(2.25rem, 5vw, 3.7rem);
     line-height: 1.12;
+    text-wrap: balance;
   }
 
   .titulo-secao {
     @apply font-display font-normal;
     font-size: clamp(2rem, 4vw, 3.5rem);
     line-height: 1.2;
+    text-wrap: balance;
   }
 
   /*
