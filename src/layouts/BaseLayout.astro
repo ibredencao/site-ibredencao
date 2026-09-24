@@ -23,6 +23,21 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
+
+// Script inline do GA4 (page_view manual por causa das View Transitions)
+const gaInline = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag("js", new Date());
+  gtag("config", "G-87S7BX37GF", { send_page_view: false });
+  document.addEventListener("astro:page-load", () => {
+    gtag("event", "page_view", {
+      page_location: window.location.href,
+      page_title: document.title,
+    });
+  });
+`;
+
 const ogImage = new URL("/og.jpg", Astro.site);
 ---
 
@@ -59,6 +74,22 @@ const ogImage = new URL("/og.jpg", Astro.site);
     <meta name="twitter:image" content={ogImage} />
     <title>{title}</title>
     <ClientRouter />
+    {
+      /* Google Analytics (GA4) — só em produção; page_view manual no
+        astro:page-load porque as View Transitions não recarregam a página */
+    }
+    {
+      import.meta.env.PROD && (
+        <Fragment>
+          <script
+            is:inline
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-87S7BX37GF"
+          />
+          <script is:inline set:html={gaInline} />
+        </Fragment>
+      )
+    }
   </head>
   <body>
     <Header tema={temaHeader} />

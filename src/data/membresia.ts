@@ -63,8 +63,7 @@ export const passosMembresia: PassoMembresia[] = [
 
 export const chamadaMembresia = {
   titulo: "Quer fazer parte da Igreja Batista Redenção?",
-  texto:
-    "Se você deseja ser membro da nossa igreja, entre em contato conosco para saber mais sobre esse processo.",
+  texto: "Entre em contato conosco para saber mais sobre esse processo.",
   link: "#onde-estamos",
   rotuloBotao: "Entrar em contato",
 };

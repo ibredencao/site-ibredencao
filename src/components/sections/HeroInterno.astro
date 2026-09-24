@@ -48,14 +48,14 @@ const linhasTitulo = dividirTitulo(titulo);
       a partir de lg, centrado como no design original. */
   }
   <div
-    class="relative mx-auto flex max-w-3xl flex-col gap-6 px-6 pt-40 pb-20 text-left lg:items-center lg:pt-48 lg:pb-28 lg:text-center"
+    class="relative mx-auto flex max-w-3xl flex-col gap-6 px-6 pt-40 pb-20 text-left lg:max-w-5xl lg:items-center lg:pt-48 lg:pb-28 lg:text-center"
   >
     <h1
       class="entrada-hero font-display text-[3.75rem] leading-[1.1] font-light md:text-[clamp(3rem,7.5vw,5.75rem)]"
     >
-      {linhasTitulo[0]}
-      {linhasTitulo[1] && <br />}
-      {linhasTitulo[1]}
+      {linhasTitulo[0]}{linhasTitulo[1] && <br class="lg:hidden" />}{
+        linhasTitulo[1] ? ` ${linhasTitulo[1]}` : ""
+      }
     </h1>
     {
       subtitulo && (
