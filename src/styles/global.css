@@ -57,6 +57,13 @@
     @apply selection:bg-areia selection:text-preto;
   }
 
+  /* Negrito da casa: semibold (600), o peso forte usado em todo o site —
+     o bold padrão do navegador (700) fica pesado demais na Work Sans. */
+  strong,
+  b {
+    font-weight: 600;
+  }
+
   /* Texto corrido sem viúvas: o navegador reequilibra as últimas quebras
      para não sobrar palavra sozinha na linha final (progressive
      enhancement — ignorado onde não há suporte). Títulos usam balance. */

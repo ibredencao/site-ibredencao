@@ -466,25 +466,36 @@ export const artigosConfissao: ArtigoConfissao[] = [
   },
 ];
 
+// A Nota aceita formatação inline (<strong>/<em>) — renderizada com set:html.
 export const notaConfissao: BlocoConfissao[] = [
   {
     tipo: "p",
     texto:
-      "A confissão de fé exposta acima, do artigo I ao XVIII, corresponde integralmente à Confissão de Fé de New Hampshire, exceto no acréscimo de algumas proposições ao artigo XV, que foi inserido à partir da CFB1689, capítulo 22, parágrafo 7. Uma associação de igrejas batistas no nordeste dos Estados Unidos ratificou essa confissão de fé, pela primeira vez, em 1833. Posteriormente, um de seus autores, J. Newton Brown, aperfeiçoou, gramaticalmente, à sua linguagem e acrescentou dois artigos importantes: o arrependimento e a fé (artigo VIII) e a santificação (artigo X). Ele e vários outros pastores renomados optaram por essa revisão de 1853, inserindo-a em seus manuais de igreja publicados, de modo a disseminar a CFNH por todo o território dos Estados Unidos. Em consequência, a revisão da CFNH, com seus 18 artigos, tornou-se o compêndio doutrinário preferido dos corpos batistas no norte e no sul dos Estados Unidos.",
+      "A Confissão de Fé exposta acima, do artigo I ao XVIII, corresponde integralmente à <strong>Confissão de Fé de New Hampshire (CFNH)</strong>, exceto pelo acréscimo de algumas proposições ao artigo XV, extraídas da <em>Confissão de Fé Batista de Londres de 1689</em>, capítulo 22, parágrafo 7.",
   },
   {
     tipo: "p",
     texto:
-      "Zacharias C. Taylor, missionário pioneiro no Brasil ligado aos batistas do Sul, por meio da Junta de Missões Estrangeiras, traduziu a CFNH no primeiro ano após a sua chegada. Em 1883, ele publicou esse documento, junto com o Pacto de Igreja, ao lado de questões de governança e ordem da igreja. Seu esforço produziu o primeiro manual de igreja batista em língua portuguesa. Com efeito, a CFNH e seu Pacto de Igreja seriam afirmados na fundação da Primeira Igreja Batista do Rio de Janeiro e em muitas outras igrejas batistas no Brasil.",
+      "A <strong>Confissão de Fé de New Hampshire</strong> foi redigida pelo Rev. <strong>John Newton Brown (1803–1868)</strong>, no estado de New Hampshire, Estados Unidos, por volta de 1833, e publicada por uma comissão da Convenção Batista daquele estado. Posteriormente, foi adotada pela mesma Convenção e passou a influenciar outras confissões, tornando-se uma das declarações de fé batistas mais amplamente aceitas e utilizadas nos Estados Unidos. Ela serviu, por exemplo, como estrutura para a <strong>Mensagem &amp; Fé Batista 2000</strong> (<em>Baptist Faith &amp; Message 2000</em>), da Convenção Batista do Sul dos EUA. Sem dúvida, trata-se de uma declaração clara e concisa da fé batista, em harmonia com as doutrinas presentes em confissões mais antigas, além de ser relativamente breve.",
   },
   {
     tipo: "p",
     texto:
-      "Além disso, a CFNH tem ajudado, ao longo das décadas, no desenvolvimento de outras confissões doutrinárias. Ela serviu, por exemplo, como a estrutura de Mensagem & Fé Batista 2000, para as igrejas em cooperação com a Convenção Batista do Sul e, em algum grau, para a Declaração Doutrinária da Convenção Batista Brasileira. Não obstante, algumas membresias adotam a CFNH praticamente da forma como Brown a revisou, há quase dois séculos.",
+      "<strong>Zacharias C. Taylor</strong>, missionário pioneiro no Brasil ligado aos batistas do Sul dos Estados Unidos por meio da Junta de Missões Estrangeiras, traduziu a CFNH no primeiro ano após sua chegada ao país. Em 1883, publicou esse documento juntamente com o Pacto de Igreja, além de questões relacionadas à governança e à ordem da igreja. Esse trabalho resultou no primeiro manual de igreja batista em língua portuguesa. Com efeito, a CFNH e seu Pacto de Igreja foram afirmados na fundação da <strong>Primeira Igreja Batista do Rio de Janeiro</strong> e, posteriormente, por muitas outras igrejas batistas no Brasil.",
   },
   {
     tipo: "p",
     texto:
-      "Já o artigo XIX – FAMÍLIA, da confissão de fé exposta acima, corresponde ao artigo XVIII da declaração doutrinária Mensagem & Fé Batista 2000 (Baptist Faith & Message 2000). Essa é uma confissão de fé adotada pela Convenção Batista do Sul, uma das maiores denominações batistas nos Estados Unidos.",
+      "Além disso, a CFNH contribuiu como base para a <strong>Declaração Doutrinária da Convenção Batista Brasileira</strong>, elaborada na década de 1980. Não obstante, algumas igrejas batistas independentes continuam adotando a CFNH praticamente na forma como foi apresentada e revisada por Brown há quase dois séculos.",
+  },
+  {
+    tipo: "p",
+    texto:
+      "Já o <strong>artigo XIX – FAMÍLIA</strong>, da confissão de fé exposta acima, corresponde ao <strong>artigo XVIII da Mensagem &amp; Fé Batista 2000</strong> (<em>Baptist Faith &amp; Message 2000</em>).",
+  },
+  {
+    tipo: "p",
+    texto:
+      "A liderança da <strong>Igreja Batista Redenção</strong> também entende a <em>Confissão de Fé Batista de Londres de 1689</em> como uma exposição fiel do que a Bíblia ensina.",
   },
 ];
