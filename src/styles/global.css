@@ -57,6 +57,14 @@
     @apply selection:bg-areia selection:text-preto;
   }
 
+  /* Texto corrido sem viúvas: o navegador reequilibra as últimas quebras
+     para não sobrar palavra sozinha na linha final (progressive
+     enhancement — ignorado onde não há suporte). Títulos usam balance. */
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
   /* Foco visível consistente (teclado): currentColor se adapta ao contexto —
      escuro sobre fundos claros, claro sobre o vinho do rodapé/hero. */
   :focus-visible {
