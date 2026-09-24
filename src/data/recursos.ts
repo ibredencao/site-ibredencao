@@ -146,7 +146,7 @@ export const categoriasRecursos: CategoriaRecurso[] = [
   },
   {
     slug: "arquivos",
-    titulo: "Arquivos",
+    titulo: "Arquivos para Download",
     layout: "arquivos",
     arquivos,
   },

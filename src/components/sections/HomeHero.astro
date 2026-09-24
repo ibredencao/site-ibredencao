@@ -4,7 +4,11 @@ import Btn from "../ui/Btn.astro";
 import Icone from "../ui/Icone.astro";
 import setaBaixo from "../../assets/icones/seta-baixo.svg?raw";
 import heroCulto from "../../assets/hero.jpg";
-import { heroTitulo, heroReferencia } from "../../data/conteudo";
+import { heroTituloLinhas, heroReferencia } from "../../data/conteudo";
+
+// Segunda linha inteira com espaços não separáveis: nunca vira 3 linhas.
+const segundaLinhaHero =
+  `${heroTituloLinhas[1]} ${heroTituloLinhas[2]}`.replaceAll(" ", "\u00A0");
 
 /**
  * Hero da Home: a foto do culto como fundo em todas as larguras
@@ -16,7 +20,7 @@ import { heroTitulo, heroReferencia } from "../../data/conteudo";
 ---
 
 <section
-  class="relative flex min-h-[100svh] flex-col justify-center overflow-hidden pt-20 pb-16"
+  class="relative flex min-h-[100svh] flex-col justify-center overflow-hidden pt-35 pb-16 lg:pt-20"
 >
   <div class="absolute inset-0">
     <Image
@@ -43,7 +47,7 @@ import { heroTitulo, heroReferencia } from "../../data/conteudo";
   </div>
 
   <div
-    class="relative mx-auto flex w-full max-w-[1585px] flex-col gap-10 px-6 text-center text-branco lg:items-center lg:px-10"
+    class="relative mx-auto flex w-full max-w-[1585px] flex-col items-center gap-10 px-6 text-center text-branco lg:px-10"
   >
     <div class="flex flex-col items-center gap-4">
       {/* Eyebrow discreto, como o "WELCOME" da referência */}
@@ -52,15 +56,12 @@ import { heroTitulo, heroReferencia } from "../../data/conteudo";
       >
         Bem-vindo
       </p>
-      {
-        /* Caixa natural (sem uppercase), em escala de capa.
-          No mobile o clamp segue a largura da tela (~11.5vw) e o título
-          avança de leve sobre o respiro lateral, como display de capa. */
-      }
+      {/* Caixa natural, em escala de capa, sempre em duas linhas */}
       <h1
-        class="titulo-hero entrada-hero text-[clamp(2.25rem,12.3vw,3.25rem)] [--atraso-entrada:80ms] md:max-w-lg md:text-6xl lg:max-w-2xl lg:text-7xl"
+        class="titulo-hero entrada-hero text-[clamp(2.25rem,12.3vw,3.25rem)] [--atraso-entrada:80ms] md:text-6xl lg:text-7xl"
       >
-        {heroTitulo}
+        {heroTituloLinhas[0]}<br />
+        {segundaLinhaHero}
       </h1>
       <p
         class="entrada-hero font-sans text-[13px] font-medium text-areia uppercase [--atraso-entrada:160ms]"

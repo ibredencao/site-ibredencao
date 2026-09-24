@@ -9,6 +9,29 @@ interface Props {
   subtitulo?: string;
 }
 const { titulo, subtitulo } = Astro.props;
+
+// Divide o título em DUAS linhas no ponto mais equilibrado (títulos curtos,
+// até 10 caracteres ou uma palavra, ficam em linha única). Cada linha vira
+// inseparável (nbsp) para nunca degradar em três linhas.
+function dividirTitulo(t: string): string[] {
+  const palavras = t.split(" ");
+  if (palavras.length < 2 || t.length <= 10) return [t];
+  let melhor = 1;
+  let melhorDiff = Infinity;
+  for (let i = 1; i < palavras.length; i++) {
+    const a = palavras.slice(0, i).join(" ").length;
+    const b = palavras.slice(i).join(" ").length;
+    if (Math.abs(a - b) < melhorDiff) {
+      melhorDiff = Math.abs(a - b);
+      melhor = i;
+    }
+  }
+  return [
+    palavras.slice(0, melhor).join("\u00A0"),
+    palavras.slice(melhor).join("\u00A0"),
+  ];
+}
+const linhasTitulo = dividirTitulo(titulo);
 ---
 
 <section class="relative overflow-hidden bg-sangue text-areia">
@@ -20,13 +43,19 @@ const { titulo, subtitulo } = Astro.props;
     class="pointer-events-none absolute top-1/2 left-1/2 w-[150%] max-w-none -translate-x-1/2 -translate-y-1/2 lg:w-full lg:opacity-50"
   />
 
+  {
+    /* Mobile: texto alinhado à esquerda e título maior;
+      a partir de lg, centrado como no design original. */
+  }
   <div
-    class="relative mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 pt-40 pb-20 text-center lg:pt-48 lg:pb-28"
+    class="relative mx-auto flex max-w-3xl flex-col gap-6 px-6 pt-40 pb-20 text-left lg:items-center lg:pt-48 lg:pb-28 lg:text-center"
   >
     <h1
-      class="entrada-hero font-display text-[clamp(2.75rem,7vw,5rem)] leading-none font-light text-balance"
+      class="entrada-hero font-display text-[3.75rem] leading-[1.1] font-light md:text-[clamp(3rem,7.5vw,5.75rem)]"
     >
-      {titulo}
+      {linhasTitulo[0]}
+      {linhasTitulo[1] && <br />}
+      {linhasTitulo[1]}
     </h1>
     {
       subtitulo && (

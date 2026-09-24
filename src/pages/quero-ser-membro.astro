@@ -4,53 +4,78 @@ import HeroInterno from "../components/sections/HeroInterno.astro";
 import Agenda from "../components/sections/Agenda.astro";
 import OndeEstamos from "../components/sections/OndeEstamos.astro";
 import Btn from "../components/ui/Btn.astro";
-import { introMembresia, passosMembresia } from "../data/membresia";
+import {
+  introMembresia,
+  razoesLead,
+  razoesMembresia,
+  introTrilha,
+  passosMembresia,
+  chamadaMembresia,
+} from "../data/membresia";
 ---
 
 <BaseLayout
   title="Quero ser membro | Igreja Batista Redenção"
-  description="Como se tornar membro da Igreja Batista Redenção: classe de membresia, entrevista pastoral e reunião de membresia."
+  description="Como se tornar membro da Igreja Batista Redenção: entrevista pastoral, classe de membresia e reunião de membresia."
   temaHeader="escuro"
 >
   <HeroInterno titulo="Quero ser membro" />
 
   <section class="bg-branco py-20 lg:py-28">
     <div class="mx-auto flex max-w-3xl flex-col gap-14 px-6 lg:px-10">
+      {/* Por que membresia */}
       <div
         class="flex flex-col gap-6 font-sans text-lg leading-relaxed"
         data-reveal
       >
         {introMembresia.map((p) => <p>{p}</p>)}
+        <p>{razoesLead}</p>
+        <ul class="flex flex-col gap-5 pl-5">
+          {
+            razoesMembresia.map((razao) => (
+              <li class="list-disc marker:text-bege">
+                <strong class="font-semibold">{razao.titulo}</strong>{" "}
+                {razao.texto}
+              </li>
+            ))
+          }
+        </ul>
+        <p>{introTrilha}</p>
       </div>
 
-      {/* Trilha: classe → entrevista → reunião */}
+      {/* Trilha: entrevista → classe → reunião */}
       <ol class="flex flex-col gap-10" data-reveal>
         {
           passosMembresia.map((passo, i) => (
-            <li class="flex gap-6">
-              <span
-                class="font-display text-4xl leading-none font-light text-bege"
-                aria-hidden="true"
-              >
-                {i + 1}
-              </span>
-              <div class="flex flex-col gap-2">
-                <h2 class="font-sans text-xl font-medium">{passo.titulo}</h2>
-                <p class="font-sans text-lg leading-snug opacity-80">
-                  {passo.descricao}
-                </p>
-              </div>
+            <li class="flex flex-col gap-2">
+              {/* aria-hidden no número: o <ol> já carrega a ordem */}
+              <h2 class="font-sans text-xl font-medium">
+                <span class="font-ui font-medium text-bege" aria-hidden="true">
+                  {i + 1}.
+                </span>{" "}
+                {passo.titulo}
+              </h2>
+              <p class="font-sans text-lg leading-relaxed opacity-80">
+                {passo.descricao}
+              </p>
             </li>
           ))
         }
       </ol>
 
+      {/* Chamada final */}
       <div class="flex flex-col gap-6" data-reveal>
-        <p class="font-sans text-lg leading-snug opacity-80">
-          Entre em contato para mais informações sobre a nossa classe de
-          membresia.
+        <h2
+          class="font-display text-[clamp(1.5rem,2.5vw,2.25rem)] leading-tight font-light text-bege"
+        >
+          {chamadaMembresia.titulo}
+        </h2>
+        <p class="font-sans text-lg leading-relaxed opacity-80">
+          {chamadaMembresia.texto}
         </p>
-        <Btn href="#onde-estamos" class="w-fit">Entrar em contato</Btn>
+        <Btn href={chamadaMembresia.link} class="w-fit">
+          {chamadaMembresia.rotuloBotao}
+        </Btn>
       </div>
     </div>
   </section>
