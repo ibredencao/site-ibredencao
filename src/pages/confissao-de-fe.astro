@@ -5,7 +5,11 @@ import Agenda from "../components/sections/Agenda.astro";
 import OndeEstamos from "../components/sections/OndeEstamos.astro";
 import Icone from "../components/ui/Icone.astro";
 import setaBaixo from "../assets/icones/seta-baixo.svg?raw";
-import { artigosConfissao, notaConfissao } from "../data/confissao";
+import {
+  artigosConfissao,
+  introConfissao,
+  notaConfissao,
+} from "../data/confissao";
 import versiculos from "../data/versiculos-confissao.json";
 
 /**
@@ -67,6 +71,14 @@ const classeRefBotao =
             data-lenis-prevent
           >
             <ol class="flex flex-col gap-2">
+              <li>
+                <a
+                  href={`#${introConfissao.slug}`}
+                  class="font-ui text-base leading-tight opacity-70 transition-colors duration-300 hover:text-sangue hover:opacity-100"
+                >
+                  {introConfissao.titulo}
+                </a>
+              </li>
               {
                 artigosConfissao.map((a) => (
                   <li>
@@ -94,6 +106,25 @@ const classeRefBotao =
 
       {/* Artigos */}
       <div class="flex flex-col gap-16 lg:col-span-6 lg:col-start-5">
+        {/* Preâmbulo: por que confessamos a fé */}
+        <article
+          id={introConfissao.slug}
+          class="flex scroll-mt-40 flex-col gap-8 lg:scroll-mt-28"
+          data-reveal
+        >
+          <h2
+            class="font-display text-[clamp(1.75rem,3vw,2.7rem)] leading-tight font-light text-bege"
+          >
+            {introConfissao.titulo}
+          </h2>
+          <div class="flex flex-col gap-6">
+            {
+              introConfissao.paragrafos.map((p) => (
+                <p class="font-sans text-lg leading-snug">{p}</p>
+              ))
+            }
+          </div>
+        </article>
         {
           artigosConfissao.map((artigo) => (
             <article

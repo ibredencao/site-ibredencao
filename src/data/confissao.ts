@@ -14,6 +14,17 @@ export interface ArtigoConfissao {
   blocos: BlocoConfissao[];
 }
 
+/** Preâmbulo — por que uma igreja confessa a sua fé (Pr., set/2026). */
+export const introConfissao = {
+  titulo: "Preâmbulo",
+  slug: "preambulo",
+  paragrafos: [
+    "Confessar a fé faz parte da natureza pessoal da fé em Cristo e, por extensão, da igreja que professa essa fé. Aquele que crê é chamado a confessar aquilo que crê, e a igreja, como comunidade dos que foram alcançados pelo evangelho, é chamada a tornar pública a fé que recebeu da Palavra de Deus.",
+    "É nesse sentido que os credos e as confissões de fé servem à igreja. Eles não substituem a autoridade das Escrituras, nem acrescentam uma nova revelação à Palavra de Deus. Antes, procuram sintetizar e declarar publicamente aquilo que a igreja entende que a Escritura ensina.",
+    "A Confissão de Fé da Igreja Batista Redenção é, portanto, uma expressão pública dos compromissos doutrinários que assumimos como igreja. Recebemos esta confissão com gratidão pela herança que nos foi legada pela igreja de Cristo ao longo da história e, acima de tudo, submetemos cada uma de suas afirmações à autoridade suprema das Sagradas Escrituras.",
+  ],
+};
+
 export const artigosConfissao: ArtigoConfissao[] = [
   {
     num: "I",
