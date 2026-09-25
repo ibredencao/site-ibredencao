@@ -26,12 +26,12 @@
   --color-bege: #a48055;
   --color-preto: #1d1b1a;
   --color-branco: #efece1;
-  --color-sangue: #8c3238;
+  --color-sangue: #8b282f;
   --color-areia: #dacbb4;
   /* Tom escuro do vinho usado no hover dos botões sólidos */
-  --color-sangue-escuro: #6a2429;
-  /* Tom mais profundo (Figma): frase, referência e copyright do rodapé */
-  --color-sangue-profundo: #5e1f23;
+  --color-sangue-escuro: #701e24;
+  /* Tom mais profundo: frase, referência e copyright do rodapé */
+  --color-sangue-profundo: #631a1f;
   /* Creme levemente mais claro que o branco, usado em seções alternadas (ex.: Onde Estamos) */
   --color-creme: #f7f5ee;
 

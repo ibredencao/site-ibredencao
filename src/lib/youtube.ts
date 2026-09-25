@@ -27,6 +27,24 @@ export interface VideoYoutube extends ItemRecurso {
   thumb: string;
 }
 
+/**
+ * O RSS só oferece o hqdefault (4:3, com tarjas pretas embutidas — elas vazam
+ * 1–2px nos cards 16:9). Busca a melhor variante 16:9 real: maxresdefault →
+ * hq720 → mqdefault (esta sempre existe). Roda no build, custo desprezível.
+ */
+async function melhorThumb(id: string): Promise<string> {
+  for (const nome of ["maxresdefault", "hq720"]) {
+    const url = `https://i.ytimg.com/vi/${id}/${nome}.jpg`;
+    try {
+      const resp = await fetch(url, { method: "HEAD" });
+      if (resp.ok) return url;
+    } catch {
+      // rede falhou — tenta a próxima variante
+    }
+  }
+  return `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
+}
+
 export async function buscarVideosYoutube(limite = 6): Promise<VideoYoutube[]> {
   try {
     const resp = await fetch(FEED_URL);
@@ -39,13 +57,12 @@ export async function buscarVideosYoutube(limite = 6): Promise<VideoYoutube[]> {
       const id = primeiro(/<yt:videoId>(.*?)<\/yt:videoId>/, entrada);
       const titulo = primeiro(/<title>(.*?)<\/title>/, entrada);
       const publicado = primeiro(/<published>(.*?)<\/published>/, entrada);
-      const thumb = primeiro(/<media:thumbnail url="(.*?)"/, entrada);
       if (!id || !titulo) continue;
       videos.push({
         titulo: titulo.replace(/&amp;/g, "&").replace(/&#39;/g, "'"),
         data: publicado ? formatarData(publicado) : undefined,
         href: `https://www.youtube.com/watch?v=${id}`,
-        thumb: thumb ?? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+        thumb: await melhorThumb(id),
       });
     }
     return videos;
