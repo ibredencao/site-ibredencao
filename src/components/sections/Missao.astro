@@ -14,11 +14,14 @@ import { missao } from "../../data/conteudo";
   class="scroll-mt-0 bg-bege text-branco"
 >
   {
-    /* Bloco centralizado na faixa (o texto segue alinhado à esquerda),
-      com medida larga para a frase não se esticar em muitas linhas */
+    /* Bloco centralizado na faixa; o texto centraliza só no desktop —
+      no celular segue à esquerda. Medida larga para a frase não se
+      esticar em muitas linhas. */
   }
   <div class="mx-auto max-w-[1585px] px-6 py-16 lg:px-10 lg:py-24" data-reveal>
-    <div class="mx-auto flex max-w-4xl flex-col gap-6 lg:gap-8">
+    <div
+      class="mx-auto flex max-w-4xl flex-col gap-6 text-left lg:gap-8 lg:text-center"
+    >
       <p
         class="font-sans text-[13px] font-medium tracking-[0.3em] text-areia uppercase"
       >

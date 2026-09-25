@@ -31,8 +31,7 @@ const mapaEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
         <span class="font-sans font-semibold">{endereco.nome}</span>
         <div class="flex flex-col font-sans">
           <span>{endereco.rua}</span>
-          <span>{endereco.bairro}</span>
-          <span>{endereco.cidade}</span>
+          <span>{endereco.bairro} - {endereco.cidade}</span>
         </div>
       </address>
       <Btn href={contato.rotaGoogleMaps} variant="inline" class="text-sangue">

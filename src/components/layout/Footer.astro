@@ -130,8 +130,9 @@ const { endereco } = contato;
             <address class="flex flex-col text-base not-italic">
               <span class="font-sans font-semibold">{endereco.nome}</span>
               <span class="font-sans">{endereco.rua}</span>
-              <span class="font-sans">{endereco.bairro}</span>
-              <span class="font-sans">{endereco.cidade}</span>
+              <span class="font-sans"
+                >{endereco.bairro} - {endereco.cidade}</span
+              >
             </address>
             <a
               href={contato.rotaGoogleMaps}
